@@ -1,0 +1,34 @@
+{
+  "name": "jspm-devtools",
+  "version": "1.0.0",
+  "description": "Make development great again!",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel lib -d dist",
+    "dev": "babel -w lib -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexisvincent/jspm-devtools.git"
+  },
+  "keywords": [
+    "JSPM",
+    "dev",
+    "tools",
+    "devtools"
+  ],
+  "author": "Alexis Vincent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexisvincent/jspm-devtools/issues"
+  },
+  "homepage": "https://github.com/alexisvincent/jspm-devtools#readme",
+  "babel": {
+    "presets": ["es2015"]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0"
+  }
+}

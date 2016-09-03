@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jspm-devtools test</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <script src="/jspm_packages/system.js"></script>
+    <script defer src="/jspm/jspm.config.js"></script>
+    <script defer src="/jspm/browser.jspm.config.js"></script>
+</head>
+
+<body>
+<div id="root">
+    Loading...
+</div>
+<!--<script defer src="/dependencies.js"></script>-->
+<script type="text/javascript" charset="utf-8">
+    document.addEventListener('DOMContentLoaded', function () {
+        System.loads = {}
+        SystemJS.import('app/app.js')
+    })
+</script>
+</body>
+</html>

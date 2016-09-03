@@ -1,6 +1,6 @@
 {
   "name": "jspm-devtools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make development great again!",
   "main": "dist/index.js",
   "scripts": {
@@ -25,7 +25,9 @@
   },
   "homepage": "https://github.com/alexisvincent/jspm-devtools#readme",
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",

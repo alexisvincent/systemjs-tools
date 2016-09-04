@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import _ from 'lodash'
-// import styles from './dashboard.ncss'
+import styles from './dashboard.pcss'
 
 export default
 class DashboardContainer extends React.Component {

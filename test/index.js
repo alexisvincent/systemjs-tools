@@ -2,28 +2,34 @@
  * Created by alexisvincent on 2016/09/03.
  */
 const express = require('express')
-const http = require('http')
+const spdy = require('spdy')
 const compression = require('compression')
 const jspm = require('jspm')
 const socketio = require('socket.io')
 const fs = require('fs')
 
 const app = express()
-const server = http.createServer(app)
+
+const server = spdy.createServer({
+    key: fs.readFileSync(__dirname + '/certs/server.key'),
+    cert: fs.readFileSync(__dirname + '/certs/server.crt'),
+}, app)
 
 app.use(compression());
 
-const devtools = require('../dist/index').default(process.cwd(), {
+const devtools = require('../dist/index').default({
+    serverRoot: process.cwd(),
     jspm: jspm,
     io: socketio(server),
     entry: 'app/app.js',
     hmr: true,
     bundleHandler: ({req, isSystemJSRequest}) => {
-        // return req.originalUrl.endsWith("dependencies.js") ? 'bundleDeps'
-        //     : isSystemJSRequest ? 'compile'
-        //     : 'skip'
-        return isSystemJSRequest ? 'bundle'
+        return req.originalUrl.endsWith("dependencies.js") ? 'bundle'
             : 'skip'
+            // return 'test'
+        // return isSystemJSRequest ? 'bundle'
+        //     : 'skip'
+        // return isSystemJSRequest ? 'pushDeps' : 'skip'
     }
 })
 

@@ -1,4 +1,6 @@
-# JSPM Devtools
+# JSPM Devtools [UNSTABLE!!!]
+
+API is in heavy flux, will settle over the next few days/weeks
 
 ```js
 const devtools = require('jspm-devtools').default({

@@ -15,7 +15,9 @@
     "express": "^4.14.0",
     "jspm": "^0.17.0-beta.28",
     "socket.io": "^1.4.8",
-    "spdy": "^3.4.0"
+    "spdy": "^3.4.0",
+    "spdy-keys": "0.0.0",
+    "spdy-push": "^1.0.2"
   },
   "jspm": {
     "name": "app",

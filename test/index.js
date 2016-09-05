@@ -3,6 +3,7 @@
  */
 const express = require('express')
 const spdy = require('spdy')
+// const spdy = require('spdy-push')
 const compression = require('compression')
 const jspm = require('jspm')
 const socketio = require('socket.io')
@@ -10,10 +11,7 @@ const fs = require('fs')
 
 const app = express()
 
-const server = spdy.createServer({
-    key: fs.readFileSync(__dirname + '/certs/server.key'),
-    cert: fs.readFileSync(__dirname + '/certs/server.crt'),
-}, app)
+const server = spdy.createServer(require('spdy-keys'), app)
 
 app.use(compression());
 
@@ -26,10 +24,9 @@ const devtools = require('../dist/index').default({
     bundleHandler: ({req, isSystemJSRequest}) => {
         return req.originalUrl.endsWith("dependencies.js") ? 'bundle'
             : 'skip'
-            // return 'test'
+        // return isSystemJSRequest ? 'pushDeps' : 'skip'
         // return isSystemJSRequest ? 'bundle'
         //     : 'skip'
-        // return isSystemJSRequest ? 'pushDeps' : 'skip'
     }
 })
 

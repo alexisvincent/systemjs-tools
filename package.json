@@ -1,6 +1,6 @@
 {
   "name": "jspm-devtools",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Make development great again!",
   "main": "dist/index.js",
   "scripts": {

@@ -3,8 +3,10 @@
 API is in heavy flux, will settle over the next few days/weeks
 
 ```js
-const devtools = require('jspm-devtools').default({
-    // Absolute path to package.json 
+const { make } = require('jspm-devtools');
+
+const devtools = make({
+    // Absolute path to package.json
     serverRoot: process.cwd(),
     // Instance of jspm used in project
     jspm: jspm,
@@ -15,9 +17,11 @@ const devtools = require('jspm-devtools').default({
     // Hot Module Replacement [defaults to false]
     hmr: true,
     // Function that decides how to handle requests
-    bundleHandler: ({req, isSystemJSRequest}) => {
-        return req.originalUrl.endsWith("dependencies.js") ? 'bundle'
-            : 'skip'
+    resolveHandler: ({req, isSystemJSRequest, resolvers}) => {
+        const {bundle, next} = resolvers
+        return req.originalUrl.endsWith("dependencies.js")
+            ? bundle()
+            : next()
     }
 })
 

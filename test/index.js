@@ -15,18 +15,19 @@ const server = spdy.createServer(require('spdy-keys'), app)
 
 app.use(compression());
 
-const devtools = require('../dist/index').default({
+const {make} = require('../dist/index');
+
+const devtools = make({
     serverRoot: process.cwd(),
     jspm: jspm,
     io: socketio(server),
     entry: 'app/app.js',
     hmr: true,
-    bundleHandler: ({req, isSystemJSRequest}) => {
-        return req.originalUrl.endsWith("dependencies.js") ? 'bundle'
-            : 'skip'
-        // return isSystemJSRequest ? 'pushDeps' : 'skip'
-        // return isSystemJSRequest ? 'bundle'
-        //     : 'skip'
+    resolveHandler: ({req, isSystemJSRequest, resolvers}) => {
+        const {bundle, next} = resolvers
+        return req.originalUrl.endsWith("dependencies.js")
+            ? bundle()
+            : next()
     }
 })
 

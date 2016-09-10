@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Lets see if this all works",
   "scripts": {
-    "start": "nodemon --watch index.js --watch app --watch jspm --watch index.html --watch package.json --watch ../dist index.js",
-    "caniusefix": "cp ./caniusefix.js ./jspm_packages/npm/caniuse-api@1.5.1/dist/index.js",
-    "certs": "cd certs && sh gen.sh"
+    "start": "nodemon --watch index.js --watch app --watch jspm --watch index.html --watch package.json --watch ../dist index.js"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"

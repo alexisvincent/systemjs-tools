@@ -81,7 +81,7 @@ SystemJS.config({
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
-    "postcss-cssnext": "npm:postcss-cssnext@2.7.0",
+    "postcss-cssnext": "npm:postcss-cssnext@2.8.0",
     "postcss-import": "github:MeoMix/postcss-import@master",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "punycode": "github:jspm/nodelibs-punycode@0.2.0-alpha",
@@ -136,7 +136,7 @@ SystemJS.config({
     "npm:readable-stream@2.1.5": {
       "map": {
         "isarray": "npm:isarray@1.0.0",
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "string_decoder": "npm:string_decoder@0.10.31",
         "util-deprecate": "npm:util-deprecate@1.0.2",
         "buffer-shims": "npm:buffer-shims@1.0.0",
@@ -174,9 +174,9 @@ SystemJS.config({
     },
     "npm:crypto-browserify@3.11.0": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "randombytes": "npm:randombytes@2.0.3",
-        "pbkdf2": "npm:pbkdf2@3.0.4",
+        "pbkdf2": "npm:pbkdf2@3.0.5",
         "create-hmac": "npm:create-hmac@1.1.4",
         "browserify-cipher": "npm:browserify-cipher@1.0.0",
         "browserify-sign": "npm:browserify-sign@4.0.0",
@@ -186,20 +186,15 @@ SystemJS.config({
         "public-encrypt": "npm:public-encrypt@4.0.0"
       }
     },
-    "npm:pbkdf2@3.0.4": {
-      "map": {
-        "create-hmac": "npm:create-hmac@1.1.4"
-      }
-    },
     "npm:create-hmac@1.1.4": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "create-hash": "npm:create-hash@1.1.2"
       }
     },
     "npm:browserify-sign@4.0.0": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "create-hmac": "npm:create-hmac@1.1.4",
         "bn.js": "npm:bn.js@4.11.6",
         "parse-asn1": "npm:parse-asn1@5.0.0",
@@ -224,14 +219,14 @@ SystemJS.config({
     },
     "npm:browserify-des@1.0.0": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "cipher-base": "npm:cipher-base@1.0.2",
         "des.js": "npm:des.js@1.0.0"
       }
     },
     "npm:browserify-aes@1.0.6": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "evp_bytestokey": "npm:evp_bytestokey@1.0.0",
         "cipher-base": "npm:cipher-base@1.0.2",
         "buffer-xor": "npm:buffer-xor@1.0.3",
@@ -246,7 +241,7 @@ SystemJS.config({
     },
     "npm:parse-asn1@5.0.0": {
       "map": {
-        "pbkdf2": "npm:pbkdf2@3.0.4",
+        "pbkdf2": "npm:pbkdf2@3.0.5",
         "browserify-aes": "npm:browserify-aes@1.0.6",
         "evp_bytestokey": "npm:evp_bytestokey@1.0.0",
         "asn1.js": "npm:asn1.js@4.8.0",
@@ -261,21 +256,21 @@ SystemJS.config({
     },
     "npm:elliptic@6.3.1": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "bn.js": "npm:bn.js@4.11.6",
-        "brorand": "npm:brorand@1.0.5",
+        "brorand": "npm:brorand@1.0.6",
         "hash.js": "npm:hash.js@1.0.3"
       }
     },
     "npm:miller-rabin@4.0.0": {
       "map": {
         "bn.js": "npm:bn.js@4.11.6",
-        "brorand": "npm:brorand@1.0.5"
+        "brorand": "npm:brorand@1.0.6"
       }
     },
     "npm:cipher-base@1.0.2": {
       "map": {
-        "inherits": "npm:inherits@2.0.1"
+        "inherits": "npm:inherits@2.0.3"
       }
     },
     "github:jspm/nodelibs-zlib@0.2.0-alpha": {
@@ -291,20 +286,20 @@ SystemJS.config({
     },
     "npm:des.js@1.0.0": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     },
     "npm:asn1.js@4.8.0": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "bn.js": "npm:bn.js@4.11.6",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     },
     "npm:hash.js@1.0.3": {
       "map": {
-        "inherits": "npm:inherits@2.0.1"
+        "inherits": "npm:inherits@2.0.3"
       }
     },
     "npm:evp_bytestokey@1.0.0": {
@@ -315,7 +310,7 @@ SystemJS.config({
     "npm:create-hash@1.1.2": {
       "map": {
         "cipher-base": "npm:cipher-base@1.0.2",
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "ripemd160": "npm:ripemd160@1.0.1",
         "sha.js": "npm:sha.js@2.4.5"
       }
@@ -336,13 +331,13 @@ SystemJS.config({
     },
     "npm:stream-browserify@2.0.1": {
       "map": {
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "readable-stream": "npm:readable-stream@2.1.5"
       }
     },
     "npm:sha.js@2.4.5": {
       "map": {
-        "inherits": "npm:inherits@2.0.1"
+        "inherits": "npm:inherits@2.0.3"
       }
     },
     "github:jspm/nodelibs-string_decoder@0.2.0-alpha": {
@@ -458,107 +453,68 @@ SystemJS.config({
         "ansi-regex": "npm:ansi-regex@2.0.0"
       }
     },
-    "npm:postcss-cssnext@2.7.0": {
-      "map": {
-        "postcss-calc": "npm:postcss-calc@5.3.1",
-        "postcss-apply": "npm:postcss-apply@0.3.0",
-        "caniuse-api": "npm:caniuse-api@1.5.1",
-        "postcss-color-hex-alpha": "npm:postcss-color-hex-alpha@2.0.0",
-        "postcss-color-rebeccapurple": "npm:postcss-color-rebeccapurple@2.0.0",
-        "postcss-color-hwb": "npm:postcss-color-hwb@2.0.0",
-        "postcss-font-variant": "npm:postcss-font-variant@2.0.1",
-        "postcss-color-function": "npm:postcss-color-function@2.0.1",
-        "postcss-custom-media": "npm:postcss-custom-media@5.0.1",
-        "postcss-color-gray": "npm:postcss-color-gray@3.0.0",
-        "postcss-custom-properties": "npm:postcss-custom-properties@5.0.1",
-        "postcss-initial": "npm:postcss-initial@1.5.2",
-        "postcss-color-rgba-fallback": "npm:postcss-color-rgba-fallback@2.2.0",
-        "pixrem": "npm:pixrem@3.0.2",
-        "pleeease-filters": "npm:pleeease-filters@3.0.0",
-        "postcss-pseudoelements": "npm:postcss-pseudoelements@3.0.0",
-        "postcss-replace-overflow-wrap": "npm:postcss-replace-overflow-wrap@1.0.0",
-        "postcss": "npm:postcss@5.1.2",
-        "autoprefixer": "npm:autoprefixer@6.4.0",
-        "postcss-pseudo-class-any-link": "npm:postcss-pseudo-class-any-link@1.0.0",
-        "postcss-selector-not": "npm:postcss-selector-not@2.0.0",
-        "postcss-media-minmax": "npm:postcss-media-minmax@2.1.2",
-        "postcss-selector-matches": "npm:postcss-selector-matches@2.0.1",
-        "postcss-custom-selectors": "npm:postcss-custom-selectors@3.0.0",
-        "postcss-nesting": "npm:postcss-nesting@2.3.1",
-        "chalk": "npm:chalk@1.1.3"
-      }
-    },
-    "npm:caniuse-api@1.5.1": {
-      "map": {
-        "browserslist": "npm:browserslist@1.3.6",
-        "lodash.memoize": "npm:lodash.memoize@4.1.2",
-        "caniuse-db": "npm:caniuse-db@1.0.30000526",
-        "lodash.uniq": "npm:lodash.uniq@4.5.0",
-        "shelljs": "npm:shelljs@0.7.4"
-      }
-    },
     "npm:pixrem@3.0.2": {
       "map": {
         "browserslist": "npm:browserslist@1.3.6",
-        "postcss": "npm:postcss@5.1.2",
-        "reduce-css-calc": "npm:reduce-css-calc@1.2.7"
+        "postcss": "npm:postcss@5.2.0",
+        "reduce-css-calc": "npm:reduce-css-calc@1.3.0"
       }
     },
     "npm:browserslist@1.3.6": {
       "map": {
-        "caniuse-db": "npm:caniuse-db@1.0.30000526"
+        "caniuse-db": "npm:caniuse-db@1.0.30000529"
       }
     },
     "npm:postcss-color-function@2.0.1": {
       "map": {
         "postcss-value-parser": "npm:postcss-value-parser@3.3.0",
         "css-color-function": "npm:css-color-function@1.3.0",
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "postcss-message-helpers": "npm:postcss-message-helpers@2.0.0"
       }
     },
     "npm:postcss-color-rgba-fallback@2.2.0": {
       "map": {
         "postcss-value-parser": "npm:postcss-value-parser@3.3.0",
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "rgb-hex": "npm:rgb-hex@1.0.0"
       }
     },
     "npm:pleeease-filters@3.0.0": {
       "map": {
         "onecolor": "npm:onecolor@2.4.2",
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:postcss-apply@0.3.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "balanced-match": "npm:balanced-match@0.4.2"
       }
     },
     "npm:postcss-calc@5.3.1": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "postcss-message-helpers": "npm:postcss-message-helpers@2.0.0",
         "reduce-css-calc": "npm:reduce-css-calc@1.3.0"
       }
     },
     "npm:postcss-color-hex-alpha@2.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "postcss-message-helpers": "npm:postcss-message-helpers@2.0.0",
         "color": "npm:color@0.10.1"
       }
     },
     "npm:postcss-color-rebeccapurple@2.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "color": "npm:color@0.9.0"
       }
     },
     "npm:postcss-color-hwb@2.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "postcss-message-helpers": "npm:postcss-message-helpers@2.0.0",
         "color": "npm:color@0.10.1",
         "reduce-function-call": "npm:reduce-function-call@1.0.1"
@@ -566,17 +522,17 @@ SystemJS.config({
     },
     "npm:postcss-font-variant@2.0.1": {
       "map": {
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:postcss-custom-media@5.0.1": {
       "map": {
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:postcss-color-gray@3.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "postcss-message-helpers": "npm:postcss-message-helpers@2.0.0",
         "color": "npm:color@0.7.3",
         "reduce-function-call": "npm:reduce-function-call@1.0.1"
@@ -584,24 +540,24 @@ SystemJS.config({
     },
     "npm:postcss-custom-properties@5.0.1": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "balanced-match": "npm:balanced-match@0.1.0"
       }
     },
     "npm:postcss-initial@1.5.2": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "lodash.template": "npm:lodash.template@4.4.0"
       }
     },
     "npm:postcss-pseudoelements@3.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:postcss-replace-overflow-wrap@1.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:css-color-function@1.3.0": {
@@ -610,13 +566,6 @@ SystemJS.config({
         "debug": "npm:debug@0.7.4",
         "color": "npm:color@0.11.3",
         "rgb": "npm:rgb@0.1.0"
-      }
-    },
-    "npm:reduce-css-calc@1.2.7": {
-      "map": {
-        "balanced-match": "npm:balanced-match@0.1.0",
-        "math-expression-evaluator": "npm:math-expression-evaluator@1.2.14",
-        "reduce-function-call": "npm:reduce-function-call@1.0.1"
       }
     },
     "npm:autoprefixer@6.4.0": {
@@ -631,19 +580,19 @@ SystemJS.config({
     },
     "npm:postcss-pseudo-class-any-link@1.0.0": {
       "map": {
-        "postcss": "npm:postcss@5.1.2",
+        "postcss": "npm:postcss@5.2.0",
         "postcss-selector-parser": "npm:postcss-selector-parser@1.3.3"
       }
     },
     "npm:postcss-selector-not@2.0.0": {
       "map": {
         "balanced-match": "npm:balanced-match@0.2.1",
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:postcss-media-minmax@2.1.2": {
       "map": {
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:shelljs@0.7.4": {
@@ -673,22 +622,16 @@ SystemJS.config({
     },
     "npm:color@0.11.3": {
       "map": {
-        "color-convert": "npm:color-convert@1.4.0",
+        "color-convert": "npm:color-convert@1.5.0",
         "color-string": "npm:color-string@0.3.0",
         "clone": "npm:clone@1.0.2"
-      }
-    },
-    "npm:postcss-selector-matches@2.0.1": {
-      "map": {
-        "balanced-match": "npm:balanced-match@0.2.1",
-        "postcss": "npm:postcss@5.1.2"
       }
     },
     "npm:postcss-custom-selectors@3.0.0": {
       "map": {
         "balanced-match": "npm:balanced-match@0.2.1",
-        "postcss": "npm:postcss@5.1.2",
-        "postcss-selector-matches": "npm:postcss-selector-matches@2.0.1"
+        "postcss": "npm:postcss@5.2.0",
+        "postcss-selector-matches": "npm:postcss-selector-matches@2.0.4"
       }
     },
     "npm:math-expression-evaluator@1.2.14": {
@@ -725,7 +668,7 @@ SystemJS.config({
     },
     "npm:postcss-nesting@2.3.1": {
       "map": {
-        "postcss": "npm:postcss@5.1.2"
+        "postcss": "npm:postcss@5.2.0"
       }
     },
     "npm:lodash.template@4.4.0": {
@@ -736,11 +679,11 @@ SystemJS.config({
     },
     "npm:glob@7.0.6": {
       "map": {
-        "once": "npm:once@1.3.3",
+        "once": "npm:once@1.4.0",
         "minimatch": "npm:minimatch@3.0.3",
         "fs.realpath": "npm:fs.realpath@1.0.0",
         "inflight": "npm:inflight@1.0.5",
-        "inherits": "npm:inherits@2.0.1",
+        "inherits": "npm:inherits@2.0.3",
         "path-is-absolute": "npm:path-is-absolute@1.0.0"
       }
     },
@@ -757,18 +700,13 @@ SystemJS.config({
     },
     "npm:inflight@1.0.5": {
       "map": {
-        "once": "npm:once@1.3.3",
+        "once": "npm:once@1.4.0",
         "wrappy": "npm:wrappy@1.0.2"
       }
     },
     "npm:lodash.templatesettings@4.1.0": {
       "map": {
         "lodash._reinterpolate": "npm:lodash._reinterpolate@3.0.0"
-      }
-    },
-    "npm:once@1.3.3": {
-      "map": {
-        "wrappy": "npm:wrappy@1.0.2"
       }
     },
     "npm:invariant@2.2.1": {
@@ -1420,6 +1358,85 @@ SystemJS.config({
         "redux-slider-monitor": "npm:redux-slider-monitor@1.0.7",
         "react-hot-loader": "npm:react-hot-loader@3.0.0-beta.2",
         "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
+      }
+    },
+    "npm:postcss-cssnext@2.8.0": {
+      "map": {
+        "caniuse-api": "npm:caniuse-api@1.5.2",
+        "chalk": "npm:chalk@1.1.3",
+        "pleeease-filters": "npm:pleeease-filters@3.0.0",
+        "pixrem": "npm:pixrem@3.0.2",
+        "autoprefixer": "npm:autoprefixer@6.4.1",
+        "postcss-apply": "npm:postcss-apply@0.3.0",
+        "postcss": "npm:postcss@5.2.0",
+        "postcss-color-function": "npm:postcss-color-function@2.0.1",
+        "postcss-calc": "npm:postcss-calc@5.3.1",
+        "postcss-color-hex-alpha": "npm:postcss-color-hex-alpha@2.0.0",
+        "postcss-color-hwb": "npm:postcss-color-hwb@2.0.0",
+        "postcss-color-rebeccapurple": "npm:postcss-color-rebeccapurple@2.0.0",
+        "postcss-color-gray": "npm:postcss-color-gray@3.0.0",
+        "postcss-custom-media": "npm:postcss-custom-media@5.0.1",
+        "postcss-color-rgba-fallback": "npm:postcss-color-rgba-fallback@2.2.0",
+        "postcss-custom-selectors": "npm:postcss-custom-selectors@3.0.0",
+        "postcss-custom-properties": "npm:postcss-custom-properties@5.0.1",
+        "postcss-font-variant": "npm:postcss-font-variant@2.0.1",
+        "postcss-initial": "npm:postcss-initial@1.5.2",
+        "postcss-media-minmax": "npm:postcss-media-minmax@2.1.2",
+        "postcss-nesting": "npm:postcss-nesting@2.3.1",
+        "postcss-replace-overflow-wrap": "npm:postcss-replace-overflow-wrap@1.0.0",
+        "postcss-pseudoelements": "npm:postcss-pseudoelements@3.0.0",
+        "postcss-pseudo-class-any-link": "npm:postcss-pseudo-class-any-link@1.0.0",
+        "postcss-selector-matches": "npm:postcss-selector-matches@2.0.4",
+        "postcss-selector-not": "npm:postcss-selector-not@2.0.0",
+        "postcss-attribute-case-insensitive": "npm:postcss-attribute-case-insensitive@1.0.1"
+      }
+    },
+    "npm:autoprefixer@6.4.1": {
+      "map": {
+        "postcss": "npm:postcss@5.2.0",
+        "browserslist": "npm:browserslist@1.3.6",
+        "caniuse-db": "npm:caniuse-db@1.0.30000529",
+        "postcss-value-parser": "npm:postcss-value-parser@3.3.0",
+        "num2fraction": "npm:num2fraction@1.2.2",
+        "normalize-range": "npm:normalize-range@0.1.2"
+      }
+    },
+    "npm:postcss-selector-matches@2.0.4": {
+      "map": {
+        "postcss": "npm:postcss@5.2.0",
+        "balanced-match": "npm:balanced-match@0.4.2"
+      }
+    },
+    "npm:caniuse-api@1.5.2": {
+      "map": {
+        "browserslist": "npm:browserslist@1.3.6",
+        "lodash.memoize": "npm:lodash.memoize@4.1.2",
+        "lodash.uniq": "npm:lodash.uniq@4.5.0",
+        "shelljs": "npm:shelljs@0.7.4",
+        "caniuse-db": "npm:caniuse-db@1.0.30000529"
+      }
+    },
+    "npm:postcss-attribute-case-insensitive@1.0.1": {
+      "map": {
+        "postcss": "npm:postcss@5.2.0",
+        "postcss-selector-parser": "npm:postcss-selector-parser@2.2.1"
+      }
+    },
+    "npm:postcss@5.2.0": {
+      "map": {
+        "source-map": "npm:source-map@0.5.6",
+        "supports-color": "npm:supports-color@3.1.2",
+        "js-base64": "npm:js-base64@2.1.9"
+      }
+    },
+    "npm:once@1.4.0": {
+      "map": {
+        "wrappy": "npm:wrappy@1.0.2"
+      }
+    },
+    "npm:pbkdf2@3.0.5": {
+      "map": {
+        "create-hmac": "npm:create-hmac@1.1.4"
       }
     }
   }

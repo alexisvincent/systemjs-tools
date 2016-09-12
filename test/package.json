@@ -120,6 +120,11 @@
           "test.js"
         ]
       },
+      "npm:inherits@2.0.3": {
+        "ignore": [
+          "test.js"
+        ]
+      },
       "npm:lodash@4.15.0": {
         "map": {
           "buffer": "@empty",

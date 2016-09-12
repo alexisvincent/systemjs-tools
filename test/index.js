@@ -26,7 +26,7 @@ const devtools = make({
     resolveHandler: ({req, isSystemJSRequest, resolvers}) => {
         const {bundle, next} = resolvers
         return req.originalUrl.endsWith("dependencies.js")
-            ? bundle()
+            ? bundle({entry: "app/app.js"})
             : next()
     }
 })
@@ -56,4 +56,4 @@ app.get('*', (req, res) => {
 /**
  * Listen on port 3000
  */
-server.listen(3000, err => console.log(err ? err : `Listening at http://localhost:3000`))
+server.listen(3000, err => console.log(err ? err : `Listening at https://localhost:3000`))

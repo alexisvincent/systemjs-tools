@@ -68,7 +68,8 @@ const devtools = make({
     // This is simply used to premptively cache files you might load to speed up the first load
     entries: ['app/app.js'],
     
-    // Function that returns an express handler [optional - defaults to () => bundle() ]
+    // Function that returns an express handler 
+    // [optional - defaults to ({resolvers, initatedBySystemJS}) => initatedBySystemJS ? resolvers.bundle() : resolvers.next() ]
     // Sometimes you want to programatically decide how to handle requests.
     // To support this, you can provide a resolve handler
     // This handler accepts information about the request being made and needs to return

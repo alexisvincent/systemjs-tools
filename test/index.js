@@ -18,15 +18,15 @@ app.use(compression());
 const {make} = require('../dist/index');
 
 const devtools = make({
-    serverRoot: process.cwd(),
+    packagePath: process.cwd(),
     jspm: jspm,
-    io: socketio(server),
-    entry: 'app/app.js',
     hmr: true,
-    resolveHandler: ({req, isSystemJSRequest, resolvers}) => {
-        const {bundle, next} = resolvers
+    io: socketio(server),
+    entries: ['app/app.js'],
+    resolveHandler: ({tools, req, initiatedBySystemJS, resolvers}) => {
+        const {bundle, compile, next} = resolvers
         return req.originalUrl.endsWith("dependencies.js")
-            ? bundle({entry: "app/app.js"})
+            ? bundle({expression: tools.entries[0]})
             : next()
     }
 })

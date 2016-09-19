@@ -27,7 +27,7 @@ after the fact. We provide smart defaults in all cases where we can.
 SystemJS provides the loader abstraction, enabling us to load arbitrary assets then to compile and consume these client side.
 While this provides a lot of flexibility, it also means things aren't always as responsive as we would like in an iterative workflow. 
 Specifically module compilation time and the latency induced my the [fetch file -> compile -> fetch dependencies -> compile ...]. This specifically can cause
-load times in excess of 60 seconds on a large project. Obviously this is and unacceptable development experience.
+load times in excess of 60 seconds on a large project. Obviously this is an unacceptable development experience.
 
 JSPM Devtools exposes web request handlers, allowing you to compile assets and bundle dependencies as they are requested. Experimentally this has 
 increased page load times on projects from 30s to 1.5s. This is before optimization.
@@ -90,7 +90,7 @@ const devtools = make({
         // If the file being requested is depencies.js bundle app/app.js and return that
         // otherwise fallthrough.
         return req.originalUrl.endsWith("dependencies.js")
-            ? bundle('app/app.js')
+            ? bundle({expression: 'app/app.js'})
             : next()
     }
 })

@@ -101,3 +101,9 @@ const devtools = make({
  */
 app.use("*", devtools.handler)
 ```
+
+## TODO
+- Create own instance of socket.io instead of piggy backing off of users version
+- Create a jspm-devtools/client (extract from github.com/alexisvincent/js-kernel)
+- implement server push
+- Development Console

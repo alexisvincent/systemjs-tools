@@ -107,3 +107,4 @@ app.use("*", devtools.handler)
 - Create a jspm-devtools/client (extract from github.com/alexisvincent/js-kernel)
 - implement server push
 - Development Console
+- Make CSS Module imports generic for HMR

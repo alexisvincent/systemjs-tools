@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Lets see if this all works",
   "scripts": {
-    "start": "nodemon --watch index.js --watch app --watch jspm --watch index.html --watch package.json --watch ../dist index.js"
+    "start": "nodemon --watch index.js --watch jspm --watch index.html --watch package.json --watch ../dist index.js"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
@@ -24,8 +24,9 @@
       "jspm": "jspm/jspm.config.js"
     },
     "dependencies": {
-      "js-kernel": "npm:js-kernel@^0.0.9",
-      "json": "github:systemjs/plugin-json@^0.1.2",
+      "js-kernel": "npm:js-kernel@^0.0.12",
+      "json": "github:systemjs/plugin-son@^0.1.2",
+      "jspm-devtools": "local:jspm-devtools@1.0.11",
       "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
       "lodash": "npm:lodash@^4.15.0",
       "postcss-cssnext": "npm:postcss-cssnext@^2.7.0",
@@ -38,13 +39,14 @@
       "recompose": "npm:recompose@^0.20.2",
       "redux-thunk": "npm:redux-thunk@^2.1.0",
       "socket.io-client": "github:socketio/socket.io-client@^1.4.8",
+      "systemjs-hmr": "local:systemjs-hmr@0.0.1",
+      "systemjs-hot-reloader": "local:systemjs-hot-reloader@0.6.0",
       "transform-class-properties": "npm:babel-plugin-transform-class-properties@^6.11.5"
     },
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.8.0",
       "core-js": "npm:core-js@^2.4.1",
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.13",
-      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.6.0"
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.13"
     },
     "peerDependencies": {
       "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
@@ -66,7 +68,7 @@
       "react": "npm:react@^15.0.0",
       "react-addons-shallow-compare": "npm:react-addons-shallow-compare@^15.0.0",
       "react-dom": "npm:react-dom@^15.3.1",
-      "redux": "npm:redux@^3.5.0",
+      "redux": "npm:redux@^3.0.0",
       "redux-devtools": "npm:redux-devtools@^3.3.1",
       "stream": "github:jspm/nodelibs-stream@^0.2.0-alpha",
       "string_decoder": "github:jspm/nodelibs-string_decoder@^0.2.0-alpha",
@@ -88,6 +90,9 @@
       },
       "github:MeoMix/postcss-import@master": {
         "registry": "npm"
+      },
+      "github:socketio/socket.io-client@1.5.0": {
+        "main": "socket.io.js"
       },
       "npm:browserify-zlib@0.1.4": {
         "dependencies": {
@@ -115,17 +120,12 @@
       "npm:esprima@2.7.3": {
         "jspmNodeConversion": false
       },
-      "npm:inherits@2.0.1": {
-        "ignore": [
-          "test.js"
-        ]
-      },
       "npm:inherits@2.0.3": {
         "ignore": [
           "test.js"
         ]
       },
-      "npm:lodash@4.15.0": {
+      "npm:lodash@4.16.4": {
         "map": {
           "buffer": "@empty",
           "process": "@empty"

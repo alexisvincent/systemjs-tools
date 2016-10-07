@@ -34,5 +34,47 @@
     "babel-cli": "^6.14.0",
     "babel-preset-es2015": "^6.14.0",
     "jspm": "^0.17.0-beta.28"
+  },
+  "jspm": {
+    "name": "jspm-devtools",
+    "main": "dist/client.js",
+    "dependencies": {
+      "debug": "npm:debug@^2.2.0",
+      "socket.io-client": "github:socketio/socket.io-client@^1.5.0",
+      "systemjs-hmr": "npm:systemjs-hmr"
+    },
+    "devDependencies": {
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.16"
+    },
+    "overrides": {
+      "github:socketio/socket.io-client@1.5.0": {
+        "main": "socket.io.js"
+      },
+      "npm:debug@2.2.0": {
+        "main": "browser.js",
+        "jspmNodeConversion": false,
+        "format": "cjs",
+        "map": {
+          "./browser.js": {
+            "node": "./node.js"
+          },
+          "./node.js": {
+            "browser": "./browser.js"
+          },
+          "fs": "@node/fs",
+          "net": "@node/net",
+          "tty": "@node/tty",
+          "util": "@node/util"
+        }
+      },
+      "npm:ms@0.7.1": {
+        "jspmNodeConversion": false,
+        "format": "cjs"
+      }
+    }
+  },
+  "dependencies": {
+    "socket.io": "^1.5.0",
+    "spdy-keys": "0.0.0"
   }
 }

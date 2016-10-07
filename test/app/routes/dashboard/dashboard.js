@@ -8,7 +8,7 @@ class DashboardContainer extends React.Component {
 		return (
 			<div /**className={styles.dashboard}**/>
 				<p /**className={styles.header}**/>Welcome to the admin area!</p>
-				<p>It's so nice to see you're doin some work today. Keep it up!</p>
+				<p>It's so whoop good to see you're doing some work today. Keep it up!</p>
 			</div>
 		)
 	}

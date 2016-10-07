@@ -5,7 +5,6 @@ const express = require('express')
 const spdy = require('spdy')
 // const spdy = require('spdy-push')
 const compression = require('compression')
-const jspm = require('jspm')
 const socketio = require('socket.io')
 const fs = require('fs')
 
@@ -19,10 +18,9 @@ const {make} = require('../dist/index');
 
 const devtools = make({
     packagePath: process.cwd(),
-    jspm: jspm,
     hmr: true,
-    io: socketio(server),
     entries: ['app/app.js'],
+    port: 1337,
     resolveHandler: ({tools, req, initiatedBySystemJS, resolvers}) => {
         const {bundle, compile, next} = resolvers
         return req.originalUrl.endsWith("dependencies.js")

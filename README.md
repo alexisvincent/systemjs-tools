@@ -57,12 +57,11 @@ const devtools = make({
     // We assumed it is preconfigured.
     jspm: jspm,
     
+    // The port that will be used to open the web socket with the client
+    port: 1337,
+    
     // Hot Module Replacement [optional - defaults to false]
     hmr: true,
-    
-    // Instance of socket.io [required when hmr == true]
-    // This is used to communication HMR information to the client
-    io: socketio(server),
     
     // A list of entries to your application [optional]
     // This is simply used to premptively cache files you might load to speed up the first load
@@ -102,9 +101,24 @@ const devtools = make({
 app.use("*", devtools.handler)
 ```
 
+## Client
+
+Install
+
+`jspm install jspm-devtools`
+
+At the top of your root client file
+```javascript
+import { devtools } from 'jspm-devtools'
+
+devtools({
+    // Port used to connect to server (defaults to 1337)
+    port: 1337
+})
+
+```
+
 ## TODO
-- Create own instance of socket.io instead of piggy backing off of users version
-- Create a jspm-devtools/client (extract from github.com/alexisvincent/js-kernel)
 - implement server push
 - Development Console
 - Make CSS Module imports generic for HMR

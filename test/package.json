@@ -38,7 +38,11 @@
       "react-virtualized": "npm:react-virtualized@^7.20.0",
       "recompose": "npm:recompose@^0.20.2",
       "redux-thunk": "npm:redux-thunk@^2.1.0",
+      "socket.io": "npm:socket.io@^1.5.0",
       "socket.io-client": "github:socketio/socket.io-client@^1.4.8",
+      "spdy": "npm:spdy@^3.4.3",
+      "spdy-keys": "npm:spdy-keys@^0.0.0",
+      "systemjs-hmr": "npm:systemjs-hmr@^0.0.3",
       "transform-class-properties": "npm:babel-plugin-transform-class-properties@^6.11.5"
     },
     "devDependencies": {

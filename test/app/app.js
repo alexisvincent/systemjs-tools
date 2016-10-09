@@ -1,5 +1,5 @@
 import {build} from 'js-kernel'
-import {devtools} from 'jspm-devtools'
+import {devtools} from 'jspm-devtools/dist/client.js'
 
 devtools()
 

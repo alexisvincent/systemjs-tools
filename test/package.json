@@ -26,7 +26,7 @@
     "dependencies": {
       "js-kernel": "npm:js-kernel@^0.0.12",
       "json": "github:systemjs/plugin-json@^0.1.2",
-      "jspm-devtools": "npm:jspm-devtools@^1.1.2",
+      "jspm-devtools": "npm:jspm-devtools@^1.1.4",
       "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
       "lodash": "npm:lodash@^4.15.0",
       "postcss-cssnext": "npm:postcss-cssnext@^2.7.0",
@@ -59,6 +59,7 @@
       "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
       "https": "github:jspm/nodelibs-https@^0.2.0-alpha",
       "module": "github:jspm/nodelibs-module@^0.2.0-alpha",
+      "net": "github:jspm/nodelibs-net@^0.2.0-alpha",
       "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
       "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha",

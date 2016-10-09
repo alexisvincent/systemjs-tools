@@ -75,10 +75,11 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "js-kernel": "npm:js-kernel@0.0.12",
     "json": "github:systemjs/plugin-json@0.1.2",
-    "jspm-devtools": "npm:jspm-devtools@1.1.2",
+    "jspm-devtools": "npm:jspm-devtools@1.1.4",
     "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
     "lodash": "npm:lodash@4.16.4",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
+    "net": "github:jspm/nodelibs-net@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "postcss-cssnext": "npm:postcss-cssnext@2.8.0",
@@ -1459,16 +1460,6 @@ SystemJS.config({
         "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
       }
     },
-    "npm:jspm-devtools@1.1.2": {
-      "map": {
-        "socket.io-client": "npm:socket.io-client@1.5.0",
-        "debug": "npm:debug@2.2.0",
-        "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
-        "socket.io": "npm:socket.io@1.5.0",
-        "spdy-keys": "npm:spdy-keys@0.0.0",
-        "weakee": "npm:weakee@1.0.0"
-      }
-    },
     "npm:socket.io-client@1.5.0": {
       "map": {
         "debug": "npm:debug@2.2.0",
@@ -1632,6 +1623,48 @@ SystemJS.config({
     "npm:mime-types@2.1.12": {
       "map": {
         "mime-db": "npm:mime-db@1.24.0"
+      }
+    },
+    "npm:jspm-devtools@1.1.4": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "socket.io": "npm:socket.io@1.5.0",
+        "weakee": "npm:weakee@1.0.0",
+        "spdy": "npm:spdy@3.4.3",
+        "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
+        "spdy-keys": "npm:spdy-keys@0.0.0",
+        "socket.io-client": "github:socketio/socket.io-client@1.5.0"
+      }
+    },
+    "npm:spdy@3.4.3": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "handle-thing": "npm:handle-thing@1.2.5",
+        "spdy-transport": "npm:spdy-transport@2.0.15",
+        "select-hose": "npm:select-hose@2.0.0",
+        "http-deceiver": "npm:http-deceiver@1.2.7"
+      }
+    },
+    "npm:spdy-transport@2.0.15": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "readable-stream": "npm:readable-stream@2.1.5",
+        "obuf": "npm:obuf@1.1.1",
+        "wbuf": "npm:wbuf@1.7.2",
+        "hpack.js": "npm:hpack.js@2.1.6"
+      }
+    },
+    "npm:hpack.js@2.1.6": {
+      "map": {
+        "readable-stream": "npm:readable-stream@2.1.5",
+        "obuf": "npm:obuf@1.1.1",
+        "wbuf": "npm:wbuf@1.7.2",
+        "inherits": "npm:inherits@2.0.3"
+      }
+    },
+    "npm:wbuf@1.7.2": {
+      "map": {
+        "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     }
   }

@@ -25,8 +25,7 @@
     },
     "dependencies": {
       "js-kernel": "npm:js-kernel@^0.0.12",
-      "json": "github:systemjs/plugin-son@^0.1.2",
-      "jspm-devtools": "npm:jspm-devtools",
+      "json": "github:systemjs/plugin-json@^0.1.2",
       "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
       "lodash": "npm:lodash@^4.15.0",
       "postcss-cssnext": "npm:postcss-cssnext@^2.7.0",
@@ -44,7 +43,7 @@
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.8.0",
       "core-js": "npm:core-js@^2.4.1",
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.13"
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.16"
     },
     "peerDependencies": {
       "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
@@ -78,17 +77,6 @@
       "zlib": "github:jspm/nodelibs-zlib@^0.2.0-alpha"
     },
     "overrides": {
-      "github:MeoMix/jspm-loader-css@master": {
-        "map": {
-          "cssnano": {
-            "browser": "@empty",
-            "~browser": "cssnano@3.7.4"
-          }
-        }
-      },
-      "github:MeoMix/postcss-import@master": {
-        "registry": "npm"
-      },
       "github:socketio/socket.io-client@1.5.0": {
         "main": "socket.io.js"
       },
@@ -108,6 +96,9 @@
         "map": {
           "./browser.js": {
             "node": "./node.js"
+          },
+          "./node.js": {
+            "browser": "./browser.js"
           },
           "fs": "@node/fs",
           "net": "@node/net",

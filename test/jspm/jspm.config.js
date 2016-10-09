@@ -2,7 +2,6 @@ SystemJS.config({
   paths: {
     "npm:": "jspm_packages/npm/",
     "github:": "jspm_packages/github/",
-    "local:": "jspm_packages/local/",
     "app/": "app/"
   },
   browserConfig: {
@@ -60,8 +59,7 @@ SystemJS.config({
   packageConfigPaths: [
     "npm:@*/*.json",
     "npm:*.json",
-    "github:*/*.json",
-    "local:*.json"
+    "github:*/*.json"
   ],
   map: {
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
@@ -77,7 +75,6 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "js-kernel": "npm:js-kernel@0.0.12",
     "json": "github:systemjs/plugin-json@0.1.2",
-    "jspm-devtools": "local:jspm-devtools@1.0.12",
     "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
     "lodash": "npm:lodash@4.16.4",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
@@ -781,7 +778,8 @@ SystemJS.config({
     "github:MeoMix/jspm-loader-css@master": {
       "map": {
         "css-modules-loader-core": "npm:css-modules-loader-core@1.0.1",
-        "cssnano": "npm:cssnano@3.7.4"
+        "cssnano": "npm:cssnano@3.7.4",
+        "node-cssnano": "npm:cssnano@3.7.4"
       }
     },
     "npm:css-modules-loader-core@1.0.1": {
@@ -1456,21 +1454,6 @@ SystemJS.config({
         "react-router-redux": "npm:react-router-redux@4.0.6",
         "redux-devtools-log-monitor": "npm:redux-devtools-log-monitor@1.0.11",
         "redux-slider-monitor": "npm:redux-slider-monitor@1.0.7",
-        "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
-      }
-    },
-    "local:systemjs-hmr@0.0.1": {
-      "map": {
-        "weakee": "npm:weakee@1.0.0",
-        "debug": "npm:debug@2.2.0",
-        "socket.io-client": "github:socketio/socket.io-client@1.5.0"
-      }
-    },
-    "local:jspm-devtools@1.0.12": {
-      "map": {
-        "systemjs-hmr": "local:systemjs-hmr@0.0.1",
-        "debug": "npm:debug@2.2.0",
-        "socket.io-client": "github:socketio/socket.io-client@1.5.0",
         "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
       }
     }

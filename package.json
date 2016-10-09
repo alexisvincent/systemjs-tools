@@ -41,7 +41,8 @@
     "dependencies": {
       "debug": "npm:debug@^2.2.0",
       "socket.io-client": "github:socketio/socket.io-client@^1.5.0",
-      "systemjs-hmr": "npm:systemjs-hmr"
+      "systemjs-hmr": "npm:systemjs-hmr",
+      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.6.0"
     },
     "devDependencies": {
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.16"

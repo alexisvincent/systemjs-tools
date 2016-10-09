@@ -77,7 +77,7 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "js-kernel": "npm:js-kernel@0.0.12",
     "json": "github:systemjs/plugin-json@0.1.2",
-    "jspm-devtools": "local:jspm-devtools@1.0.11",
+    "jspm-devtools": "local:jspm-devtools@1.0.12",
     "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
     "lodash": "npm:lodash@4.16.4",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
@@ -102,8 +102,6 @@ SystemJS.config({
     "socket.io-client": "github:socketio/socket.io-client@1.5.0",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
-    "systemjs-hmr": "local:systemjs-hmr@0.0.1",
-    "systemjs-hot-reloader": "local:systemjs-hot-reloader@0.6.0",
     "tls": "github:jspm/nodelibs-tls@0.2.0-alpha",
     "transform-class-properties": "npm:babel-plugin-transform-class-properties@6.11.5",
     "tty": "github:jspm/nodelibs-tty@0.2.0-alpha",
@@ -1444,15 +1442,6 @@ SystemJS.config({
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     },
-    "local:jspm-devtools@1.0.11": {
-      "map": {
-        "jspm-devtools": "local:jspm-devtools@1.0.11",
-        "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0",
-        "socket.io-client": "github:socketio/socket.io-client@1.5.0",
-        "debug": "npm:debug@2.2.0",
-        "systemjs-hmr": "local:systemjs-hmr@0.0.1"
-      }
-    },
     "npm:js-kernel@0.0.12": {
       "map": {
         "react-dom": "npm:react-dom@15.3.2",
@@ -1470,16 +1459,16 @@ SystemJS.config({
         "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
       }
     },
-    "local:systemjs-hot-reloader@0.6.0": {
+    "local:systemjs-hmr@0.0.1": {
       "map": {
         "weakee": "npm:weakee@1.0.0",
         "debug": "npm:debug@2.2.0",
         "socket.io-client": "github:socketio/socket.io-client@1.5.0"
       }
     },
-    "local:systemjs-hmr@0.0.1": {
+    "local:jspm-devtools@1.0.12": {
       "map": {
-        "weakee": "npm:weakee@1.0.0",
+        "systemjs-hmr": "local:systemjs-hmr@0.0.1",
         "debug": "npm:debug@2.2.0",
         "socket.io-client": "github:socketio/socket.io-client@1.5.0"
       }

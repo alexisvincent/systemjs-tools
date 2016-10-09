@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Lets see if this all works",
   "scripts": {
-    "start": "nodemon --watch index.js --watch jspm --watch index.html --watch package.json --watch ../dist index.js"
+    "start": "nodemon --watch index.js --watch jspm --watch index.html --watch package.json --watch ../../systemjs-hmr --watch ../dist index.js"
   },
   "devDependencies": {
     "nodemon": "^1.10.2"
@@ -26,7 +26,7 @@
     "dependencies": {
       "js-kernel": "npm:js-kernel@^0.0.12",
       "json": "github:systemjs/plugin-son@^0.1.2",
-      "jspm-devtools": "local:jspm-devtools@1.0.11",
+      "jspm-devtools": "npm:jspm-devtools",
       "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
       "lodash": "npm:lodash@^4.15.0",
       "postcss-cssnext": "npm:postcss-cssnext@^2.7.0",
@@ -39,8 +39,6 @@
       "recompose": "npm:recompose@^0.20.2",
       "redux-thunk": "npm:redux-thunk@^2.1.0",
       "socket.io-client": "github:socketio/socket.io-client@^1.4.8",
-      "systemjs-hmr": "local:systemjs-hmr@0.0.1",
-      "systemjs-hot-reloader": "local:systemjs-hot-reloader@0.6.0",
       "transform-class-properties": "npm:babel-plugin-transform-class-properties@^6.11.5"
     },
     "devDependencies": {

@@ -1470,7 +1470,8 @@ SystemJS.config({
       "map": {
         "systemjs-hmr": "local:systemjs-hmr@0.0.1",
         "debug": "npm:debug@2.2.0",
-        "socket.io-client": "github:socketio/socket.io-client@1.5.0"
+        "socket.io-client": "github:socketio/socket.io-client@1.5.0",
+        "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
       }
     }
   }

@@ -23,9 +23,9 @@ const devtools = make({
     port: 1337,
     resolveHandler: ({tools, req, initiatedBySystemJS, resolvers}) => {
         const {bundle, compile, next} = resolvers
-        return req.originalUrl.endsWith("dependencies.js")
-            ? bundle({expression: tools.entries[0]})
-            : next()
+        // return req.originalUrl.endsWith("dependencies.js")
+            // ? bundle({expression: tools.entries[0]})
+            return next()
     }
 })
 

@@ -40,7 +40,7 @@
     "socket.io-client": "github:socketio/socket.io-client",
     "spdy": "^3.4.3",
     "spdy-keys": "0.0.0",
-    "systemjs-hmr": "^0.0.3"
+    "systemjs-hmr": "^0.0.4"
   },
   "jspm": {
     "main": "dist/client.js"

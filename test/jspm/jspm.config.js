@@ -90,7 +90,7 @@ SystemJS.config({
     "react": "npm:react@15.3.2",
     "react-addons-shallow-compare": "npm:react-addons-shallow-compare@15.3.1",
     "react-dom": "npm:react-dom@15.3.2",
-    "react-hot-loader": "npm:react-hot-loader@3.0.0-beta.5",
+    "react-hot-loader": "npm:react-hot-loader@3.0.0-beta.2",
     "react-redux": "npm:react-redux@4.4.5",
     "react-router": "npm:react-router@2.8.1",
     "react-router-redux": "npm:react-router-redux@4.0.6",
@@ -1452,7 +1452,7 @@ SystemJS.config({
         "react-dom": "npm:react-dom@15.3.2",
         "react": "npm:react@15.3.2",
         "react-redux": "npm:react-redux@4.4.5",
-        "react-hot-loader": "npm:react-hot-loader@3.0.0-beta.5",
+        "react-hot-loader": "npm:react-hot-loader@3.0.0-beta.2",
         "redux": "npm:redux@3.6.0",
         "redbox-react": "npm:redbox-react@1.3.1",
         "redux-devtools-dock-monitor": "npm:redux-devtools-dock-monitor@1.1.1",
@@ -1669,6 +1669,16 @@ SystemJS.config({
         "weakee": "npm:weakee@1.0.0",
         "spdy": "npm:spdy@3.4.3",
         "socket.io-client": "github:socketio/socket.io-client@1.5.0"
+      }
+    },
+    "npm:react-hot-loader@3.0.0-beta.2": {
+      "map": {
+        "babel-template": "npm:babel-template@6.16.0",
+        "react-deep-force-update": "npm:react-deep-force-update@2.0.1",
+        "react-proxy": "npm:react-proxy@3.0.0-alpha.1",
+        "redbox-react": "npm:redbox-react@1.3.1",
+        "source-map": "npm:source-map@0.4.4",
+        "global": "npm:global@4.3.1"
       }
     }
   }

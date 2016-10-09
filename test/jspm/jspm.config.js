@@ -75,6 +75,7 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "js-kernel": "npm:js-kernel@0.0.12",
     "json": "github:systemjs/plugin-json@0.1.2",
+    "jspm-devtools": "npm:jspm-devtools@1.1.2",
     "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
     "lodash": "npm:lodash@4.16.4",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
@@ -84,6 +85,7 @@ SystemJS.config({
     "postcss-import": "github:MeoMix/postcss-import@master",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "punycode": "github:jspm/nodelibs-punycode@0.2.0-alpha",
+    "querystring": "github:jspm/nodelibs-querystring@0.2.0-alpha",
     "react": "npm:react@15.3.2",
     "react-addons-shallow-compare": "npm:react-addons-shallow-compare@15.3.1",
     "react-dom": "npm:react-dom@15.3.2",
@@ -1455,6 +1457,181 @@ SystemJS.config({
         "redux-devtools-log-monitor": "npm:redux-devtools-log-monitor@1.0.11",
         "redux-slider-monitor": "npm:redux-slider-monitor@1.0.7",
         "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
+      }
+    },
+    "npm:jspm-devtools@1.1.2": {
+      "map": {
+        "socket.io-client": "npm:socket.io-client@1.5.0",
+        "debug": "npm:debug@2.2.0",
+        "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
+        "socket.io": "npm:socket.io@1.5.0",
+        "spdy-keys": "npm:spdy-keys@0.0.0",
+        "weakee": "npm:weakee@1.0.0"
+      }
+    },
+    "npm:socket.io-client@1.5.0": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "component-emitter": "npm:component-emitter@1.2.0",
+        "socket.io-parser": "npm:socket.io-parser@2.2.6",
+        "backo2": "npm:backo2@1.0.2",
+        "component-bind": "npm:component-bind@1.0.0",
+        "parseuri": "npm:parseuri@0.0.4",
+        "to-array": "npm:to-array@0.1.4",
+        "object-component": "npm:object-component@0.0.3",
+        "has-binary": "npm:has-binary@0.1.7",
+        "indexof": "npm:indexof@0.0.1",
+        "engine.io-client": "npm:engine.io-client@1.7.0"
+      }
+    },
+    "npm:socket.io@1.5.0": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "socket.io-client": "npm:socket.io-client@1.5.0",
+        "socket.io-parser": "npm:socket.io-parser@2.2.6",
+        "has-binary": "npm:has-binary@0.1.7",
+        "engine.io": "npm:engine.io@1.7.0",
+        "socket.io-adapter": "npm:socket.io-adapter@0.4.0"
+      }
+    },
+    "npm:socket.io-parser@2.2.6": {
+      "map": {
+        "component-emitter": "npm:component-emitter@1.1.2",
+        "debug": "npm:debug@2.2.0",
+        "isarray": "npm:isarray@0.0.1",
+        "json3": "npm:json3@3.3.2",
+        "benchmark": "npm:benchmark@1.0.0"
+      }
+    },
+    "npm:engine.io-client@1.7.0": {
+      "map": {
+        "component-emitter": "npm:component-emitter@1.1.2",
+        "debug": "npm:debug@2.2.0",
+        "parseuri": "npm:parseuri@0.0.4",
+        "indexof": "npm:indexof@0.0.1",
+        "component-inherit": "npm:component-inherit@0.0.3",
+        "parsejson": "npm:parsejson@0.0.1",
+        "parseqs": "npm:parseqs@0.0.2",
+        "has-cors": "npm:has-cors@1.1.0",
+        "yeast": "npm:yeast@0.1.2",
+        "xmlhttprequest-ssl": "npm:xmlhttprequest-ssl@1.5.1",
+        "engine.io-parser": "npm:engine.io-parser@1.3.0",
+        "ws": "npm:ws@1.1.1",
+        "node-ws": "npm:ws@1.1.1",
+        "node-xmlhttprequest-ssl": "npm:xmlhttprequest-ssl@1.5.1"
+      }
+    },
+    "npm:engine.io@1.7.0": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "engine.io-parser": "npm:engine.io-parser@1.2.4",
+        "ws": "npm:ws@1.0.1",
+        "base64id": "npm:base64id@0.1.0",
+        "accepts": "npm:accepts@1.3.1"
+      }
+    },
+    "npm:has-binary@0.1.7": {
+      "map": {
+        "isarray": "npm:isarray@0.0.1"
+      }
+    },
+    "npm:parseuri@0.0.4": {
+      "map": {
+        "better-assert": "npm:better-assert@1.0.2"
+      }
+    },
+    "npm:socket.io-adapter@0.4.0": {
+      "map": {
+        "socket.io-parser": "npm:socket.io-parser@2.2.2",
+        "debug": "npm:debug@2.2.0"
+      }
+    },
+    "npm:parsejson@0.0.1": {
+      "map": {
+        "better-assert": "npm:better-assert@1.0.2"
+      }
+    },
+    "npm:parseqs@0.0.2": {
+      "map": {
+        "better-assert": "npm:better-assert@1.0.2"
+      }
+    },
+    "npm:engine.io-parser@1.3.0": {
+      "map": {
+        "has-binary": "npm:has-binary@0.1.6",
+        "arraybuffer.slice": "npm:arraybuffer.slice@0.0.6",
+        "blob": "npm:blob@0.0.4",
+        "base64-arraybuffer": "npm:base64-arraybuffer@0.1.5",
+        "wtf-8": "npm:wtf-8@1.0.0",
+        "after": "npm:after@0.8.1"
+      }
+    },
+    "npm:socket.io-parser@2.2.2": {
+      "map": {
+        "json3": "npm:json3@3.2.6",
+        "debug": "npm:debug@0.7.4",
+        "component-emitter": "npm:component-emitter@1.1.2",
+        "isarray": "npm:isarray@0.0.1",
+        "benchmark": "npm:benchmark@1.0.0"
+      }
+    },
+    "npm:engine.io-parser@1.2.4": {
+      "map": {
+        "has-binary": "npm:has-binary@0.1.6",
+        "utf8": "npm:utf8@2.1.0",
+        "arraybuffer.slice": "npm:arraybuffer.slice@0.0.6",
+        "blob": "npm:blob@0.0.4",
+        "base64-arraybuffer": "npm:base64-arraybuffer@0.1.2",
+        "after": "npm:after@0.8.1"
+      }
+    },
+    "npm:has-binary@0.1.6": {
+      "map": {
+        "isarray": "npm:isarray@0.0.1"
+      }
+    },
+    "npm:ws@1.1.1": {
+      "map": {
+        "utf-8-validate": "npm:utf-8-validate@1.2.1",
+        "options": "npm:options@0.0.6",
+        "ultron": "npm:ultron@1.0.2",
+        "bufferutil": "npm:bufferutil@1.2.1"
+      }
+    },
+    "npm:ws@1.0.1": {
+      "map": {
+        "utf-8-validate": "npm:utf-8-validate@1.2.1",
+        "options": "npm:options@0.0.6",
+        "ultron": "npm:ultron@1.0.2",
+        "bufferutil": "npm:bufferutil@1.2.1"
+      }
+    },
+    "npm:better-assert@1.0.2": {
+      "map": {
+        "callsite": "npm:callsite@1.0.0"
+      }
+    },
+    "npm:accepts@1.3.1": {
+      "map": {
+        "negotiator": "npm:negotiator@0.6.0",
+        "mime-types": "npm:mime-types@2.1.12"
+      }
+    },
+    "npm:utf-8-validate@1.2.1": {
+      "map": {
+        "bindings": "npm:bindings@1.2.1",
+        "nan": "npm:nan@2.4.0"
+      }
+    },
+    "npm:bufferutil@1.2.1": {
+      "map": {
+        "bindings": "npm:bindings@1.2.1",
+        "nan": "npm:nan@2.4.0"
+      }
+    },
+    "npm:mime-types@2.1.12": {
+      "map": {
+        "mime-db": "npm:mime-db@1.24.0"
       }
     }
   }

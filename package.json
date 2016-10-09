@@ -36,13 +36,11 @@
     "jspm": "^0.17.0-beta.28"
   },
   "dependencies": {
-    "debug": "^2.2.0",
     "socket.io": "^1.5.0",
     "socket.io-client": "github:socketio/socket.io-client",
     "spdy": "^3.4.3",
     "spdy-keys": "0.0.0",
-    "systemjs-hmr": "^0.0.3",
-    "weakee": "^1.0.0"
+    "systemjs-hmr": "^0.0.3"
   },
   "jspm": {
     "main": "dist/client.js"

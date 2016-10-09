@@ -75,7 +75,7 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "js-kernel": "npm:js-kernel@0.0.12",
     "json": "github:systemjs/plugin-json@0.1.2",
-    "jspm-devtools": "npm:jspm-devtools@1.1.4",
+    "jspm-devtools": "npm:jspm-devtools@1.1.5",
     "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
     "lodash": "npm:lodash@4.16.4",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
@@ -1625,17 +1625,6 @@ SystemJS.config({
         "mime-db": "npm:mime-db@1.24.0"
       }
     },
-    "npm:jspm-devtools@1.1.4": {
-      "map": {
-        "debug": "npm:debug@2.2.0",
-        "socket.io": "npm:socket.io@1.5.0",
-        "weakee": "npm:weakee@1.0.0",
-        "spdy": "npm:spdy@3.4.3",
-        "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
-        "spdy-keys": "npm:spdy-keys@0.0.0",
-        "socket.io-client": "github:socketio/socket.io-client@1.5.0"
-      }
-    },
     "npm:spdy@3.4.3": {
       "map": {
         "debug": "npm:debug@2.2.0",
@@ -1665,6 +1654,17 @@ SystemJS.config({
     "npm:wbuf@1.7.2": {
       "map": {
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
+      }
+    },
+    "npm:jspm-devtools@1.1.5": {
+      "map": {
+        "socket.io": "npm:socket.io@1.5.0",
+        "debug": "npm:debug@2.2.0",
+        "spdy-keys": "npm:spdy-keys@0.0.0",
+        "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
+        "weakee": "npm:weakee@1.0.0",
+        "spdy": "npm:spdy@3.4.3",
+        "socket.io-client": "github:socketio/socket.io-client@1.5.0"
       }
     }
   }

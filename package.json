@@ -1,6 +1,6 @@
 {
   "name": "systemjs-tools",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "(dev)tools for working with SystemJS",
   "main": "dist/index.js",
   "scripts": {

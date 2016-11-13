@@ -13,6 +13,9 @@
     "type": "git",
     "url": "git+https://github.com/alexisvincent/systemjs-tools.git"
   },
+  "bin": {
+    "systemjs": "./lib/cli.js"
+  },
   "keywords": [
     "JSPM",
     "dev",

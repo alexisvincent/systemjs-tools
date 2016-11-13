@@ -1,25 +1,25 @@
-# JSPM Devtool
+# SystemJS Tools (Formally JSPM Devtools)
 
-### UNSTABLE!!! You can expect breaking changes to be released daily
+### [EXPERIMENTAL]
 
 ## Motivation
-JSPM Devtools is an experiment. I found myself implementing similar development/production
-tooling for multiple projects based on JSPM, with only minor differences. This is an attempt to fix that. By allowing you to simply describe the things
+SystemJS Tools is an experiment. I found myself implementing similar development/production
+tooling for multiple projects based on SystemJS/JSPM, with only minor differences. This is an attempt to fix that. By allowing you to simply describe the things
 that make your setup unique.
  
-JSPM Devtools is a programatic abstraction over the kind of tasks every project ends up implementing.
+SystemJS Tools is a programatic abstraction over the kind of tasks every project ends up implementing.
 These include (server-side asset bundling [js, css, scss, images, etc.], hot module replacement, error handling, development feedback).
 
-JSPM Devtools takes a JIT approach, especially for development. What this
+SystemJS Tools takes a JIT approach, especially for development. What this
 means is that assets will be compiled and bundled on the fly as they are needed, and then cached for later use.
-However since this isn't what we want to be doing in production, JSPM Devtools allows you to use your the same config to generate efficient
+However since this isn't what we want to be doing in production, SystemJS Tools allows you to use your the same config to generate efficient
 production ready builds. And serve these without change, using the same webserver implementation as in development.
 
-JSPM Devtools also tries to put the power in your hands. Instead of you building your project 'in' JSPM Devtools. You
+SystemJS Tools also tries to put the power in your hands. Instead of you building your project 'in' SystemJS Tools. You
 use the tools it exposes to describe your own environment. A primary focus is to expose to the user the same tools we use internally
 so that you have the power to describe any non typical aspects of your stack (turns out this is a typical requirement).
 
-JSPM Devtools ships battery included. Meaning you should be able to have a working system up with minimal config and optimize it for your workflow
+SystemJS Tools ships battery included. Meaning you should be able to have a working system up with minimal config and optimize it for your workflow
 after the fact. We provide smart defaults in all cases where we can.
 
 ## Features
@@ -29,24 +29,24 @@ While this provides a lot of flexibility, it also means things aren't always as 
 Specifically module compilation time and the latency induced my the [fetch file -> compile -> fetch dependencies -> compile ...]. This specifically can cause
 load times in excess of 60 seconds on a large project. Obviously this is an unacceptable development experience.
 
-JSPM Devtools exposes web request handlers, allowing you to compile assets and bundle dependencies as they are requested. Experimentally this has 
+SystemJS Tools exposes web request handlers, allowing you to compile assets and bundle dependencies as they are requested. Experimentally this has 
 increased page load times on projects from 30s to 1.5s. This is before optimization.
 
 HTTP2 Also provides us a unique opportunity. Since we can now push client dependencies to the browser so it has them before it needs them.
 
-JSPM Devtools provides a way to leverage bundling tools and do this automatically.
+SystemJS Tools provides a way to leverage bundling tools and do this automatically.
 
 ### Hot Module Replacement
-Hot Module Replacement is now an expected part of many developers workflow. JSPM Devtools is built with this in mind and provides primitives enable this kind of a workflow.
+Hot Module Replacement is now an expected part of many developers workflow. SystemJS Tools is built with this in mind and provides primitives enable this kind of a workflow.
 
 ##API
 ```javascript
 
 // JSPM Devtools exposes a make function, which (when provided with a config) 
 // returns an instance on JSPM devtools tailored to your setup
-const { make } = require('jspm-devtools');
+const { make } = require('systemjs-tools');
 
-const devtools = make({
+const tools = make({
     // Path to package.json [optional - defaults to process.cwd()]
     // This is the primary source of configuration since we can infer a lot from this
     // Specifically the server root, base url and config directory
@@ -98,20 +98,20 @@ const devtools = make({
 /**
  * Delegate to devtools handler as first point of entry
  */
-app.use("*", devtools.handler)
+app.use("*", tools.handler)
 ```
 
 ## Client
 
 Install
 
-`jspm install jspm-devtools`
+`jspm install systemjs-tools`
 
 At the top of your root client file
 ```javascript
-import { devtools } from 'jspm-devtools'
+import { connect } from 'systemjs-tools'
 
-devtools({
+connect({
     // Port used to connect to server (defaults to 1337)
     port: 1337
 })

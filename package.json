@@ -1,7 +1,7 @@
 {
-  "name": "jspm-devtools",
-  "version": "1.1.11",
-  "description": "Make development great again!",
+  "name": "systemjs-tools",
+  "version": "1.2.0",
+  "description": "(dev)tools for working with SystemJS",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,20 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexisvincent/jspm-devtools.git"
+    "url": "git+https://github.com/alexisvincent/systemjs-tools.git"
   },
   "keywords": [
     "JSPM",
     "dev",
     "tools",
-    "devtools"
+    "devtools",
+    "systemjs"
   ],
   "author": "Alexis Vincent",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexisvincent/jspm-devtools/issues"
+    "url": "https://github.com/alexisvincent/systemjs-tools/issues"
   },
-  "homepage": "https://github.com/alexisvincent/jspm-devtools#readme",
+  "homepage": "https://github.com/alexisvincent/systemjs-tools#readme",
   "babel": {
     "presets": [
       "es2015"
@@ -33,14 +34,14 @@
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-preset-es2015": "^6.14.0",
-    "jspm": "^0.17.0-beta.28"
+    "jspm": "beta"
   },
   "dependencies": {
     "socket.io": "^1.5.0",
     "socket.io-client": "github:socketio/socket.io-client",
-    "spdy": "^3.4.3",
+    "spdy": "^3.4.4",
     "spdy-keys": "0.0.0",
-    "systemjs-hmr": "^0.0.4"
+    "systemjs-hmr": "^0.1.3"
   },
   "jspm": {
     "main": "dist/client.js"

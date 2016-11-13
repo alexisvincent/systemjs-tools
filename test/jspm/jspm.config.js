@@ -1300,16 +1300,6 @@ SystemJS.config({
         "wrappy": "npm:wrappy@1.0.2"
       }
     },
-    "npm:react-hot-loader@3.0.0-beta.5": {
-      "map": {
-        "redbox-react": "npm:redbox-react@1.3.1",
-        "react-deep-force-update": "npm:react-deep-force-update@2.0.1",
-        "babel-template": "npm:babel-template@6.16.0",
-        "source-map": "npm:source-map@0.4.4",
-        "global": "npm:global@4.3.1",
-        "react-proxy": "npm:react-proxy@3.0.0-alpha.1"
-      }
-    },
     "npm:redbox-react@1.3.1": {
       "map": {
         "react-dom": "npm:react-dom@15.3.2",

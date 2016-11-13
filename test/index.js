@@ -16,7 +16,7 @@ app.use(compression());
 
 const {make} = require('../dist/index');
 
-const devtools = make({
+const {handler} = make({
     packagePath: process.cwd(),
     hmr: true,
     entries: ['app/app.js'],
@@ -32,7 +32,7 @@ const devtools = make({
 /**
  * Delegate to devtools handler as first point of entry
  */
-app.use("*", devtools.handler)
+app.use("*", handler)
 
 /**
  * Serve all static files that are requested

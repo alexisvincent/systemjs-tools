@@ -9,6 +9,7 @@
     "dev": "babel -w lib -d dist",
     "prepublish": "npm run build"
   },
+  "registry": "npm",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexisvincent/systemjs-tools.git"

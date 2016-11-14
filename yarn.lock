@@ -456,7 +456,7 @@ babel-plugin-transform-global-system-wrapper@0.0.1:
   dependencies:
     babel-template "^6.9.0"
 
-babel-plugin-transform-object-rest-spread:
+babel-plugin-transform-object-rest-spread@^6.16.0:
   version "6.16.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.16.0.tgz#db441d56fffc1999052fdebe2e2f25ebd28e36a9"
   dependencies:
@@ -695,7 +695,7 @@ chalk@^1.1.0, chalk@^1.1.1:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chokidar, chokidar@^1.0.0:
+chokidar@^1.0.0, chokidar@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
   dependencies:
@@ -1601,8 +1601,8 @@ lodash.pick@^4.2.1:
   resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
 
 lodash@^4.2.0:
-  version "4.16.6"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.6.tgz#d22c9ac660288f3843e16ba7d2b5d06cca27d777"
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.0.tgz#93f4466e5ab73e5a1f1216c34eea11535f0a8df5"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -1923,8 +1923,8 @@ rc@~1.1.6:
     strip-json-comments "~1.0.4"
 
 readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.1.tgz#c459a6687ad6195f936b959870776edef27a7655"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
   dependencies:
     buffer-shims "^1.0.0"
     core-util-is "~1.0.0"
@@ -2201,16 +2201,6 @@ source-map@0.1.32:
   dependencies:
     amdefine ">=0.0.4"
 
-spdy:
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/spdy/-/spdy-3.4.4.tgz#e0406407ca90ff01b553eb013505442649f5a819"
-  dependencies:
-    debug "^2.2.0"
-    handle-thing "^1.2.4"
-    http-deceiver "^1.2.4"
-    select-hose "^2.0.0"
-    spdy-transport "^2.0.15"
-
 spdy-keys@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/spdy-keys/-/spdy-keys-0.0.0.tgz#81e474c29e2e3cd17fcef4e1f11f47f0ba3681c8"
@@ -2224,6 +2214,16 @@ spdy-transport@^2.0.15:
     obuf "^1.1.0"
     readable-stream "^2.0.1"
     wbuf "^1.4.0"
+
+spdy@^3.4.4:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/spdy/-/spdy-3.4.4.tgz#e0406407ca90ff01b553eb013505442649f5a819"
+  dependencies:
+    debug "^2.2.0"
+    handle-thing "^1.2.4"
+    http-deceiver "^1.2.4"
+    select-hose "^2.0.0"
+    spdy-transport "^2.0.15"
 
 sshpk@^1.7.0:
   version "1.10.1"
@@ -2290,7 +2290,7 @@ systemjs-builder@^0.15.33, systemjs-builder@0.15.34:
     traceur "0.0.105"
     uglify-js "^2.6.1"
 
-systemjs-hmr:
+systemjs-hmr@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/systemjs-hmr/-/systemjs-hmr-0.1.3.tgz#bd6872a172d1c78f67f178e3c7816e15c1916013"
   dependencies:

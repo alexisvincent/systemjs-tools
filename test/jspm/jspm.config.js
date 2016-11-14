@@ -75,7 +75,6 @@ SystemJS.config({
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "js-kernel": "npm:js-kernel@0.0.12",
     "json": "github:systemjs/plugin-json@0.1.2",
-    "jspm-devtools": "npm:jspm-devtools@1.1.5",
     "jspm-loader-css": "github:MeoMix/jspm-loader-css@master",
     "lodash": "npm:lodash@4.16.4",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
@@ -105,7 +104,7 @@ SystemJS.config({
     "spdy-keys": "npm:spdy-keys@0.0.0",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
-    "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
+    "systemjs-hmr": "npm:systemjs-hmr@0.1.3",
     "tls": "github:jspm/nodelibs-tls@0.2.0-alpha",
     "transform-class-properties": "npm:babel-plugin-transform-class-properties@6.11.5",
     "tty": "github:jspm/nodelibs-tty@0.2.0-alpha",
@@ -1650,17 +1649,6 @@ SystemJS.config({
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     },
-    "npm:jspm-devtools@1.1.5": {
-      "map": {
-        "socket.io": "npm:socket.io@1.5.0",
-        "debug": "npm:debug@2.2.0",
-        "spdy-keys": "npm:spdy-keys@0.0.0",
-        "systemjs-hmr": "npm:systemjs-hmr@0.0.3",
-        "weakee": "npm:weakee@1.0.0",
-        "spdy": "npm:spdy@3.4.3",
-        "socket.io-client": "github:socketio/socket.io-client@1.5.0"
-      }
-    },
     "npm:react-hot-loader@3.0.0-beta.2": {
       "map": {
         "babel-template": "npm:babel-template@6.16.0",
@@ -1669,6 +1657,22 @@ SystemJS.config({
         "redbox-react": "npm:redbox-react@1.3.1",
         "source-map": "npm:source-map@0.4.4",
         "global": "npm:global@4.3.1"
+      }
+    },
+    "npm:systemjs-hmr@0.1.3": {
+      "map": {
+        "ajv": "npm:ajv@4.8.2"
+      }
+    },
+    "npm:ajv@4.8.2": {
+      "map": {
+        "json-stable-stringify": "npm:json-stable-stringify@1.0.1",
+        "co": "npm:co@4.6.0"
+      }
+    },
+    "npm:json-stable-stringify@1.0.1": {
+      "map": {
+        "jsonify": "npm:jsonify@0.0.0"
       }
     }
   }

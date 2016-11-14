@@ -30,6 +30,9 @@
   },
   "homepage": "https://github.com/alexisvincent/systemjs-tools#readme",
   "babel": {
+    "plugins": [
+      "transform-object-rest-spread"
+    ],
     "presets": [
       "es2015"
     ]
@@ -40,8 +43,9 @@
     "jspm": "beta"
   },
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "chokidar": "^1.6.1",
     "socket.io": "^1.5.0",
-    "socket.io-client": "github:socketio/socket.io-client",
     "spdy": "^3.4.4",
     "spdy-keys": "0.0.0",
     "systemjs-hmr": "^0.1.3"

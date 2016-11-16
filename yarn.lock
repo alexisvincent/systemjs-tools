@@ -16,8 +16,8 @@ after@0.8.1:
   resolved "https://registry.yarnpkg.com/after/-/after-0.8.1.tgz#ab5d4fb883f596816d3515f8f791c0af486dd627"
 
 ajv@^4.8.2:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.8.2.tgz#65486936ca36fea39a1504332a78bebd5d447bdc"
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.9.0.tgz#5a358085747b134eb567d6d15e015f1d7802f45c"
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
@@ -1305,8 +1305,8 @@ ini@^1.3.4, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
 
 invariant@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.1.tgz#b097010547668c7e337028ebe816ebe36c8a8d54"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
     loose-envify "^1.0.0"
 
@@ -1503,7 +1503,7 @@ jspm-github@^0.14.11:
     tar-fs "^1.13.0"
     which "^1.0.9"
 
-jspm-npm, jspm-npm@^0.30.0, jspm-npm@^0.30.1:
+jspm-npm@^0.30.0, jspm-npm@^0.30.1:
   version "0.30.1"
   resolved "https://registry.yarnpkg.com/jspm-npm/-/jspm-npm-0.30.1.tgz#4ffc94028dc0146533dbbb85aedd8ad76665ee1a"
   dependencies:
@@ -1610,13 +1610,9 @@ lodash.pick@^4.2.1:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
 
-lodash@^4.17.1:
+lodash@^4.17.1, lodash@^4.2.0:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
-
-lodash@^4.2.0:
-  version "4.17.0"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.0.tgz#93f4466e5ab73e5a1f1216c34eea11535f0a8df5"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -2304,9 +2300,9 @@ systemjs-builder@^0.15.33, systemjs-builder@0.15.34:
     traceur "0.0.105"
     uglify-js "^2.6.1"
 
-systemjs-config-builder:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/systemjs-config-builder/-/systemjs-config-builder-0.0.1.tgz#36cfaf828c05bee524f27af9a6697899899e576d"
+systemjs-config-builder@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/systemjs-config-builder/-/systemjs-config-builder-0.0.2.tgz#70f949318956e765d66e4e69f45d1ca61bcb57b4"
   dependencies:
     assert "^1.4.1"
     bluebird "^3.4.6"

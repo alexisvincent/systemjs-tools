@@ -94,6 +94,12 @@ assert-plus@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assert-plus/-/assert-plus-1.0.0.tgz#f12e0f3c5d77b0b1cdd9146942e4e96c1e4dd525"
 
+assert@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/assert/-/assert-1.4.1.tgz#99912d591836b5a6f5b345c0f07eefc08fc65d91"
+  dependencies:
+    util "0.10.3"
+
 async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
@@ -627,7 +633,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.0.5, bluebird@^3.3.4:
+bluebird@^3.0.5, bluebird@^3.3.4, bluebird@^3.4.6, bluebird@latest:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
 
@@ -1183,7 +1189,7 @@ globals@^9.0.0:
   version "9.13.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-9.13.0.tgz#d97706b61600d8dbe94708c367d3fdcf48470b8f"
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4:
+graceful-fs@^4.1.10, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4, graceful-fs@latest:
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.10.tgz#f2d720c22092f743228775c75e3612632501f131"
 
@@ -1289,6 +1295,10 @@ inflight@^1.0.4:
 inherits@^2.0.1, inherits@~2.0.0, inherits@~2.0.1, inherits@2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
+
+inherits@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
 
 ini@^1.3.4, ini@~1.3.0:
   version "1.3.4"
@@ -1493,7 +1503,7 @@ jspm-github@^0.14.11:
     tar-fs "^1.13.0"
     which "^1.0.9"
 
-jspm-npm@^0.30.0:
+jspm-npm, jspm-npm@^0.30.0, jspm-npm@^0.30.1:
   version "0.30.1"
   resolved "https://registry.yarnpkg.com/jspm-npm/-/jspm-npm-0.30.1.tgz#4ffc94028dc0146533dbbb85aedd8ad76665ee1a"
   dependencies:
@@ -1599,6 +1609,10 @@ lodash.mapvalues@^4.4.0:
 lodash.pick@^4.2.1:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
+
+lodash@^4.17.1:
+  version "4.17.2"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
 
 lodash@^4.2.0:
   version "4.17.0"
@@ -2290,6 +2304,17 @@ systemjs-builder@^0.15.33, systemjs-builder@0.15.34:
     traceur "0.0.105"
     uglify-js "^2.6.1"
 
+systemjs-config-builder:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/systemjs-config-builder/-/systemjs-config-builder-0.0.1.tgz#36cfaf828c05bee524f27af9a6697899899e576d"
+  dependencies:
+    assert "^1.4.1"
+    bluebird "^3.4.6"
+    chokidar "^1.6.1"
+    graceful-fs "^4.1.10"
+    jspm-npm "^0.30.1"
+    lodash "^4.17.1"
+
 systemjs-hmr@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/systemjs-hmr/-/systemjs-hmr-0.1.3.tgz#bd6872a172d1c78f67f178e3c7816e15c1916013"
@@ -2408,6 +2433,12 @@ user-home@^1.1.1:
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
+
+util@0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/util/-/util-0.10.3.tgz#7afb1afe50805246489e3db7fe0ed379336ac0f9"
+  dependencies:
+    inherits "2.0.1"
 
 v8flags@^2.0.10:
   version "2.0.11"

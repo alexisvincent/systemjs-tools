@@ -46,10 +46,14 @@
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "chokidar": "^1.6.1",
+    "jspm-npm": "^0.30.1",
     "socket.io": "^1.5.0",
     "spdy": "^3.4.4",
     "spdy-keys": "0.0.0",
-    "systemjs-hmr": "^0.1.3"
+    "systemjs-config-builder": "^0.0.1",
+    "systemjs-hmr": "^0.1.3",
+    "graceful-fs": "latest",
+    "bluebird": "latest"
   },
   "jspm": {
     "main": "dist/client.js"

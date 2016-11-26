@@ -103,9 +103,12 @@ app.use("*", tools.handler)
 
 ## Client
 
-Install
+**Install**
 
-`jspm install systemjs-tools`
+`systemjs-tools` relies on socket.io-client being available. We don't specify this as a peer dep since this causes issues
+with `JSPM` / `npm` interop.
+
+`jspm install npm:systemjs-tools socket.io-client`
 
 At the top of your root client file
 ```javascript
@@ -113,7 +116,7 @@ import { connect } from 'systemjs-tools'
 
 connect({
     // Port used to connect to server (defaults to 1337)
-    port: 1337
+    port: 2345
 })
 
 ```

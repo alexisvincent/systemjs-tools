@@ -55,6 +55,6 @@
     "systemjs-hmr": "^0.1.3"
   },
   "map": {
-    "client": "./dist/client.js"
+    "./client": "./dist/client.js"
   }
 }

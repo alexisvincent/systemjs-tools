@@ -2128,7 +2128,7 @@ socket.io-adapter@0.5.0:
     debug "2.3.3"
     socket.io-parser "2.3.1"
 
-socket.io-client@1.6.0, socket.io-client@^1.6.0:
+socket.io-client@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-1.6.0.tgz#5b668f4f771304dfeed179064708386fa6717853"
   dependencies:

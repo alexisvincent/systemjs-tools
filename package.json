@@ -3,6 +3,7 @@
   "version": "1.3.1",
   "description": "(dev)tools for working with SystemJS",
   "main": "dist/index.js",
+  "browser": "./dist/client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel lib -d dist",
@@ -48,7 +49,6 @@
     "bluebird": "^3.4.6",
     "chokidar": "^1.6.1",
     "graceful-fs": "^4.1.11",
-    "jspm-npm": "^0.30.1",
     "socket.io": "^1.6.0",
     "socket.io-client": "^1.6.0",
     "spdy": "^3.4.4",

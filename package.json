@@ -49,6 +49,7 @@
     "chokidar": "^1.6.1",
     "commander": "^2.9.0",
     "express": "^4.14.0",
+    "find-root": "^1.0.0",
     "graceful-fs": "^4.1.11",
     "ncp": "^2.0.0",
     "socket.io": "^1.6.0",

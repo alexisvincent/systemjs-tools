@@ -3,10 +3,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "systemjs serve --port 3000",
+    "start": "systemjs serve",
     "generate-config": "systemjs generate-config"
   },
   "systemjs": {
-    "entries": ["app.js"]
+    "entries": ["app.js"],
+    "serve": {
+      "port": 3000,
+      "dir": "."
+    }
   }
 }

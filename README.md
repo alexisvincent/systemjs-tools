@@ -1,6 +1,4 @@
-# SystemJS Tools (Formally JSPM Devtools)
-
-### [EXPERIMENTAL]
+# SystemJS Tools
 
 ## Motivation
 SystemJS Tools is an experiment. I found myself implementing similar development/production
@@ -39,7 +37,7 @@ SystemJS Tools provides a way to leverage bundling tools and do this automatical
 ### Hot Module Replacement
 Hot Module Replacement is now an expected part of many developers workflow. SystemJS Tools is built with this in mind and provides primitives enable this kind of a workflow.
 
-##API
+## API
 ```javascript
 
 // JSPM Devtools exposes a make function, which (when provided with a config) 

@@ -1,0 +1,12 @@
+{
+  "name": "systemjs-tools-boilerplate",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "systemjs serve --port 3000",
+    "generate-config": "systemjs generate-config"
+  },
+  "systemjs": {
+    "entries": ["app.js"]
+  }
+}

@@ -5,10 +5,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "systemjs serve",
     "generate-config": "systemjs generate-config",
-    "deploy": "now"
+    "deploy": "now",
+    "postinstall": "systemjs generate-config"
+  },
+  "dependencies": {
+    "systemjs-tools": "^1.4.2"
   },
   "systemjs": {
-    "entries": ["app.js"],
+    "entries": [
+      "app.js"
+    ],
     "serve": {
       "port": 3000,
       "dir": "."

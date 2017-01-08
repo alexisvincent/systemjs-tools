@@ -7,14 +7,15 @@ CMD serve
 
 EXPOSE 443
 
+RUN npm install --global systemjs-tools
+
 ## Uncomment if you use JSPM
 # RUN npm install --global jspm@beta
 
-COPY src /usr/app/public
+COPY src /usr/app/
 
 # Uncomment if you are using node_modules
 # RUN npm install
 
 # Uncomment if you use JSPM
 # RUN jspm install
-

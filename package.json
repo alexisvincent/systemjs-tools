@@ -39,8 +39,7 @@
     ]
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "jspm": "beta"
+    "babel-cli": "^6.14.0"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.19.0",
@@ -51,6 +50,7 @@
     "express": "^4.14.0",
     "find-root": "^1.0.0",
     "graceful-fs": "^4.1.11",
+    "jspm": "beta",
     "ncp": "^2.0.0",
     "socket.io": "^1.6.0",
     "spdy": "^3.4.4",

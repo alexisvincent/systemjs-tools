@@ -5,4 +5,4 @@ services:
     volumes:
       - ./src:/usr/app/
     ports:
-      - "3000:443"
+      - "3000:3000"

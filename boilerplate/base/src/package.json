@@ -4,7 +4,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "systemjs serve",
-    "generate-config": "systemjs generate-config"
+    "generate-config": "systemjs generate-config",
+    "deploy": "now"
   },
   "systemjs": {
     "entries": ["app.js"],

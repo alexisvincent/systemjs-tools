@@ -181,13 +181,13 @@ app.use(handlers.defaultHandler)
 http.createServer( app )
 
 // use your own file watcher
-myCustomWatcher.on('change', (event, changePath) => _.fileChanged(changePath))
+myCustomWatcher.on('change', file) => _.fileChanged(file))
 
 // or hook into the builder
 _.builder
 
 // listen on system events
-_.subject.subscribe( event => console.log(event) )
+_.events.subscribe( event => console.log(event) )
 
 // bundle your app
 _.bundle('app.js').then( m => console.log(m.source))

@@ -118,7 +118,7 @@ library` and a `cli`. These are all provided in the npm package
 The `cli` is a thin wrapper over the `server lib` and as such, everything
 you can do in the cli, you can also do (and more) in the `server lib`.
 
-Install via
+**Install** via
 `npm install --global systemjs-tools` or `yarn global add systemjs-tools`
 
 The `cli` is then available via the `systemjs` command. To view available
@@ -138,26 +138,89 @@ included below).
         -h, --help  output usage information
 
 ### Server
-Install via
+**Install** via
 `npm install systemjs-tools` or `yarn add systemjs-tools`
 
 `systemjs-tools` exposes a single function `init` which accepts as an
-argument, a config object, this config will be merged with the project
-config discovered . `init` returns a static object configured for
-use in your project.
+argument, a config object, and returns a static `tools` object representing your
+environment. Upon execution, `init` recursively searches upwards for the
+`root` of the project (indicated by either a `"systemjs"` key in your
+`package.json` or a `systemjs.js` file), it then configures itself from
+the discovered configs and your provided config overrides. The returned
+tools object is static (no running processes) and it is safe to run init
+multiple times. The `tools` object exposes properties and functions tailored
+to your environment.
 
-#### THE CONFIG BELOW IS OUT OF DATA
 ```javascript
 
-// JSPM Devtools exposes a make function, which (when provided with a config)
-// returns an instance on JSPM devtools tailored to your setup
-const { make } = require('systemjs-tools');
+const { init } = require('systemjs-tools');
 
-const tools = make({
-    // Path to package.json [optional - defaults to process.cwd()]
-    // This is the primary source of configuration since we can infer a lot from this
-    // Specifically the server root, base url and config directory
-    packagePath: process.cwd(),
+const tools = init({ /** your config overrides **/ })
+
+const {
+    config,     // config object representing your environment
+    serve,      // f: start an http2 server
+    analyse,    // f: find out more about an incomming http request
+    handlers,   // a collection of http handlers
+    _           // systemjs-tools internals
+} = tools
+
+/**
+ * Start an http2 server
+ * accepts an overrides object conforming to config.serve schema,
+ * which is merged into config.serve.
+ *
+ * Note that while we provide a server, you are not obliged to use it.
+ * Feel free to use our provided handlers in your own server
+ */
+serve({ port: 2000, handler: handlers.bundle })
+
+/**
+ * Start an http2 server
+ * accepts an overrides object conforming to config.serve schema,
+ * which is merged into config.serve
+ */
+serve({
+    handler: (req, res, next) => {
+
+        /**
+         * Analyse accepts an http request and response and returns
+         * useful information which you can use in your own handlers
+         * (for tools.serve or your own http server)
+         */
+        const {
+           initiatedBySystemJS // was this request initiated by SystemJS
+        } = analyse(req, res)
+
+        const {
+            // At the moment only bundle is implemented
+            bundle, // sends a bundle of the requested file and it's deps
+            compile, // sends a compiled version of the file
+            serverPush // push the files dependencies to the server and send the file
+        } = handlers
+
+        if (initiatedBySystemJS) handlers.compile(res, req, next)
+        else next()
+    }
+})
+
+// Docs for _ (system internals) will follow
+```
+
+### Config (not accurate yet)
+
+```
+    // key directories (superset of jspm.directories)
+    // if a jspm key exists in the package.json at the project root
+    // the directories will be used as defaults
+    directories: {
+        // Absolute path the project root, discovered as explained above
+        // All other paths are specified relative to the root
+        root: process.cwd()
+
+        // path to directory mapping to the systemjs baseURL
+        baseURL: '.'
+    }
 
     // The port that will be used to open the web socket with the client
     port: 1337,
@@ -169,46 +232,17 @@ const tools = make({
     // This is simply used to premptively cache files you might load to speed up the first load
     entries: ['app/app.js'],
 
-    // Function that returns an express handler
-    // [optional - defaults to ({resolvers, initatedBySystemJS}) => initatedBySystemJS ? resolvers.bundle() : resolvers.next() ]
-    // Sometimes you want to programatically decide how to handle requests.
-    // To support this, you can provide a resolve handler
-    // This handler accepts information about the request being made and needs to return
-    // an express handler (req, res, next) => {...},
-    // To help with this, we provide a bunch of handler generators that you can invoke to
-    // describe what you want to do.
-    resolveHandler: ({ req, initiatedBySystemJS, resolvers, tools }) => {
-        // req is the request object
-        // initiatedBySystemJS is true if the file was requested by the SystemJS library, else false
-        // resolvers are functions that return express handlers
-        // tools is an instance of the tools object returned from the make function
-
-        // resolvers are functions that return handlers described below:
-        // bundle - bundles the dependencies of the file specifies [defaults to req.originalUrl]
-        // next   - don't handle this request (pass it through to the next express middleware)
-        const {bundle, next} = resolvers
-
-        // If the file being requested is depencies.js bundle app/app.js and return that
-        // otherwise fallthrough.
-        return req.originalUrl.endsWith("dependencies.js")
-            ? bundle({expression: 'app/app.js'})
-            : next()
-    }
-})
-
-
-/**
- * Delegate to devtools handler as first point of entry
- */
-app.use("*", tools.handler)
+    serve: {}
 ```
 
-### Client
-
+### Client (not yet working in new implementation)
 `systemjs-tools` relies on socket.io-client being available. We don't specify this as a peer dep since this causes issues
 with `JSPM` / `npm` interop.
 
-`jspm install npm:systemjs-tools socket.io-client`
+**Install** via
+`npm install systemjs-tools socket.io-client`
+or `yarn add systemjs-tools socket.io-client`
+or `jspm install npm:systemjs-tools socket.io-client`
 
 At the top of your root client file
 ```javascript

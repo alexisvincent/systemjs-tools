@@ -2,7 +2,8 @@
 ## [DISCLAIMER] These docs are part of a rewrite of the core engine (unpublished) check an older commit if you want the old docs.
 `systemjs-tools` is a collection of powerful, customizable tools,
 to help build compelling development and production stories for projects
-that rely on `SystemJS`.
+that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwheel)
+or webpack, for SystemJS.
 
 It exposes a `cli tool`, a `server-side library` and a `client
 library`. Each exposes layered abstractions and hooks for you to describe
@@ -18,7 +19,7 @@ experience at all levels.
 - [x] rxjs core api (for plugin communication)
 - [x] cross session generic cache with file busting
 - [ ] basic documentation
-- [ ] basic hot module replacement
+- [ ] hot module replacement
 - [ ] hmr - preemptive sources
 - [ ] development console with error catching
 - [ ] handlers - [compile, static, bundle, http2 server push]
@@ -88,6 +89,7 @@ sets configuration defaults based on what it finds. This means that using
 ### Bundling
 ### Analysis Engine
 ### Production Builds
+### Friendly Codebase
 ### JSPM Interop
 ### Development Feedback & Error Handling
 

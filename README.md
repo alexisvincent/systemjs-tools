@@ -151,60 +151,44 @@ tools object is static (no running processes) and it is safe to run init
 multiple times. The `tools` object exposes properties and functions tailored
 to your environment.
 
+Below is a brief fly through of some of the things you can do with the
+api. Fo a more in-depth look, checkout the server API docs, or the examples.
 ```javascript
 
+// import init function
 const { init } = require('systemjs-tools');
 
+// initialize systemjs-tools
 const tools = init({ /** your config overrides **/ })
 
-const {
-    config,     // config object representing your environment
-    serve,      // f: start an http2 server
-    analyse,    // f: find out more about an incomming http request
-    handlers,   // a collection of http handlers
-    _           // systemjs-tools internals
-} = tools
+// use one of the exported properties
+const { config, serve, analyse, handlers, _ } = tools
 
-/**
- * Start an http2 server
- * accepts an overrides object conforming to config.serve schema,
- * which is merged into config.serve.
- *
- * Note that while we provide a server, you are not obliged to use it.
- * Feel free to use our provided handlers in your own server
- */
-serve({ port: 2000, handler: handlers.bundle })
+// including one of the express request handlers
+const { bundle, compile, serverPush, defaultHandler} = handlers
 
-/**
- * Start an http2 server
- * accepts an overrides object conforming to config.serve schema,
- * which is merged into config.serve
- */
-serve({
-    handler: (req, res, next) => {
+// or the analyse function
+const { initiatedBySystemJS } = analyse(req, res)
 
-        /**
-         * Analyse accepts an http request and response and returns
-         * useful information which you can use in your own handlers
-         * (for tools.serve or your own http server)
-         */
-        const {
-           initiatedBySystemJS // was this request initiated by SystemJS
-        } = analyse(req, res)
+// maybe start an http server
+serve({port: 8000})
 
-        const {
-            // At the moment only bundle is implemented
-            bundle, // sends a bundle of the requested file and it's deps
-            compile, // sends a compiled version of the file
-            serverPush // push the files dependencies to the server and send the file
-        } = handlers
+// or your own express server
+const app = express()
+app.use(handlers.defaultHandler)
+http.createServer( app )
 
-        if (initiatedBySystemJS) handlers.compile(res, req, next)
-        else next()
-    }
-})
+// use your own file watcher
+myCustomWatcher.on('change', (event, changePath) => _.fileChanged(changePath))
 
-// Docs for _ (system internals) will follow
+// or hook into the builder
+_.builder
+
+// listen on system events
+_.subject.subscribe( event => console.log(event) )
+
+// bundle your app
+_.bundle('app.js').then( m => console.log(m.source))
 ```
 
 ### Config (not accurate yet)

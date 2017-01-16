@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-
-node ././../dist/cli.js serve
+cd ..
+yarn
+cd test/public
+jspm install
+cd ..
+node ../dist/cli.js serve

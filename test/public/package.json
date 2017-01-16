@@ -3,7 +3,7 @@
     "name": "app",
     "main": "app.js",
     "dependencies": {
-      "plugin-babel": "npm:systemjs-plugin-babel@0.0.17",
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.19",
       "react-dom": "npm:react-dom@^15.4.2"
     },
     "devDependencies": {},

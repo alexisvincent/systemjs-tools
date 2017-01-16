@@ -44,7 +44,7 @@ SystemJS.config({
     "https": "npm:jspm-nodelibs-https@0.2.1",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.1",
-    "plugin-babel": "npm:systemjs-plugin-babel@0.0.17",
+    "plugin-babel": "npm:systemjs-plugin-babel@0.0.19",
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "react": "npm:react@15.4.2",
     "react-dom": "npm:react-dom@15.4.2",

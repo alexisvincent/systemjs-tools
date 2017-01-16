@@ -104,7 +104,7 @@ node_modules directory, generating a config file explaining to SystemJS
 how to load packages from `node_modules`.
 
 ### Project Bootstrap
-The `systemjs init [options] <name>` command can generate a minimal,
+The `systemjs new [options] <name>` command can generate a minimal,
 customizable, project boilerplate to get up and running with a full
 dev/production environment in under 5s.
 
@@ -136,7 +136,7 @@ included below).
 
         serve [options]        Serve the current directory
         generate-config        generate SystemJS config from node_modules (using systemjs-config-builder)
-        init [options] <name>  Generate a minimal boilerplate for getting up and running quickly
+        new [options] <name>   Generate a minimal boilerplate for getting up and running quickly
 
       Options:
 

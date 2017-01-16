@@ -18,6 +18,9 @@ experience at all levels.
 - [x] promise construct for serialization of builder operations
 - [x] rxjs core api (for plugin communication)
 - [x] cross session generic cache with file busting
+- [x] development mode
+- [ ] production builds
+- [ ] sourcemaps - [issue pending](https://github.com/systemjs/builder/issues/754)
 - [ ] basic documentation
 - [ ] hot module replacement
 - [ ] hmr - preemptive sources
@@ -193,7 +196,7 @@ _.events.subscribe( event => console.log(event) )
 _.bundle('app.js').then( m => console.log(m.source))
 ```
 
-### Config (not accurate yet)
+### Config (NOT ACTUAL CONFIG)
 
 ```
     // key directories (superset of jspm.directories)
@@ -207,12 +210,6 @@ _.bundle('app.js').then( m => console.log(m.source))
         // path to directory mapping to the systemjs baseURL
         baseURL: '.'
     }
-
-    // The port that will be used to open the web socket with the client
-    port: 1337,
-
-    // Hot Module Replacement [optional - defaults to false]
-    hmr: true,
 
     // A list of entries to your application [optional]
     // This is simply used to premptively cache files you might load to speed up the first load

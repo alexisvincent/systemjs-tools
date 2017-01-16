@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel lib -d dist",
     "dev": "babel -w lib -d dist",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "cli": "node ./dist/cli.js"
   },
   "registry": "npm",
   "repository": {
@@ -53,6 +54,7 @@
     "find-root": "^1.0.0",
     "graceful-fs": "^4.1.11",
     "jspm": "beta",
+    "lodash": "^4.17.4",
     "mz": "^2.6.0",
     "ncp": "^2.0.0",
     "rxjs": "^5.0.3",

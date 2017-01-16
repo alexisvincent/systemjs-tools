@@ -10,16 +10,20 @@
   "dependencies": {
     "systemjs-tools": "^1.4.2"
   },
-  "systemjs": {
-    "directories": {
-      "baseURL": "public"
-    },
+  "systemjs-tools": {
     "entries": [
       "app.js"
     ],
     "serve": {
-      "port": 3000,
       "dir": "public"
+    },
+    "builder": {
+      "configFiles": ["public/jspm.config.js"],
+      "options": {
+        "sourceMaps": "inline",
+        "sourceMapContents": true,
+        "lowResSourceMaps": true
+      }
     }
   }
 }

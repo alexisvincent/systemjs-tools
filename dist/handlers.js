@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var path = require('path');
 var express = require('express');
-var _defaultFinalHandler = require('finalhandler');
+var defaultFinalHandler = require('finalhandler');
 var merge = require('deepmerge');
 // var spdy = require('spdy-push');
 
@@ -59,17 +59,18 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
 
 
     defaultHandler: function defaultHandler() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      var _merge2 = merge({
+        fallthroughHandler: defaultFinalHandler
+      }, options),
+          fallthroughHandler = _merge2.fallthroughHandler;
+
       var app = express();
       app.use(handlers.bundle());
       app.use(handlers.static());
+      app.use(fallthroughHandler);
       return app;
-    },
-
-    defaultFinalHandler: function defaultFinalHandler() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return function (req, res) {
-        return _defaultFinalHandler(req, res, options);
-      };
     }
   };
 

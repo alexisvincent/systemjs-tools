@@ -114,6 +114,10 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
       },
       keys: defaultKeys
     },
+    channel: {
+      port: 7777,
+      keys: defaultKeys
+    },
     builder: {
       configFiles: [],
       options: {
@@ -127,11 +131,14 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
   //overrides
   conform(configOverides)]);
 
-  config.directories.baseURL = config.directories.baseURL || config.serve.dir;
+  if (!rootNotFound) {
+    config.directories.baseURL = config.directories.baseURL || config.serve.dir;
+    config.channel.keys = config.channel.keys || config.serve.keys;
+  }
 
   return {
     config: config,
-    errors: [rootNotFound ? 'We couldn\'t find the systemjs-tools project root' : null].filter(function (notNull) {
+    errors: [rootNotFound ? ':: exiting :: couldn\'t find a valid systemjs-tools config' : null].filter(function (notNull) {
       return notNull;
     }),
     valid: !rootNotFound

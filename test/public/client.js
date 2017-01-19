@@ -1,0 +1,1 @@
+/Users/alexisvincent/Code/systemjs/systemjs-tools/test/public/../../dist/client.js

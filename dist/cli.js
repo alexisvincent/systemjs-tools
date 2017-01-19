@@ -13,14 +13,15 @@ var path = require('path');
 var ncp = require('ncp').ncp;
 
 var _require = require('./index.js'),
-    init = _require.init;
+    init = _require.init,
+    passiveInit = _require.passiveInit;
 
 var _require2 = require('./config.js'),
     getConfig = _require2.getConfig;
 
 cli.command('generate-config').description('generate SystemJS config from node_modules (using systemjs-config-builder)').action(function () {
-  var _init = init(),
-      cache = _init._.cache;
+  var _passiveInit = passiveInit(),
+      cache = _passiveInit._.cache;
 
   (0, _systemjsConfigBuilder.traceModuleTree)('.').then((0, _systemjsConfigBuilder.fromCache)(function () {
     return Promise.resolve(cache.configBuilder = cache.configBuilder || {});
@@ -34,12 +35,12 @@ cli.command('serve').description('Serve the current directory').option('--hmr', 
 }).action(function (opts) {
 
   // Construct tools instance from config
-  var _init2 = init({
+  var _init = init({
     serve: {
       port: opts.port
     }
   }),
-      serve = _init2.serve;
+      serve = _init.serve;
 
   // TODO: Check for errors in init
 

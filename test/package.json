@@ -18,12 +18,7 @@
       "dir": "public"
     },
     "builder": {
-      "configFiles": ["public/jspm.config.js"],
-      "options": {
-        "sourceMaps": "inline",
-        "sourceMapContents": true,
-        "lowResSourceMaps": true
-      }
+      "configFiles": ["public/jspm.config.js"]
     }
   }
 }

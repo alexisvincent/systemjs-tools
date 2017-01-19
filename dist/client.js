@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.connect = exports.passiveInit = undefined;
 
-require('systemjs-hmr/dist/next.js');
-
 var _socket = require('socket.io-client');
 
 var _socket2 = _interopRequireDefault(_socket);
@@ -17,48 +15,63 @@ var _deepmerge2 = _interopRequireDefault(_deepmerge);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import 'systemjs-hmr/next'
 var tools = {
   _: {
     initialized: false
   },
   config: {
-    protocol: window.location.protocol,
-    port: window.location.port,
-    host: window.location.hostname
+    protocol: 'https://',
+    port: 7777,
+    hostname: window.location.hostname
   }
 };
 // import Rx from 'rxjs/Rx'
 // import {Observable as O} from 'rxjs/Observable'
-var passiveInit = exports.passiveInit = function passiveInit(config) {
-  if (!tools.initialized) {
-    (function () {
+var passiveInit = exports.passiveInit = function passiveInit() {
+  var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      tools.initialized = true;
-      tools.config = (0, _deepmerge2.default)(tools.config, config);
+  if (!tools._.initialized) {
+    (function () {
+      tools._.initialized = true;
+
+      tools.config = (0, _deepmerge2.default)(tools.config, c);
 
       var _ = tools._,
           config = tools.config;
 
 
-      tools.connect = function (configOverride) {
+      tools.connect = function () {
+        var configOverride = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
         var _merge = (0, _deepmerge2.default)(config, configOverride),
             protocol = _merge.protocol,
             port = _merge.port,
-            host = _merge.host;
+            hostname = _merge.hostname;
 
         if (!_.socket) {
-          _.socket = (0, _socket2.default)(protocol + host + ":" + port);
+          _.socket = (0, _socket2.default)(protocol + hostname + ":" + port, { secure: true });
 
           _.socket.on('connect', function () {
-            return socket.emit('identification', navigator.userAgent);
+            return _.socket.emit('identification', navigator.userAgent);
           });
           _.socket.on('reload', function () {
             return document.location.reload(true);
           });
-          _.socket.on('change', function (_ref) {
-            var path = _ref.path,
-                entries = _ref.entries;
-            return System.reload(path, { roots: entries });
+          _.socket.on('*', function (event) {
+            switch (event.type) {
+              case 'hmr':
+                {
+                  var url = event.url,
+                      entries = event.entries;
+
+                  var URL = SystemJS._loader.baseURL + url;
+                  System.reload(URL, { roots: entries }).then(function (x) {
+                    // console.log(`${URL} changed`, x)
+                  });
+                  break;
+                }
+            }
           });
         }
       };
@@ -68,8 +81,10 @@ var passiveInit = exports.passiveInit = function passiveInit(config) {
   return tools;
 };
 
-var connect = exports.connect = function connect(config) {
-  var tools = passiveInit(config);
+var connect = exports.connect = function connect() {
+  var configOverride = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var tools = passiveInit(configOverride);
   tools.connect();
   return tools;
 };

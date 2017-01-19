@@ -1,16 +1,12 @@
 SystemJS.config({
   paths: {
-    "npm:": "jspm_packages/npm/"
+    "npm:": "jspm_packages/npm/",
+    "github:": "jspm_packages/github/"
   },
   browserConfig: {
     "baseURL": "/",
     "paths": {
       "app/": "./"
-    }
-  },
-  nodeConfig: {
-    "paths": {
-      "app/": "src/"
     }
   },
   transpiler: "plugin-babel",
@@ -29,7 +25,8 @@ SystemJS.config({
 SystemJS.config({
   packageConfigPaths: [
     "npm:@*/*.json",
-    "npm:*.json"
+    "npm:*.json",
+    "github:*/*.json"
   ],
   map: {
     "assert": "npm:jspm-nodelibs-assert@0.2.0",
@@ -37,6 +34,7 @@ SystemJS.config({
     "child_process": "npm:jspm-nodelibs-child_process@0.2.0",
     "constants": "npm:jspm-nodelibs-constants@0.2.0",
     "crypto": "npm:jspm-nodelibs-crypto@0.2.0",
+    "deepmerge": "npm:deepmerge@1.3.1",
     "domain": "npm:jspm-nodelibs-domain@0.2.0",
     "events": "npm:jspm-nodelibs-events@0.2.0",
     "fs": "npm:jspm-nodelibs-fs@0.2.0",
@@ -48,8 +46,11 @@ SystemJS.config({
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "react": "npm:react@15.4.2",
     "react-dom": "npm:react-dom@15.4.2",
+    "socket.io-client": "github:socketio/socket.io-client@1.7.2",
+    "socketio/socket.io-client": "github:socketio/socket.io-client@1.7.2",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
+    "systemjs-hmr": "npm:systemjs-hmr@0.1.6",
     "url": "npm:jspm-nodelibs-url@0.2.0",
     "util": "npm:jspm-nodelibs-util@0.2.1",
     "vm": "npm:jspm-nodelibs-vm@0.2.0",
@@ -347,6 +348,22 @@ SystemJS.config({
     "npm:hash.js@1.0.3": {
       "map": {
         "inherits": "npm:inherits@2.0.3"
+      }
+    },
+    "npm:systemjs-hmr@0.1.6": {
+      "map": {
+        "ajv": "npm:ajv@4.10.4"
+      }
+    },
+    "npm:ajv@4.10.4": {
+      "map": {
+        "json-stable-stringify": "npm:json-stable-stringify@1.0.1",
+        "co": "npm:co@4.6.0"
+      }
+    },
+    "npm:json-stable-stringify@1.0.1": {
+      "map": {
+        "jsonify": "npm:jsonify@0.0.0"
       }
     }
   }

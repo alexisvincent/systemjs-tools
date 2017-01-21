@@ -337,7 +337,10 @@ var init = function init() {
     var absolutePath = _ref4.absolutePath;
     return _.builder.invalidate(absolutePath);
   });
-  fileChange.subscribe(function () {
+  fileChange.filter(function (_ref5) {
+    var absolutePath = _ref5.absolutePath;
+    return absolutePath != _path2.default.join(config.directories.root, config.cache);
+  }).subscribe(function () {
     return _.persistCache();
   });
 
@@ -350,8 +353,8 @@ var init = function init() {
   }).subscribe(_.events);
 
   // Listen for cache persist messages
-  _.events.filter(function (_ref5) {
-    var type = _ref5.type;
+  _.events.filter(function (_ref6) {
+    var type = _ref6.type;
     return type == 'persist-cache';
   }).debounceTime(200).subscribe(function () {
     _.log('persisting cache');

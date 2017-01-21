@@ -10,4 +10,4 @@ connect()
 
 const {div} = DOM
 
-render(div({}, 'Hello MOOOp'), document.getElementById('root'))
+render(div({}, 'Hello MO'), document.getElementById('root'))

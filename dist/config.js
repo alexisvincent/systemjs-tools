@@ -157,7 +157,6 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
           case 'log':
             {
               if (message == 'persisting cache') return false;
-              if (message == 'file changed :: ' + config.cache) return false;
 
               break;
             }

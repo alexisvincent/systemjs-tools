@@ -85,6 +85,8 @@ var init = function init() {
       },
       // Builder instance (so we can share the cache)
       builder: new _systemjsBuilder2.default(_path2.default.join(config.directories.root, config.directories.baseURL)),
+
+      // TODO: Make an event middleware system
       events: new Subject(),
       // Construct for pipelining build operations (parallel is slower)
       promiseContext: {},
@@ -197,10 +199,7 @@ var init = function init() {
           _.log('finished bundling ' + expression);
 
           cache.bundling = false;
-
           cache.bundle = bundle;
-
-          // console.log('cache after ::::\n', __.omit(cache, ['bundle', 'bundlePromise']))
 
           return bundle;
         }).catch(function (err) {
@@ -296,9 +295,7 @@ var init = function init() {
 
   // f: notify system that a file has changed
   _.fileChanged = function (absolutePath) {
-    var relativePath = _path2.default.relative(config.directories.root, absolutePath);
-    // TODO: Make an event middleware system, so that we dont need to make this check here. Alows extensibility as well
-    if (relativePath != config.cache) _.events.next({
+    _.events.next({
       type: 'file-changed',
       absolutePath: absolutePath,
       relativePath: _path2.default.relative(config.directories.root, absolutePath),
@@ -311,7 +308,7 @@ var init = function init() {
     var chokidarOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _.watcher = _chokidar2.default.watch(config.directories.root, (0, _deepmerge2.default)({
-      ignored: ["**/jspm_packages", "**/node_modules", "**/icons"],
+      ignored: ["**/jspm_packages", "**/node_modules", "**/icons", _path2.default.join(config.directories.root, config.cache)],
       ignoreInitial: true
     }, chokidarOptions));
 
@@ -417,6 +414,10 @@ var init = function init() {
     Object.values(_.cache.bundle).forEach(function (bundleCache) {
       // TODO: Invalidate only those bundles which rely on this file
       bundleCache.valid = false;
+
+      config.entries.forEach(function (entry) {
+        return _.bundle(entry);
+      });
     });
   });
 

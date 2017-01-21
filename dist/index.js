@@ -47,6 +47,10 @@ var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -75,7 +79,9 @@ var init = function init() {
     config: config,
     _: {
       cache: {
-        version: require(_path2.default.join(__dirname, '../package.json')).version
+        version: require(_path2.default.join(__dirname, '../package.json')).version,
+        bundle: {},
+        sfx: {}
       },
       // Builder instance (so we can share the cache)
       builder: new _systemjsBuilder2.default(_path2.default.join(config.directories.root, config.directories.baseURL)),
@@ -83,7 +89,9 @@ var init = function init() {
       // Construct for pipelining build operations (parallel is slower)
       promiseContext: {},
       then: function then(context, f) {
-        return tools._.promiseContext[context] = (tools._.promiseContext[context] || _bluebird2.default.resolve()).then(f);
+        var nextPromise = (tools._.promiseContext[context] || _bluebird2.default.resolve()).then(f);
+        tools._.promiseContext[context] = nextPromise.catch(function () {});
+        return nextPromise;
       }
     }
   };
@@ -119,7 +127,15 @@ var init = function init() {
       var cache = JSON.parse(_fs2.default.readFileSync(_path2.default.join(config.directories.root, config.cache), 'utf8'));
 
       if (cache.version == _.cache.version) {
+
+        // Since we can't persist promise values, we construct them on load
+        Object.values(cache.bundle).forEach(function (bundleCache) {
+          bundleCache.bundlePromise = _bluebird2.default.resolve(bundleCache.bundle);
+        });
+
         _.cache = cache;
+
+        if (_.cache.builder) _.builder.setCache(_.cache.builder);
         _.log('using cache found at ' + config.cache);
       } else {
         _.log('resetting cache :: cache@' + cache.version + ' <*> systemjs-tools@' + _.cache.version);
@@ -127,8 +143,6 @@ var init = function init() {
     } catch (error) {
       _.warn('couldn\'t find a valid cache at ' + config.cache + '. Starting fresh :)');
     }
-
-    if (_.cache.builder) _.builder.setCache(_.cache.builder);
   };
 
   // request that the cache be persisted
@@ -139,15 +153,67 @@ var init = function init() {
   // f: bundle the expression
   _.bundle = function (expression) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    return _.then('build', function () {
-      _.log('bundling ' + expression);
+    var updateLastAccessed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-      return _.builder.bundle(expression, (0, _deepmerge2.default)(config.builder.options, options)).then(function (bundle) {
-        _.persistCache();
-        _.log('finished bundling ' + expression);
-        return bundle;
+
+    var opts = (0, _deepmerge2.default)(config.builder.options, options);
+    var cacheName = expression + '#' + JSON.stringify(opts);
+
+    if (!_.cache.bundle[cacheName]) {
+      // console.log('fresh')
+      _.cache.bundle[cacheName] = {
+        expression: expression,
+        options: opts,
+        valid: false,
+        bundling: false,
+        bundle: null,
+        bundlePromise: _bluebird2.default.resolve(),
+        lastAccessed: Date.now()
+      };
+    }
+
+    var cache = _.cache.bundle[cacheName];
+
+    if (cache.valid && !cache.bundling) {
+      // the cache is valid, so we do nothing
+      _.log('serving cached bundle for ' + expression);
+    } else if (cache.bundling) {
+      // the cache is invalid but the expression is already being bundled, so we do nothing
+      _.log('hooking into queued bundle request for ' + expression);
+    } else {
+      // the cache is invalid and no build process is happening... so LETS DO DIS
+
+      // we are bundling
+      cache.bundling = true;
+      cache.bundlePromise = _.then('build', function () {
+        _.log('bundling ' + expression + '...');
+        cache.valid = true;
+
+        // we are bundling, re-declared in-case it was switched in the previous tick
+        cache.bundling = true;
+
+        return _.builder.bundle(expression, options).then(function (bundle) {
+          _.persistCache();
+          _.log('finished bundling ' + expression);
+
+          cache.bundling = false;
+
+          cache.bundle = bundle;
+
+          // console.log('cache after ::::\n', __.omit(cache, ['bundle', 'bundlePromise']))
+
+          return bundle;
+        }).catch(function (err) {
+          _.error('failed to bundle ' + entry, err);
+        });
       });
-    });
+
+      _.log('bundle request for ' + expression + ' queued...');
+    }
+
+    if (updateLastAccessed) cache.lastAccessed = Date.now();
+
+    return cache.bundlePromise;
   };
 
   // f: start a development/production http2 server
@@ -230,7 +296,9 @@ var init = function init() {
 
   // f: notify system that a file has changed
   _.fileChanged = function (absolutePath) {
-    _.events.next({
+    var relativePath = _path2.default.relative(config.directories.root, absolutePath);
+    // TODO: Make an event middleware system, so that we dont need to make this check here. Alows extensibility as well
+    if (relativePath != config.cache) _.events.next({
       type: 'file-changed',
       absolutePath: absolutePath,
       relativePath: _path2.default.relative(config.directories.root, absolutePath),
@@ -295,13 +363,13 @@ var init = function init() {
         console.log('::', message);
         break;
       case 'warning':
-        console.warn(':: warning ::', message);
+        console.warn('::', message);
         break;
       case 'error':
-        console.error(':: error ::', message, '\n', error);
+        console.error(':: error ::', message, '\n\n', error, '\n');
         break;
       case 'fatal':
-        console.error(':: fatal error ::', message, '\n', error);
+        console.error(':: fatal error ::', message, '\n\n', error, '\n');
         break;
       case 'file-changed':
         _.log('file changed ::', relativePath);
@@ -336,38 +404,52 @@ var init = function init() {
 
   _.bustOldBuilderEntries();
 
-  var fileChange = _.events.filter(function (_ref3) {
+  _.events.fileChanged = _.events.filter(function (_ref3) {
     var type = _ref3.type;
     return type == 'file-changed';
   });
-  fileChange.subscribe(function (_ref4) {
+
+  // Invalidate builder on file change
+  _.events.fileChanged.subscribe(function (_ref4) {
     var absolutePath = _ref4.absolutePath;
-    return _.builder.invalidate(absolutePath);
+
+    _.builder.invalidate(absolutePath);
+    Object.values(_.cache.bundle).forEach(function (bundleCache) {
+      // TODO: Invalidate only those bundles which rely on this file
+      bundleCache.valid = false;
+    });
   });
-  fileChange.filter(function (_ref5) {
-    var absolutePath = _ref5.absolutePath;
-    return absolutePath != _path2.default.join(config.directories.root, config.cache);
-  }).subscribe(function () {
+
+  // persist cache on file change
+  _.events.fileChanged.subscribe(function () {
     return _.persistCache();
   });
 
   // Generate hmr events from file changes
-  fileChange.map(function (event) {
+  _.events.fileChanged.map(function (event) {
     return _extends({}, event, {
       type: 'hmr',
       entries: tools.entries
     });
   }).subscribe(_.events);
 
-  // Listen for cache persist messages
-  _.events.filter(function (_ref6) {
-    var type = _ref6.type;
+  // persist cache if persist-cache message received
+  _.events.filter(function (_ref5) {
+    var type = _ref5.type;
     return type == 'persist-cache';
-  }).debounceTime(200).subscribe(function () {
+  }).debounceTime(1000).subscribe(function () {
     _.log('persisting cache');
     _.cache.builder = _.builder.getCache();
 
-    return _fs2.default.writeFile(_path2.default.join(config.directories.root, config.cache), JSON.stringify(_.cache), 'utf8').catch(function (err) {
+    var cache = _extends({}, _.cache, {
+      bundle: {}
+    });
+
+    Object.keys(_.cache.bundle).forEach(function (cacheName) {
+      cache.bundle[cacheName] = _lodash2.default.omit(_.cache.bundle[cacheName], ['bundlePromise']);
+    });
+
+    return _fs2.default.writeFile(_path2.default.join(config.directories.root, config.cache), JSON.stringify(cache), 'utf8').catch(function (err) {
       return _.error('failed to persist cache', err);
     });
   });

@@ -101,6 +101,7 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
     entries: [],
     cache: '.systemjs.cache.json',
     watch: true,
+    lazy: false,
     serve: {
       dir: '.',
       port: 3000,

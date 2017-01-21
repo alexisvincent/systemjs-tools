@@ -43,10 +43,6 @@ var _deepmerge = require('deepmerge');
 
 var _deepmerge2 = _interopRequireDefault(_deepmerge);
 
-var _death = require('death');
-
-var _death2 = _interopRequireDefault(_death);
-
 var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
@@ -57,7 +53,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var Subject = _Rx2.default.Subject;
 
-var init = function init(configOverrides) {
+var init = function init() {
+  var configOverrides = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
   /**
    * passive initialisation of systemjs-tools
@@ -86,8 +83,7 @@ var init = function init(configOverrides) {
       promiseContext: {},
       then: function then(context, f) {
         return tools._.promiseContext[context] = (tools._.promiseContext[context] || _bluebird2.default.resolve()).then(f);
-      },
-      exitHandlers: []
+      }
     }
   };
 
@@ -96,21 +92,6 @@ var init = function init(configOverrides) {
   // f: given (req, res) -> give us more information about the request
 
   tools.analyse = _handlers.analyse;
-
-  // f: register a function that resolves to a promise which will be run when system exits
-  _.registerExitHandler = function (handler) {
-    return _.exitHandlers.push(handler);
-  };
-
-  // function to exit system
-  _.exit = function () {
-    _.log('gracefully shutting down');
-    _bluebird2.default.all(_.exitHandlers.map(function (handler) {
-      return handler();
-    })).then(function () {
-      return process.exit(1);
-    });
-  };
 
   // functions to centralize logging
   _.log = function () {
@@ -143,14 +124,9 @@ var init = function init(configOverrides) {
     if (_.cache.builder) _.builder.setCache(_.cache.builder);
   };
 
-  // f: save the internal cache to disk
+  // request that the cache be persisted
   _.persistCache = function () {
-    _.log('persisting cache');
-    _.cache.builder = _.builder.getCache();
-
-    return _fs2.default.writeFile(_path2.default.join(config.directories.root, config.cache), JSON.stringify(_.cache), 'utf8').catch(function (err) {
-      return _.error('Failed to persist cache', err);
-    });
+    _.events.next({ type: 'persist-cache' });
   };
 
   // f: bundle the expression
@@ -158,12 +134,12 @@ var init = function init(configOverrides) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return _.then('build', function () {
       _.log('bundling ' + expression);
-      var bundlePromise = _.builder.bundle(expression, (0, _deepmerge2.default)(config.builder.options, options));
-      bundlePromise.then(function () {
-        return _.log('finished bundling ' + expression);
+
+      return _.builder.bundle(expression, (0, _deepmerge2.default)(config.builder.options, options)).then(function (bundle) {
+        _.persistCache();
+        _.log('finished bundling ' + expression);
+        return bundle;
       });
-      // bundlePromise.then(m => console.log(m.sourceMap))
-      return bundlePromise;
     });
   };
 
@@ -247,10 +223,12 @@ var init = function init(configOverrides) {
 
   // f: notify system that a file has changed
   _.fileChanged = function (absolutePath) {
-    var relativePath = _path2.default.relative(config.directories.root, absolutePath);
-    var url = _path2.default.relative(config.directories.baseURL, absolutePath);
-
-    _.events.next({ type: 'file-changed', absolutePath: absolutePath, relativePath: relativePath, url: url });
+    _.events.next({
+      type: 'file-changed',
+      absolutePath: absolutePath,
+      relativePath: _path2.default.relative(config.directories.root, absolutePath),
+      url: _path2.default.relative(config.directories.baseURL, absolutePath)
+    });
   };
 
   // f: watch file system and notify systemjs-tools when file changes
@@ -323,9 +301,6 @@ var init = function init(configOverrides) {
     }
   });
 
-  // listen for quit events and gracefully exit system
-  (0, _death2.default)(_.exit);
-
   tools.handlers = (0, _handlers.makeHandlers)(tools);
 
   // Config entry to support systemjs-hmr
@@ -348,9 +323,6 @@ var init = function init(configOverrides) {
 
   // Load cache
   _.loadCache();
-  _.registerExitHandler(function () {
-    return _.persistCache();
-  });
 
   // Watch for changes in the file system
   if (config.watch) _.watchFileSystem();
@@ -365,6 +337,9 @@ var init = function init(configOverrides) {
     var absolutePath = _ref4.absolutePath;
     return _.builder.invalidate(absolutePath);
   });
+  fileChange.subscribe(function () {
+    return _.persistCache();
+  });
 
   // Generate hmr events from file changes
   fileChange.map(function (event) {
@@ -373,6 +348,19 @@ var init = function init(configOverrides) {
       entries: tools.entries
     });
   }).subscribe(_.events);
+
+  // Listen for cache persist messages
+  _.events.filter(function (_ref5) {
+    var type = _ref5.type;
+    return type == 'persist-cache';
+  }).debounceTime(200).subscribe(function () {
+    _.log('persisting cache');
+    _.cache.builder = _.builder.getCache();
+
+    return _fs2.default.writeFile(_path2.default.join(config.directories.root, config.cache), JSON.stringify(_.cache), 'utf8').catch(function (err) {
+      return _.error('Failed to persist cache', err);
+    });
+  });
 
   return tools;
 };

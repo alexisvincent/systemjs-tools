@@ -7,6 +7,8 @@ exports.passiveInit = exports.init = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _chokidar = require('chokidar');
 
 var _chokidar2 = _interopRequireDefault(_chokidar);
@@ -152,6 +154,33 @@ var init = function init() {
     _.events.next({ type: 'persist-cache' });
   };
 
+  _.invalidate = function (_ref) {
+    var absolutePath = _ref.absolutePath;
+
+    _.builder.invalidate(absolutePath);
+
+    var normalized = _path2.default.normalize(_path2.default.relative(_path2.default.join(config.directories.root, config.directories.baseURL), absolutePath));
+
+    var rebundle = [];
+
+    Object.values(_.cache.bundle).forEach(function (bundleCache) {
+      bundleCache.bundle.modules.forEach(function (module) {
+        if (_path2.default.normalize(module) == normalized) {
+          rebundle.push([bundleCache.expression, bundleCache.options]);
+          bundleCache.valid = false;
+        }
+      });
+    });
+
+    rebundle.forEach(function (_ref2) {
+      var _ref3 = _slicedToArray(_ref2, 2),
+          expression = _ref3[0],
+          options = _ref3[1];
+
+      return _.bundle(expression, options);
+    });
+  };
+
   // f: bundle the expression
   _.bundle = function (expression) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -280,8 +309,8 @@ var init = function init() {
             // listen to system events
             _.events
             // filter for events the browser cares about
-            .filter(function (_ref) {
-              var type = _ref.type;
+            .filter(function (_ref4) {
+              var type = _ref4.type;
               return ['hmr'].indexOf(type) >= 0;
             })
             // and send them to browser
@@ -349,11 +378,11 @@ var init = function init() {
    */
 
   // print system messages
-  _.events.filter(config.log).subscribe(function (_ref2) {
-    var type = _ref2.type,
-        message = _ref2.message,
-        error = _ref2.error,
-        relativePath = _ref2.relativePath;
+  _.events.filter(config.log).subscribe(function (_ref5) {
+    var type = _ref5.type,
+        message = _ref5.message,
+        error = _ref5.error,
+        relativePath = _ref5.relativePath;
 
     switch (type) {
       case 'log':
@@ -401,24 +430,14 @@ var init = function init() {
 
   _.bustOldBuilderEntries();
 
-  _.events.fileChanged = _.events.filter(function (_ref3) {
-    var type = _ref3.type;
+  _.events.fileChanged = _.events.filter(function (_ref6) {
+    var type = _ref6.type;
     return type == 'file-changed';
   });
 
   // Invalidate builder on file change
-  _.events.fileChanged.subscribe(function (_ref4) {
-    var absolutePath = _ref4.absolutePath;
-
-    _.builder.invalidate(absolutePath);
-    Object.values(_.cache.bundle).forEach(function (bundleCache) {
-      // TODO: Invalidate only those bundles which rely on this file
-      bundleCache.valid = false;
-
-      config.entries.forEach(function (entry) {
-        return _.bundle(entry);
-      });
-    });
+  _.events.fileChanged.subscribe(function (event) {
+    _.invalidate(event);
   });
 
   // persist cache on file change
@@ -435,8 +454,8 @@ var init = function init() {
   }).subscribe(_.events);
 
   // persist cache if persist-cache message received
-  _.events.filter(function (_ref5) {
-    var type = _ref5.type;
+  _.events.filter(function (_ref7) {
+    var type = _ref7.type;
     return type == 'persist-cache';
   }).debounceTime(1000).subscribe(function () {
     _.log('persisting cache');

@@ -59,7 +59,6 @@ var init = function init() {
   /**
    * passive initialisation of systemjs-tools
    */
-
   var _getConfig = (0, _config.getConfig)((0, _config.conform)(configOverrides)),
       config = _getConfig.config,
       valid = _getConfig.valid,
@@ -75,7 +74,9 @@ var init = function init() {
   var tools = {
     config: config,
     _: {
-      cache: {},
+      cache: {
+        version: require(_path2.default.join(__dirname, '../package.json')).version
+      },
       // Builder instance (so we can share the cache)
       builder: new _systemjsBuilder2.default(_path2.default.join(config.directories.root, config.directories.baseURL)),
       events: new Subject(),
@@ -115,10 +116,16 @@ var init = function init() {
   // f: load the internal cache from disk
   _.loadCache = function () {
     try {
-      _.cache = JSON.parse(_fs2.default.readFileSync(_path2.default.join(config.directories.root, config.cache), 'utf8'));
+      var cache = JSON.parse(_fs2.default.readFileSync(_path2.default.join(config.directories.root, config.cache), 'utf8'));
+
+      if (cache.version == _.cache.version) {
+        _.cache = cache;
+        _.log('using cache found at ' + config.cache);
+      } else {
+        _.log('resetting cache :: cache@' + cache.version + ' <*> systemjs-tools@' + _.cache.version);
+      }
     } catch (error) {
-      _.warn('Failed to load ' + _path2.default.join(config.directories.root, config.cache));
-      _.cache = {};
+      _.warn('couldn\'t find a valid cache at ' + config.cache + '. Starting fresh :)');
     }
 
     if (_.cache.builder) _.builder.setCache(_.cache.builder);
@@ -277,7 +284,7 @@ var init = function init() {
    */
 
   // print system messages
-  _.events.subscribe(function (_ref2) {
+  _.events.filter(config.log).subscribe(function (_ref2) {
     var type = _ref2.type,
         message = _ref2.message,
         error = _ref2.error,
@@ -361,7 +368,7 @@ var init = function init() {
     _.cache.builder = _.builder.getCache();
 
     return _fs2.default.writeFile(_path2.default.join(config.directories.root, config.cache), JSON.stringify(_.cache), 'utf8').catch(function (err) {
-      return _.error('Failed to persist cache', err);
+      return _.error('failed to persist cache', err);
     });
   });
 

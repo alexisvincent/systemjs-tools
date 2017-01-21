@@ -101,6 +101,7 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
     entries: [],
     cache: '.systemjs.cache.json',
     watch: true,
+    log: 'smart',
     lazy: false,
     serve: {
       dir: '.',
@@ -135,6 +136,42 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
   if (!rootNotFound) {
     config.directories.baseURL = config.directories.baseURL || config.serve.dir;
     config.channel.keys = config.channel.keys || config.serve.keys;
+  }
+
+  if (typeof config.log == 'string') {
+    config.log = {
+      'smart': function smart(_ref3) {
+        var type = _ref3.type,
+            relativePath = _ref3.relativePath,
+            message = _ref3.message;
+
+
+        switch (type) {
+          case 'file-changed':
+            {
+
+              if (relativePath == config.cache) return false;
+
+              break;
+            }
+          case 'log':
+            {
+              if (message == 'persisting cache') return false;
+              if (message == 'file changed :: ' + config.cache) return false;
+
+              break;
+            }
+        }
+
+        return true;
+      },
+      '*': function _() {
+        return true;
+      },
+      'none': function none() {
+        return false;
+      }
+    }[config.log];
   }
 
   return {

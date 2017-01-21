@@ -7,8 +7,8 @@
     <!--<script src="https://unpkg.com/systemjs/dist/system.js"></script>-->
 
     <!-- Using JSPM -->
-     <script src="/jspm_packages/system.js"></script>
-     <script src="/jspm.config.js"></script>
+    <script src="/jspm_packages/system.js"></script>
+    <script src="/jspm.config.js"></script>
     <script src="/dependencies.js"></script>
 
     <!-- Using npm/yarn & systemjs-config-builder -->
@@ -19,8 +19,10 @@
 <body>
 <div id="root"></div>
 <script>
-    SystemJS.trace = true
-  SystemJS.import('app.js')
+  SystemJS.trace = true
+  SystemJS.import('systemjs-hmr/next').then(() => {
+    SystemJS.import('app.js')
+  })
 </script>
 </body>
 </html>

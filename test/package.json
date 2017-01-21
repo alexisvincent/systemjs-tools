@@ -18,7 +18,9 @@
       "dir": "public"
     },
     "builder": {
-      "configFiles": ["public/jspm.config.js"]
+      "configFiles": [
+        "public/jspm.config.js"
+      ]
     }
   }
 }

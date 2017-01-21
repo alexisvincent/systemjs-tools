@@ -1,13 +1,13 @@
-// import {DOM} from 'react'
-// import {render} from 'react-dom'
-import merge from 'deepmerge'
+import {DOM} from 'react'
+import {render} from 'react-dom'
+// import merge from 'deepmerge'
 import b from './b.js'
 
 b()
-// import {connect} from './client.js'
+import {connect} from './client.js'
 
-// connect()
+connect()
 
-// const {div} = DOM
+const {div} = DOM
 
-// render(div({}, 'Hello World'), document.getElementById('root'))
+render(div({}, 'Hello MOOOp'), document.getElementById('root'))

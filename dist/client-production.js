@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 // import 'systemjs-hmr/next'
 // import Rx from 'rxjs/Rx'
 // import {Observable as O} from 'rxjs/Observable'
-console.log('production client');
 
 var tools = {
   config: {

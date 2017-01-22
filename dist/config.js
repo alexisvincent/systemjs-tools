@@ -102,7 +102,7 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
     cache: '.systemjs.cache.json',
     watch: true,
     log: 'smart',
-    lazy: false,
+    lazy: true,
     serve: {
       dir: '.',
       port: 3000,
@@ -149,10 +149,7 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
         switch (type) {
           case 'file-changed':
             {
-
-              if (relativePath == config.cache) return false;
-
-              break;
+              return false;
             }
           case 'log':
             {

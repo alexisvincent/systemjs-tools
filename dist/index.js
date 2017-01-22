@@ -172,7 +172,7 @@ var init = function init() {
       });
     });
 
-    rebundle.forEach(function (_ref2) {
+    if (!config.lazy) rebundle.forEach(function (_ref2) {
       var _ref3 = _slicedToArray(_ref2, 2),
           expression = _ref3[0],
           options = _ref3[1];
@@ -187,14 +187,14 @@ var init = function init() {
     var updateLastAccessed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
 
-    var opts = (0, _deepmerge2.default)(config.builder.options, options);
-    var cacheName = expression + '#' + JSON.stringify(opts);
+    options = (0, _deepmerge2.default)(config.builder.options, options);
+    var cacheName = expression + '#' + JSON.stringify(options);
 
     if (!_.cache.bundle[cacheName]) {
       // console.log('fresh')
       _.cache.bundle[cacheName] = {
         expression: expression,
-        options: opts,
+        options: options,
         valid: false,
         bundling: false,
         bundle: null,
@@ -266,7 +266,7 @@ var init = function init() {
     tools.developmentChannel();
 
     // in next tick so we get nicer log ordering
-    process.nextTick(function () {
+    if (!config.lazy) process.nextTick(function () {
       if (entries.length > 0) {
         _.log('preemptively bundling app entries');
         entries.forEach(function (entry) {

@@ -11,6 +11,7 @@
     "systemjs-tools": "^1.4.2"
   },
   "systemjs-tools": {
+
     "entries": [
       "app.js"
     ],
@@ -18,6 +19,10 @@
       "dir": "public"
     },
     "builder": {
+      "options": {
+        "production": true,
+        "dev": false
+      },
       "configFiles": [
         "public/jspm.config.js"
       ]

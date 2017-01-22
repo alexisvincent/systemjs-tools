@@ -16,6 +16,11 @@ var _deepmerge2 = _interopRequireDefault(_deepmerge);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import 'systemjs-hmr/next'
+console.log('developement client');
+// import Rx from 'rxjs/Rx'
+// import {Observable as O} from 'rxjs/Observable'
+
+
 var tools = {
   _: {
     initialized: false
@@ -26,8 +31,7 @@ var tools = {
     hostname: window.location.hostname
   }
 };
-// import Rx from 'rxjs/Rx'
-// import {Observable as O} from 'rxjs/Observable'
+
 var passiveInit = exports.passiveInit = function passiveInit() {
   var c = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 

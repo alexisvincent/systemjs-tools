@@ -40,6 +40,18 @@
       "env"
     ]
   },
+  "jspm": {
+    "dependencies": {
+      "deepmerge": "^1.3.1"
+    },
+    "devDependencies": {},
+    "map": {
+      "./client": {
+        "~production": "./dist/client.js",
+        "production": "./dist/client-production.js"
+      }
+    }
+  },
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-plugin-transform-object-rest-spread": "^6.19.0",
@@ -62,11 +74,5 @@
     "systemjs-builder": "https://github.com/systemjs/builder#451effd0c83940e71eff1d20316ca6f143fae5cb",
     "systemjs-config-builder": ">=0.0.8",
     "systemjs-hmr": "^0.1.3"
-  },
-  "map": {
-    "./client": {
-      "~production": "./dist/client.js",
-      "production": "./dist/client-production.js"
-    }
   }
 }

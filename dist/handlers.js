@@ -69,7 +69,9 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
       var app = express();
       app.use(handlers.bundle());
       app.use(handlers.static());
-      app.use(fallthroughHandler);
+      app.use(function (req, res) {
+        fallthroughHandler(req, res)();
+      });
       return app;
     }
   };

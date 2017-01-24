@@ -449,7 +449,7 @@ var init = function init() {
   _.events.fileChanged.map(function (event) {
     return _extends({}, event, {
       type: 'hmr',
-      entries: tools.entries
+      entries: config.entries
     });
   }).subscribe(_.events);
 

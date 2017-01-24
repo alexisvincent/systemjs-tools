@@ -110,10 +110,6 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
         var defaultHandler = _ref.handlers.defaultHandler;
         return defaultHandler();
       },
-      finalHandler: function finalHandler(_ref2) {
-        var defaultFinalHandler = _ref2.handlers.defaultFinalHandler;
-        return defaultFinalHandler();
-      },
       keys: defaultKeys
     },
     channel: {
@@ -140,10 +136,10 @@ var getConfig = exports.getConfig = function getConfig(configOverides) {
 
   if (typeof config.log == 'string') {
     config.log = {
-      'smart': function smart(_ref3) {
-        var type = _ref3.type,
-            relativePath = _ref3.relativePath,
-            message = _ref3.message;
+      'smart': function smart(_ref2) {
+        var type = _ref2.type,
+            relativePath = _ref2.relativePath,
+            message = _ref2.message;
 
 
         switch (type) {

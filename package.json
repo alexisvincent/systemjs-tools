@@ -1,6 +1,6 @@
 {
   "name": "systemjs-tools",
-  "version": "2.0.0-beta.11",
+  "version": "2.0.0-beta.12",
   "description": "(dev)tools for working with SystemJS",
   "main": "dist/index.js",
   "browser": "dist/client.js",
@@ -42,13 +42,36 @@
   },
   "jspm": {
     "dependencies": {
-      "deepmerge": "^1.3.1"
+      "deepmerge": "^1.3.1",
+      "systemjs-hmr": "^1.0.0"
     },
-    "devDependencies": {},
     "map": {
       "./client": {
         "~production": "./dist/client.js",
         "production": "./dist/client-production.js"
+      }
+    },
+    "overrides": {
+      "npm:debug@2.6.0": {
+        "main": "src/browser.js",
+        "jspmNodeConversion": false,
+        "format": "cjs",
+        "map": {
+          "./src/browser.js": {
+            "node": "./src/node.js"
+          },
+          "./node.js": {
+            "browser": "./src/browser.js"
+          },
+          "fs": "@node/fs",
+          "net": "@node/net",
+          "tty": "@node/tty",
+          "util": "@node/util"
+        }
+      },
+      "npm:ms@0.7.2": {
+        "jspmNodeConversion": false,
+        "format": "cjs"
       }
     }
   },
@@ -64,6 +87,7 @@
     "deepmerge": "^1.3.1",
     "express": "^4.14.0",
     "graceful-fs": "^4.1.11",
+    "jspm": "beta",
     "lodash": "^4.17.4",
     "mz": "^2.6.0",
     "ncp": "^2.0.0",

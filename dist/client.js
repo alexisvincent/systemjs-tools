@@ -66,7 +66,7 @@ var passiveInit = exports.passiveInit = function passiveInit() {
                       entries = event.entries;
 
                   var URL = SystemJS._loader.baseURL + url;
-                  System.reload(URL, { roots: entries }).then(function (x) {
+                  System.reload(URL, { entries: entries }).then(function (x) {
                     // console.log(`${URL} changed`, x)
                   });
                   break;

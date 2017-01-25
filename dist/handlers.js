@@ -62,16 +62,16 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       var _merge2 = merge({
-        fallthroughHandler: defaultFinalHandler
+        fallthroughHandler: function fallthroughHandler(req, res) {
+          defaultFinalHandler(req, res)();
+        }
       }, options),
           fallthroughHandler = _merge2.fallthroughHandler;
 
       var app = express();
       app.use(handlers.bundle());
       app.use(handlers.static());
-      app.use(function (req, res) {
-        fallthroughHandler(req, res)();
-      });
+      app.use(fallthroughHandler);
       return app;
     }
   };

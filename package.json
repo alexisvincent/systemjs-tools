@@ -95,7 +95,7 @@
     "socket.io": "^1.6.0",
     "spdy": "^3.4.4",
     "spdy-keys": "^0.0.0",
-    "systemjs-builder": "https://github.com/systemjs/builder#451effd0c83940e71eff1d20316ca6f143fae5cb",
+    "systemjs-builder": "^0.15",
     "systemjs-config-builder": ">=0.0.8",
     "systemjs-hmr": "^0.1.3"
   }

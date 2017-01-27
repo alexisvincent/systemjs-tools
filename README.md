@@ -5,7 +5,7 @@ that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwhe
 or webpack, for SystemJS.
 
 ## [WHAT?](./docs/what.md)
-[Find out about what systemjs-tools can do for you here.](./docs/how.md)
+[Find out about what systemjs-tools can do for you here.](./docs/what.md)
 
 ## WHY?
 As 'modern' application developers, we have certain expectations from

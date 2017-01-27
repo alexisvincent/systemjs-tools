@@ -1,11 +1,10 @@
 # SystemJS Tools
-
-## [WHAT?](./docs/what.md)
 `systemjs-tools` is a collection of powerful, customizable tools,
 to help build compelling development and production stories for projects
 that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwheel)
 or webpack, for SystemJS.
 
+## [WHAT?](./docs/what.md)
 [Find out about what systemjs-tools can do for you here.](./docs/how.md)
 
 ## WHY?

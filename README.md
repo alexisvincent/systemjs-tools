@@ -5,7 +5,7 @@ that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwhe
 or webpack, for SystemJS.
 
 ## [WHAT?](./docs/what.md)
-[Find out about what systemjs-tools can do for you here.](./docs/what.md)
+[Find out about what systemjs-tools can do for you here](./docs/what.md)
 
 ## WHY?
 As 'modern' application developers, we have certain expectations from
@@ -33,7 +33,7 @@ library`. Each exposes layered abstractions and hooks for you to describe
 your unique environment, while still providing a largely automatic
 experience at all levels.
 
-[Find out about how to use systemjs-tools here.](./docs/how.md)
+[Find out about how to use systemjs-tools here](./docs/how.md)
 
 ## Roadmap (currently usable for development)
 - [x] basic development bundling with file busting

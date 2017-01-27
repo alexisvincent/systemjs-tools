@@ -190,7 +190,7 @@ In your index file
 Promise.all([
     System.import('systemjs-hmr'),
     System.import('systemjs-tools/client')
-].then(([_, {connect}]) => {
+]).then(([_, {connect}]) => {
     connect()
     System.import('app.js')
 })

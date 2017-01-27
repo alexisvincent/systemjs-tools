@@ -84,47 +84,113 @@ _.events.subscribe( event => console.log(event) )
 _.bundle('app.js').then( m => console.log(m.source))
 ```
 
-### Config (NOT ACTUAL CONFIG)
+### Config (not definitive, somethings may have changed)
 
-```
+```javascript
+module.exports.config = {
+
     // key directories (superset of jspm.directories)
     // if a jspm key exists in the package.json at the project root
     // the directories will be used as defaults
     directories: {
+
         // Absolute path the project root, discovered as explained above
         // All other paths are specified relative to the root
         root: process.cwd()
 
         // path to directory mapping to the systemjs baseURL
         baseURL: '.'
-    }
+    },
 
     // A list of entries to your application [optional]
     // This is simply used to premptively cache files you might load to speed up the first load
     entries: ['app/app.js'],
 
-    serve: {}
+    // location of cache file relative to directories.root
+    cache: '.systemjs.cache.json',
+
+    // Should systemjs-tools start a file watcher and bust files itself
+    watch: true,
+
+    // one of [ 'smart', '*', 'none'] or a function (event) => bool
+    // will probably soon be replaced with debug library
+    log: 'smart',
+
+    // should the system preemptively bundle/compile the entries
+    // { lazy: false } is mostly unusable at the moment until the builder
+    // as been extended
+    lazy: true,
+
+    // options related to the http file server
+    serve: {
+
+        // which directory should systemjs-serve static files from
+        dir: '.',
+
+        // which port should we serve on
+        port: 3000,
+
+        /**
+         * custom request handler factory
+         * f: (systemjs-tools instance) => standard http request handler
+         * You also have access to a set of handlers we expose on
+         * tools.handlers, for more information about these handlers ...
+         */
+        handler: ({handlers: {defaultHandler}}) => defaultHandler(),
+
+        // certificates that will be passed in to http2 server
+        keys: {
+            key: fs.readFileSync('key.pem'),
+            cert: fs.readFileSync('cert.pem')
+        }
+    },
+
+    // http2 development channel (to communicate with client)
+    channel: {
+        // port on which the channel runs
+        port: 7777,
+
+        // certificates that will be used to start the http2 dev channel
+        keys: defaultKeys
+    },
+
+    // options related to the builder instance
+    builder: {
+
+        // SystemJS config files to load (in order) into the builder instance
+        configFiles: ['./jspm.config.js'],
+
+        // options to pass to the builder instance (described in systemjs-builder)
+        options: {
+          sourceMaps: 'inline',
+          production: false
+        }
+    }
+}
 ```
 
-### Client (not yet working in new implementation)
-`systemjs-tools` relies on socket.io-client being available. We don't specify this as a peer dep since this causes issues
-with `JSPM` / `npm` interop.
+### Client (a bit cluncky, but will be improved)
+#### Prerequisites
 
-**Install** via
-`npm install systemjs-tools socket.io-client`
-or `yarn add systemjs-tools socket.io-client`
-or `jspm install npm:systemjs-tools socket.io-client`
+`systemjs-tools` relies on socket.io-client being available. We don't specify this as a peer dep since this causes issues with `JSPM` / `npm` interop.
 
-At the top of your root client file
-```javascript
-import { client } from 'systemjs-tools'
+`systemjs-tools` also relies on the System.reload polyfill, available via `systemjs-hmr`.
 
-connect({
-    // Port used to connect to server (defaults to 1337)
-    port: 2345
+#### Install
+
+`npm install systemjs-tools systemjs-hmr socket.io-client`
+or `yarn add systemjs-tools systemjs-hmr socket.io-client`
+or `jspm install npm:systemjs-tools npm:systemjs-hmr socket.io-client`
+
+#### Usage
+
+In your index file
+```html
+<script>
+Promise.all([System.import('systemjs-hmr'), System.import('systemjs-tools/client')].then(([_, {connect}]) => {
+    connect()
+    System.import('app.js')
 })
-
+</script>
 ```
-
-
 

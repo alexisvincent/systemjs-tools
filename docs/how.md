@@ -187,7 +187,10 @@ or `jspm install npm:systemjs-tools npm:systemjs-hmr socket.io-client`
 In your index file
 ```html
 <script>
-Promise.all([System.import('systemjs-hmr'), System.import('systemjs-tools/client')].then(([_, {connect}]) => {
+Promise.all([
+    System.import('systemjs-hmr'),
+    System.import('systemjs-tools/client')
+].then(([_, {connect}]) => {
     connect()
     System.import('app.js')
 })

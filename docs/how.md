@@ -3,6 +3,10 @@
 library` and a `cli`. These are all provided in the npm package
 `systemjs-tools`.
 
+1. [CLI](#cli)
+2. [Server](#server)
+3. [Client](#client)
+
 ### CLI
 The `cli` is a thin wrapper over the `server lib` and as such, everything
 you can do in the cli, you can also do (and more) in the `server lib`.

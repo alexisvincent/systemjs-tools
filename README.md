@@ -1,11 +1,26 @@
 # SystemJS Tools
-`systemjs-tools` is a collection of powerful, customizable tools,
+`systemjs-tools` is a collection of powerful, customizable build tools,
 to help build compelling development and production stories for projects
 that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwheel)
 or webpack, for SystemJS.
 
 ## [WHAT?](./docs/what.md)
-[Find out about what systemjs-tools can do for you here](./docs/what.md)
+
+`systemjs-tools` enables the following
+
+*items in italic are unfinished*
+
+- [Snappy Page Refreshes](./docs/what.md#snappy-page-refreshes)
+- [Hot Module Replacement](./docs/what.md#hot-module-replacement)
+- [Cache Persistence (across process restarts)](./docs/what.md#cache-persistence)
+- [Automatic Configuration and Smart Defaults](./docs/what.md#automatic-configuration-and-smart-defaults)
+- [Bundling and Builds](./docs/what.md#bundling-and-builds)
+- [Contribution Friendly Codebase](./docs/what.md#contribution-friendly-codebase)
+- [*Automatic JSPM Interoperability*](./docs/what.md#automatic-jspm-interoperability)
+- [*Development Feedback Console*](./docs/what.md#development-feedback-console)
+- [node_modules package resolution (beta)](./docs/what.md#node_modules-package-resolution-(beta))
+- [Project Templates](./docs/what.md#project-templates)
+- [*IDE Analysis Engine*](./docs/what.md#ide-analysis-engine)
 
 ## WHY?
 As 'modern' application developers, we have certain expectations from
@@ -47,6 +62,7 @@ experience at all levels.
 - [x] sourcemap support - [issue pending](https://github.com/systemjs/builder/issues/754)
 - [x] hot module replacement
 - [x] handlers - [static, bundle]
+- [ ] handlers - [bundle -> dynamic bundle queries]
 - [ ] basic documentation
 - [ ] handlers - [compile, http2 server push]
 - [ ] logging via `debug` package
@@ -54,7 +70,7 @@ experience at all levels.
 - [ ] production build story
 - [ ] hmr - [preemptive sources]
 - [ ] development console with error catching
-- [ ] configuration schema and validation
+- [ ] configuration schema and validation (using ajv)
 - [ ] cli - use config schema to automatically expose options
 - [ ] generic dependency tree mapping for hmr of things that have their
       own dependency resolvers (eg. sass and pcss)

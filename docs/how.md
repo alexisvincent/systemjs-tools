@@ -177,10 +177,11 @@ module.exports.config = {
 `systemjs-tools` also relies on the System.reload polyfill, available via `systemjs-hmr`.
 
 #### Install
+npm: `npm install systemjs-tools systemjs-hmr socket.io-client`
 
-`npm install systemjs-tools systemjs-hmr socket.io-client`
-or `yarn add systemjs-tools systemjs-hmr socket.io-client`
-or `jspm install npm:systemjs-tools npm:systemjs-hmr socket.io-client`
+yarn: `yarn add systemjs-tools systemjs-hmr socket.io-client`
+
+jspm `jspm install npm:systemjs-tools npm:systemjs-hmr socket.io-client`
 
 #### Usage
 

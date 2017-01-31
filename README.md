@@ -1,14 +1,14 @@
 # SystemJS Tools
 `systemjs-tools` is a collection of powerful, customizable build tools,
 to help build compelling development and production stories for projects
-that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwheel)
-or webpack, for SystemJS.
+that rely on `[SystemJS](https://github.com/systemjs/systemjs)`. Think [figwheel](https://github.com/bhauman/lein-figwheel)
+or [webpack](https://webpack.github.io/), for [SystemJS](https://github.com/systemjs/systemjs).
 
 ## [WHAT?](./docs/what.md)
 
 `systemjs-tools` enables the following
 
-*items in italic are unfinished*
+*items in **bold** are unfinished*
 
 - [Snappy Page Refreshes](./docs/what.md#snappy-page-refreshes)
 - [Hot Module Replacement](./docs/what.md#hot-module-replacement)
@@ -16,11 +16,11 @@ or webpack, for SystemJS.
 - [Automatic Configuration and Smart Defaults](./docs/what.md#automatic-configuration-and-smart-defaults)
 - [Bundling and Builds](./docs/what.md#bundling-and-builds)
 - [Contribution Friendly Codebase](./docs/what.md#contribution-friendly-codebase)
-- [*Automatic JSPM Interoperability*](./docs/what.md#automatic-jspm-interoperability)
-- [*Development Feedback Console*](./docs/what.md#development-feedback-console)
+- [**Automatic JSPM Interoperability**](./docs/what.md#automatic-jspm-interoperability)
+- [**Development Feedback Console**](./docs/what.md#development-feedback-console)
 - [node_modules package resolution (beta)](./docs/what.md#node_modules-package-resolution-(beta))
 - [Project Templates](./docs/what.md#project-templates)
-- [*IDE Analysis Engine*](./docs/what.md#ide-analysis-engine)
+- [**IDE Analysis Engine**](./docs/what.md#ide-analysis-engine)
 
 ## WHY?
 As 'modern' application developers, we have certain expectations from

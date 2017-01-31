@@ -23,19 +23,9 @@ or [webpack](https://webpack.github.io/), for [SystemJS](https://github.com/syst
 - [**IDE Analysis Engine**](./docs/what.md#ide-analysis-engine)
 
 ## WHY?
-As 'modern' application developers, we have certain expectations from
-our environment, namely
-
-1. sub-second iteration cycles
-2. hot module replacement
-3. graceful error handling
-4. clear development feedback
-5. asset bundling
-6. ...the list continues
-
-Current development and production workflows for SystemJS leave much to
-be desired. Projects end up clobbering together a haphazard subset of
-their desired workflow and this contributes to developers leaving the
+Current development workflows for SystemJS leave much to
+be desired. Projects end up clobbering together a slow, haphazard subset of
+their desired workflow and the frustration this causes contributes to developers leaving the
 SystemJS ecosystem. That's ridiculous, SystemJS provides EXCELLENT
 primitives to build seamless development workflows and we should be
 leveraging that. `systemjs-tools` is my contribution towards tooling for

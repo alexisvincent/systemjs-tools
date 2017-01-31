@@ -18,7 +18,7 @@ or [webpack](https://webpack.github.io/), for [SystemJS](https://github.com/syst
 - [Contribution Friendly Codebase](./docs/what.md#contribution-friendly-codebase)
 - [**Automatic JSPM Interoperability**](./docs/what.md#automatic-jspm-interoperability)
 - [**Development Feedback Console**](./docs/what.md#development-feedback-console)
-- [node_modules package resolution (beta)](./docs/what.md#node_modules-package-resolution-(beta))
+- [node_modules package resolution (beta)](./docs/what.md#node_modules-package-resolution-beta)
 - [Project Templates](./docs/what.md#project-templates)
 - [**IDE Analysis Engine**](./docs/what.md#ide-analysis-engine)
 

@@ -8,7 +8,7 @@ or [webpack](https://webpack.github.io/), for [SystemJS](https://github.com/syst
 
 `systemjs-tools` enables the following
 
-*items in **bold** are unfinished*
+*items in* ***bold*** *are unfinished*
 
 - [Snappy Page Refreshes](./docs/what.md#snappy-page-refreshes)
 - [Hot Module Replacement](./docs/what.md#hot-module-replacement)

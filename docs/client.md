@@ -1,4 +1,4 @@
-# Client (a bit cluncky, but will be improved)
+# Client (WIP - a bit cluncky, but will be improved)
 ## Prerequisites
 
 `systemjs-tools` relies on socket.io-client being available. We don't specify this as a peer dep since this causes issues with `JSPM` / `npm` interop.

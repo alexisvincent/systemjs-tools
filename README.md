@@ -1,4 +1,4 @@
-# SystemJS Tools
+# SystemJS Tools (beta)
 `systemjs-tools` is a collection of powerful, customizable build tools,
 to help build compelling development and production stories for projects
 that rely on [SystemJS](https://github.com/systemjs/systemjs). Think [figwheel](https://github.com/bhauman/lein-figwheel)
@@ -10,8 +10,7 @@ Install the cli
 
 `yarn global add systemjs-tools`
 
-Navigate to your frontend root and initialise the config (or manually do
-this step)
+Navigate to your frontend root and initialise the config
 
 **THIS STEP DOESN't WORK YET, YOU NEED TO MANUALLY CREATE THE CONFIG**
 
@@ -84,11 +83,11 @@ For an in-depth look at the API, checkout the links below.
 - [x] rxjs core api (for plugin communication)
 - [x] cross session generic cache with file busting
 - [x] development mode
-- [x] sourcemap support - [issue pending](https://github.com/systemjs/builder/issues/754)
+- [x] sourcemap support
 - [x] hot module replacement
 - [x] handlers - [static, bundle]
 - [ ] basic documentation
-- [ ] handlers - [bundle -> dynamic bundle queries]
+- [ ] handlers - [bundle -> dynamic bundle queries via query string]
 - [ ] handlers - [compile, http2 server push]
 - [ ] logging via `debug` package
 - [ ] preemptive file loading

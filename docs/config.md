@@ -1,4 +1,4 @@
-# Config
+# Config (WIP)
 
 The config object describes to `systemjs-tools` how your environment is
 structured and can be loaded in a number of ways.

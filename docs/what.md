@@ -1,14 +1,4 @@
 # WHAT? (not finished)
-`systemjs-tools` is a collection of powerful, customizable tools,
-to help build compelling development and production stories for projects
-that rely on `SystemJS`. Think [figwheel](https://github.com/bhauman/lein-figwheel)
-or webpack, for SystemJS.
-
-It exposes a `cli tool`, a `server-side library` and a `client
-library`. Each exposes layered abstractions and hooks for you to describe
-your unique environment, while still providing a largely automatic
-experience at all levels.
-
 ## Snappy Page Refreshes
 SystemJS can take forever to load all modules into the browser,
 this is because of the module compilation time and the latency induced by
@@ -44,7 +34,7 @@ in a `cold start -> first page load` in less then 5 seconds.
 `systemjs-tools` discovers as much as it can about your environment and
 sets configuration defaults based on what it finds. This means that using
 `systemjs-tools` in your own project is sometimes as simple as adding
-`"systemjs": {}` to your `package.json` and running `systemjs serve`.
+`"systemjs-tools": {}` to your `package.json` and running `systemjs serve`.
 
 ## Bundling and Builds
 production, dynamic (dev)

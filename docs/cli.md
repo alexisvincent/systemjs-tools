@@ -1,4 +1,4 @@
-# CLI
+# CLI (WIP)
 ## Install
 npm - `npm install --global systemjs-tools`
 

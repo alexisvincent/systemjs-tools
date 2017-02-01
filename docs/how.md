@@ -57,6 +57,7 @@ of which has been included below).
  * systemjs-tools exposes the init function which accepts as an
  * argument, an override config object, and returns a static tools
  * object representing your environment.
+ */
 
 const { init } = require('systemjs-tools');
 

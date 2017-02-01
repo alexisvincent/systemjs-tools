@@ -7,32 +7,55 @@ library` and a `cli`. These are all provided in the npm package
 2. [Server](#server)
 3. [Client](#client)
 
+### General Usage
+`systemjs-tools` (cli and server) upon initialization, searches upwards for
+a `project root directory` (indicated by a `systemjs-tools.js` file or a `systemjs-tools`
+key in your `package.json`). It then loads the relevant [config](#config),
+describing your environment (eg. baseURL directory and port to serve on).
+
+If you do not already have a config file, navigate to the directory containing
+your frontend source files and run `systemjs init` **(not ready yet)**,
+to create a config describing your project.
+
+Typically one would then run a command such as `systemjs serve`, to start
+up a development server.
+
 ### CLI
 The `cli` is a thin wrapper over the `server lib` and as such, everything
 you can do in the cli, you can also do (and more) in the `server lib`.
 
 **Install** via
-`npm install --global systemjs-tools` or `yarn global add systemjs-tools`
+
+`npm install --global systemjs-tools`
+
+or
+
+`yarn global add systemjs-tools`
 
 The `cli` is then available via the `systemjs` command. To view available
 commands and usage, run `systemjs --help` (the output of which has been
 included below).
 
-      Usage: systemjs [options] [command]
+```
+  Usage: systemjs [options] [command]
 
-      Commands:
+  Commands:
+    generate-config       generate SystemJS config from node_modules (using systemjs-config-builder)
+    serve [options]       Serve the current directory
+    new [options] <name>  Generate a minimal boilerplate for getting up and running quickly
 
-        serve [options]        Serve the current directory
-        generate-config        generate SystemJS config from node_modules (using systemjs-config-builder)
-        new [options] <name>   Generate a minimal boilerplate for getting up and running quickly
-
-      Options:
-
-        -h, --help  output usage information
+  Options:
+    -h, --help  output usage information
+```
 
 ### Server
 **Install** via
-`npm install systemjs-tools` or `yarn add systemjs-tools`
+
+`npm install systemjs-tools`
+
+or
+
+`yarn add systemjs-tools`
 
 `systemjs-tools` exposes a single function `init` which accepts as an
 argument, a config object, and returns a static `tools` object representing your
@@ -84,87 +107,177 @@ _.events.subscribe( event => console.log(event) )
 _.bundle('app.js').then( m => console.log(m.source))
 ```
 
-### Config (not definitive, somethings may have changed)
+### Config
+#### (not definitive, somethings may have changed)
+
+The config object is of the form below.
 
 ```javascript
 module.exports.config = {
 
-    // key directories (superset of jspm.directories)
-    // if a jspm key exists in the package.json at the project root
-    // the directories will be used as defaults
+    /**
+     * An object specifying key directory locations (superset of jspm.directories)
+     * all directories are relative to config.directories.root
+     *
+     * if your project uses JSPM, and directories.jspm points to your
+     * JSPM package root, the keys specified in jspm.directories in your
+     * package.json will be used as defaults
+     */
     directories: {
 
-        // Absolute path the project root, discovered as explained above
-        // All other paths are specified relative to the root
-        root: process.cwd()
-
-        // path to directory mapping to the systemjs baseURL
-        baseURL: '.'
-    },
-
-    // A list of entries to your application [optional]
-    // This is simply used to premptively cache files you might load to speed up the first load
-    entries: ['app/app.js'],
-
-    // location of cache file relative to directories.root
-    cache: '.systemjs.cache.json',
-
-    // Should systemjs-tools start a file watcher and bust files itself
-    watch: true,
-
-    // one of [ 'smart', '*', 'none'] or a function (event) => bool
-    // will probably soon be replaced with debug library
-    log: 'smart',
-
-    // should the system preemptively bundle/compile the entries
-    // { lazy: false } is mostly unusable at the moment until the builder
-    // as been extended
-    lazy: true,
-
-    // options related to the http file server
-    serve: {
-
-        // which directory should systemjs-serve static files from
-        dir: '.',
-
-        // which port should we serve on
-        port: 3000,
+        /**
+         * Absolute path the project root, all other paths are specified
+         * relative to the root
+         *
+         * default: location of system-tools.js or package.json
+         *          containing systemjs-tools key
+         */
+        root: string,
 
         /**
-         * custom request handler factory
-         * f: (systemjs-tools instance) => standard http request handler
-         * You also have access to a set of handlers we expose on
-         * tools.handlers, for more information about these handlers ...
+         * Path to directory mapping to the systemjs baseURL
+         *
+         * default: defaults to config.serve.dir
          */
-        handler: ({handlers: {defaultHandler}}) => defaultHandler(),
-
-        // certificates that will be passed in to http2 server
-        keys: {
-            key: fs.readFileSync('key.pem'),
-            cert: fs.readFileSync('cert.pem')
-        }
+        baseURL: string,
     },
 
-    // http2 development channel (to communicate with client)
-    channel: {
-        // port on which the channel runs
-        port: 7777,
+    /**
+     * A list of entries to your application, used to premptively cache
+     * module entries and for HMR
+     *
+     * default: []
+     */
+    entries: [string],
 
-        // certificates that will be used to start the http2 dev channel
-        keys: defaultKeys
-    },
+    /**
+     * Location of persistent cache file relative to config.directories.root
+     *
+     * default: '.systemjs.cache.json',
+     */
+    cache: string,
 
-    // options related to the builder instance
+    /**
+     * Should systemjs-tools start a file watcher @ config.directories.root
+     *
+     * default: true
+     */
+    watch: bool,
+
+    /**
+     * DEPRECATED: will be replaced by debug lib
+     *
+     * Specifies what systemjs-tools should log
+     * one of [ 'smart', '*', 'none'] or a function (event) => bool
+     *
+     * default: 'smart'
+     */
+    log: string,
+
+    /**
+     * Should the system preemptively bundle, or lazy
+     * load (bundle on request) the entries.
+     *
+     * { lazy: false } is mostly unusable at the moment until the builder
+     * supports cancellable builds and systemjs-tools spawns the builder
+     * in it's own thread
+     *
+     * default: true
+     */
+    lazy: bool,
+
+    /**
+     * options related to the builder instance
+     */
     builder: {
 
-        // SystemJS config files to load (in order) into the builder instance
-        configFiles: ['./jspm.config.js'],
+        /**
+         * SystemJS config files to load (in order) into the builder instance
+         *
+         * default: []
+         */
+        configFiles: [string],
 
-        // options to pass to the builder instance (described in systemjs-builder)
-        options: {
-          sourceMaps: 'inline',
-          production: false
+        /**
+         * options to pass to the builder instance (described in systemjs-builder)
+         *
+         * default: { sourceMaps: 'inline', production: false }
+         */
+        options: {}
+    }
+
+    /**
+     * options for systemjs-tools' convenience HTTP2 server
+     */
+    serve: {
+
+        /**
+         * The directory systemjs-tools should statically serve (relative
+         * to config.directories.root), this also acts as the default
+         * value for config.directories.baseURL
+         *
+         * default: '.'
+         */
+        dir: string,
+
+        /**
+         * The port to serve on
+         *
+         * default: 3000
+         */
+        port: int,
+
+        /**
+         * Allows you to supply your own HTTP handler function to the
+         * server. The function you supply must accept an instance of
+         * systemjs-tools and return a standard HTTP request handler,
+         * in other words, a function accepting (req, res).
+         *
+         * As a convinience, we expose a set of helper handlers on the
+         * systemjs-tools instance at tools.handlers, which you can use
+         * when composing your own custom handler.
+         *
+         * For more information about these custom handlers, see the server
+         * API docs.
+         *
+         * default: ({handlers: {defaultHandler}}) => defaultHandler(),
+         */
+        handler: (tools) => handler
+
+        /**
+         * Certificates that will be passed to the HTTP2 server, exactly
+         * as you would with the normal HTTPS node API
+         *
+         * default: uses the keys exposed by the spdy-keys package
+         */
+        keys: {
+            key:  [byte]
+            cert: [byte]
         }
+    },
+
+    /**
+     * To facilitate features like HMR and in browser error catching,
+     * the systemjs-tools server lib needs to be able to communicate with
+     * the browser. We acheive this through a websocket (via socket.io),
+     * and call the exposed socket the systemjs-tools channel
+     */
+    channel: {
+        /**
+         * Port to run the channel on
+         *
+         * default: 7777
+         */
+        port: int,
+
+        /**
+         * Certificates that will be passed to the HTTP2 server (backing
+         * the websocket connection), exactly as you would with the normal
+         * HTTPS node API
+         *
+         * default: uses the keys exposed by the spdy-keys package
+         */
+        keys: defaultKeys
     }
 }
 ```

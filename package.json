@@ -6,7 +6,7 @@
   "browser": "dist/client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel lib -d dist",
+    "build": "babel lib -d dist && chmod +x ./dist/cli.js",
     "dev": "babel -w lib -d dist",
     "prepublish": "npm run build",
     "cli": "node ./dist/cli.js"

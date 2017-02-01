@@ -2,7 +2,7 @@
 `systemjs-tools` is a collection of powerful, customizable build tools,
 to help build compelling development and production stories for projects
 that rely on [SystemJS](https://github.com/systemjs/systemjs). Think [figwheel](https://github.com/bhauman/lein-figwheel)
-or [webpack](https://webpack.github.io/), for [`SystemJS`](https://github.com/systemjs/systemjs).
+or [webpack](https://webpack.github.io/), for [SystemJS](https://github.com/systemjs/systemjs).
 
 ## [WHAT?](./docs/what.md)
 

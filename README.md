@@ -32,11 +32,30 @@ leveraging that. `systemjs-tools` is my contribution towards tooling for
 the SystemJS ecosystem, and I would encourage you, if you have the time,
 to help contribute towards filling the gaps that exist in our ecosystem.
 
-## [HOW?](./docs/how.md)
+## HOW?
 `systemjs-tools` exposes a `cli tool`, a `server-side library` and a `client
-library`. Each exposes layered abstractions and hooks for you to describe
-your unique environment, while still providing a largely automatic
-experience at all levels.
+library` (all provided in the npm package `systemjs-tools`). Each exposes
+layered abstractions and hooks for you to describe your unique environment,
+while still providing a largely automatic experience at all levels.
+
+1. [General Usage](#general-usage)
+2. [Config](./docs/config.md)
+3. [CLI](./docs/cli.md)
+4. [Server](./docs/server.md)
+5. [Client](./docs/client.md)
+
+### General Usage
+`systemjs-tools` (cli and server) upon initialization, searches upwards for
+a `project root directory` (indicated by a `systemjs-tools.js` file or a `systemjs-tools`
+key in your `package.json`). It then loads the relevant [config](#config),
+describing your environment (eg. baseURL directory and port to serve on).
+
+If you do not already have a config file, navigate to the directory containing
+your frontend source files and run `systemjs init` **(not ready yet)**,
+to create a config describing your project.
+
+Typically one would then run a command such as `systemjs serve`, to start
+up a development server.
 
 [Find out about how to use systemjs-tools here](./docs/how.md)
 

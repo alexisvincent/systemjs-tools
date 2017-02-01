@@ -4,7 +4,24 @@ to help build compelling development and production stories for projects
 that rely on [SystemJS](https://github.com/systemjs/systemjs). Think [figwheel](https://github.com/bhauman/lein-figwheel)
 or [webpack](https://webpack.github.io/), for [SystemJS](https://github.com/systemjs/systemjs).
 
-## [WHAT?](./docs/what.md)
+## Quick Start
+
+Install the cli
+
+`yarn global add systemjs-tools`
+
+Navigate to your frontend root and initialise the config (or manually do
+this step)
+
+**THIS STEP DOESN't WORK YET, YOU NEED TO MANUALLY CREATE THE CONFIG**
+
+`systemjs init`
+
+Start the development server
+
+`systemjs serve`
+
+## WHAT?
 
 `systemjs-tools` provides you with the following
 

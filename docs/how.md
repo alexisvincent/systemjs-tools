@@ -21,20 +21,18 @@ Typically one would then run a command such as `systemjs serve`, to start
 up a development server.
 
 ### CLI
+#### Install
+```npm install --global systemjs-tools```
+or
+```yarn global add systemjs-tools```
+
+#### Usage
 The `cli` is a thin wrapper over the `server lib` and as such, everything
 you can do in the cli, you can also do (and more) in the `server lib`.
 
-**Install** via
-
-`npm install --global systemjs-tools`
-
-or
-
-`yarn global add systemjs-tools`
-
-The `cli` is then available via the `systemjs` command. To view available
-commands and usage, run `systemjs --help` (the output of which has been
-included below).
+Once installed, the `cli` is then available via the `systemjs` command.
+To view available commands and usage, run `systemjs --help` (the output
+of which has been included below).
 
 ```
   Usage: systemjs [options] [command]
@@ -49,71 +47,71 @@ included below).
 ```
 
 ### Server
-**Install** via
+#### Install
+```npm install systemjs-tools``` or ```yarn add systemjs-tools```
 
-`npm install systemjs-tools`
-
-or
-
-`yarn add systemjs-tools`
-
-`systemjs-tools` exposes a single function `init` which accepts as an
-argument, a config object, and returns a static `tools` object representing your
-environment. Upon execution, `init` recursively searches upwards for the
-`root` of the project (indicated by either a `"systemjs"` key in your
-`package.json` or a `systemjs.js` file), it then configures itself from
-the discovered configs and your provided config overrides. The returned
-tools object is static (no running processes) and it is safe to run init
-multiple times. The `tools` object exposes properties and functions tailored
-to your environment.
-
-Below is a brief fly through of some of the things you can do with the
-api. Fo a more in-depth look, checkout the server API docs, or the examples.
+#### Usage
 ```javascript
 
-// import init function
+/**
+ * systemjs-tools exposes the init function which accepts as an
+ * argument, an override config object, and returns a static tools
+ * object representing your environment.
+
 const { init } = require('systemjs-tools');
 
 // initialize systemjs-tools
 const tools = init({ /** your config overrides **/ })
 
-// use one of the exported properties
-const { config, serve, analyse, handlers, _ } = tools
-
-// including one of the express request handlers
-const { bundle, compile, serverPush, defaultHandler} = handlers
-
-// or the analyse function
-const { initiatedBySystemJS } = analyse(req, res)
-
-// maybe start an http server
-serve({port: 8000})
-
-// or your own express server
-const app = express()
-app.use(handlers.defaultHandler)
-http.createServer( app )
-
-// use your own file watcher
-myCustomWatcher.on('change', file) => _.fileChanged(file))
-
-// or hook into the builder
-_.builder
-
-// listen on system events
-_.events.subscribe( event => console.log(event) )
-
-// bundle your app
-_.bundle('app.js').then( m => console.log(m.source))
+// do some stuff
+tools.serve()
 ```
 
-### Config
-#### (not definitive, somethings may have changed)
+##### tools.serve
+```js
+/**
+ * HTTP2 server behaving as specified in config.serve
+ *
+ * accepts as argument, an override object for config.serve
+ */
+ tools.serve({ port: 8000 })
+```
 
-The config object is of the form below.
+
+### Config
+
+The config object describes to `systemjs-tools` how your environment is
+structured and can be loaded in a number of ways.
+
+At initialization, `systemjs-tools` looks for
+
+a `systemjs-tools.js` file
+```js
+module.exports.config = { ... }
+```
+
+or a `package.json` file containing a `systemjs-tools` key
+```js
+{
+  "name": "my-awesome-project",
+  "dependencies": { ... },
+  "systemjs-tools": { ... }
+}
+```
+
+The config objects found in either of these two places override the defaults.
+
+Additionally when initialising `systemjs-tools` via the server lib
+```js
+const { init } = require('systemjs-tools')
+
+init({ /** config options specified here override the config files **/ })
+```
+
+The config object is of the form:
 
 ```javascript
-module.exports.config = {
+const config = {
 
     /**
      * An object specifying key directory locations (superset of jspm.directories)

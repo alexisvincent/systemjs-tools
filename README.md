@@ -38,26 +38,25 @@ library` (all provided in the npm package `systemjs-tools`). Each exposes
 layered abstractions and hooks for you to describe your unique environment,
 while still providing a largely automatic experience at all levels.
 
-1. [General Usage](#general-usage)
-2. [Config](./docs/config.md)
-3. [CLI](./docs/cli.md)
-4. [Server](./docs/server.md)
-5. [Client](./docs/client.md)
-
 ### General Usage
 `systemjs-tools` (cli and server) upon initialization, searches upwards for
 a `project root directory` (indicated by a `systemjs-tools.js` file or a `systemjs-tools`
-key in your `package.json`). It then loads the relevant [config](#config),
+key in your `package.json`). It then loads the relevant [config](./docs/config.md),
 describing your environment (eg. baseURL directory and port to serve on).
 
-If you do not already have a config file, navigate to the directory containing
+If you do not already have a [config](./docs/config.md) file, navigate to the directory containing
 your frontend source files and run `systemjs init` **(not ready yet)**,
-to create a config describing your project.
+to create a [config](./docs/config.md) describing your project.
 
 Typically one would then run a command such as `systemjs serve`, to start
 up a development server.
 
-[Find out about how to use systemjs-tools here](./docs/how.md)
+For an in-depth look at the API, checkout the links below.
+
+1. [Config](./docs/config.md)
+2. [Server](./docs/server.md)
+3. [Client](./docs/client.md)
+4. [CLI](./docs/cli.md)
 
 ## Roadmap (currently usable for development)
 - [x] basic development bundling with file busting
@@ -71,8 +70,8 @@ up a development server.
 - [x] sourcemap support - [issue pending](https://github.com/systemjs/builder/issues/754)
 - [x] hot module replacement
 - [x] handlers - [static, bundle]
-- [ ] handlers - [bundle -> dynamic bundle queries]
 - [ ] basic documentation
+- [ ] handlers - [bundle -> dynamic bundle queries]
 - [ ] handlers - [compile, http2 server push]
 - [ ] logging via `debug` package
 - [ ] preemptive file loading

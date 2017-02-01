@@ -12,7 +12,7 @@ Install the cli
 
 Navigate to your frontend root and initialise the config
 
-**THIS STEP DOESN't WORK YET, YOU NEED TO MANUALLY CREATE THE CONFIG**
+**THIS STEP DOESN'T WORK YET, YOU NEED TO MANUALLY CREATE THE CONFIG**
 
 `systemjs init`
 

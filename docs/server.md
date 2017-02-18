@@ -32,3 +32,21 @@ tools.serve()
  tools.serve({ port: 8000 })
 ```
 
+### tools.handlers
+```js
+/**
+ * systemjs-tools exposes the http handler factories, we use internally
+ * for you to compose your own custom handlers. All the exposed handlers are
+ * functions, accepting an options object and returning a handler accepting
+ * (req, res, next), where req and res are standard node HTTP request and
+ * response objects and next is a function that will be called if the
+ * handler doesn't know how to handle the request. The only exception to
+ * this is the defaultHandler.
+ *
+ * Normally, you would use these handler factories to generate a custom
+ * handler for use in config.handler, however you are obviously free to
+ * use them in your own HTTP server.
+ */
+
+ /**
+```

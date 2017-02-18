@@ -30,7 +30,9 @@ cli.command('generate-config').description('generate SystemJS config from node_m
   })).then(_systemjsConfigBuilder.pruneModuleTree).then(_systemjsConfigBuilder.generateConfig).then(_systemjsConfigBuilder.serializeConfig).then(fs.writeFile.bind(null, './generated.config.js'));
 });
 
-cli.command('serve').description('Serve the current directory').option('--hmr', 'Should we enable hmr').option('-p, --port [port]', 'port to serve on [3000]', parseInt).option('-d, --dir [dir]', 'relative path to directory to serve', function (dir) {
+cli.command('serve').description('Start a development server')
+// .option('--hmr', 'Should we enable hmr')
+.option('-p, --port [port]', 'port to serve on [3000]', parseInt).option('-d, --dir [dir]', 'relative path to directory to serve', function (dir) {
   return path.join(process.cwd(), dir);
 }).action(function (opts) {
 

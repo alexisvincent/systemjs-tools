@@ -20,25 +20,25 @@ Start the development server
 
 `systemjs serve`
 
-## WHAT?
+## Features
 
 `systemjs-tools` provides you with the following
 
-- [Snappy Page Refreshes](./docs/what.md#snappy-page-refreshes)
-- [Hot Module Replacement](./docs/what.md#hot-module-replacement)
-- [Cache Persistence (across process restarts)](./docs/what.md#cache-persistence)
-- [Automatic Configuration and Smart Defaults](./docs/what.md#automatic-configuration-and-smart-defaults)
-- [Bundling and Builds](./docs/what.md#bundling-and-builds)
-- [Contribution Friendly Codebase](./docs/what.md#contribution-friendly-codebase)
-- [**Automatic JSPM Interoperability**](./docs/what.md#automatic-jspm-interoperability)
-- [**Development Feedback Console**](./docs/what.md#development-feedback-console)
-- [node_modules package resolution (beta)](./docs/what.md#node_modules-package-resolution-beta)
-- [Project Templates](./docs/what.md#project-templates)
-- [**IDE Analysis Engine**](./docs/what.md#ide-analysis-engine)
+- [Snappy Page Refreshes](./docs/features.md#snappy-page-refreshes)
+- [Hot Module Replacement](./docs/features.md#hot-module-replacement)
+- [Cache Persistence (across process restarts)](./docs/features.md#cache-persistence)
+- [Automatic Configuration and Smart Defaults](./docs/features.md#automatic-configuration-and-smart-defaults)
+- [Bundling and Builds](./docs/features.md#bundling-and-builds)
+- [Contribution Friendly Codebase](./docs/features.md#contribution-friendly-codebase)
+- [**Automatic JSPM Interoperability**](./docs/features.md#automatic-jspm-interoperability)
+- [**Development Feedback Console**](./docs/features.md#development-feedback-console)
+- [node_modules package resolution (beta)](./docs/features.md#node_modules-package-resolution-beta)
+- [Project Templates](./docs/features.md#project-templates)
+- [**IDE Analysis Engine**](./docs/features.md#ide-analysis-engine)
 
 *items in* ***bold*** *are unfinished*
 
-## WHY?
+## Motivation
 Current development workflows for SystemJS leave much to
 be desired. Projects end up clobbering together a slow, haphazard subset of
 their desired workflow and the frustration this causes contributes to developers leaving the
@@ -48,7 +48,7 @@ leveraging that. `systemjs-tools` is my contribution towards tooling for
 the SystemJS ecosystem, and I would encourage you, if you have the time,
 to help contribute towards filling the gaps that exist in our ecosystem.
 
-## HOW?
+## Usage
 `systemjs-tools` exposes a `cli tool`, a `server-side library` and a `client
 library` (all provided in the npm package `systemjs-tools`). Each exposes
 layered abstractions and hooks for you to describe your unique environment,

@@ -1,4 +1,6 @@
 # SystemJS Tools (beta)
+[![npm version](https://badge.fury.io/js/systemjs-tools.svg)](https://badge.fury.io/js/systemjs-tools)
+
 `systemjs-tools` is a collection of powerful, customizable build tools,
 to help build compelling development and production stories for projects
 that rely on [SystemJS](https://github.com/systemjs/systemjs). Think [figwheel](https://github.com/bhauman/lein-figwheel)
@@ -50,7 +52,7 @@ to help contribute towards filling the gaps that exist in our ecosystem.
 
 ## Usage
 `systemjs-tools` exposes a `cli tool` and a `server-side library` and has deep integration
-with `systemjs-hot-reloader`. Each exposes layered abstractions and hooks for you to describe your unique environment,
+with [systemjs-hot-reloader](https://github.com/alexisvincent/systemjs-hot-reloader). Each exposes layered abstractions and hooks for you to describe your unique environment,
 while still providing a largely automatic experience at all levels.
 
 ### Client

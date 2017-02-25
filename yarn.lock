@@ -17,13 +17,6 @@ after@0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/after/-/after-0.8.2.tgz#fedb394f9f0e02aa9768e702bda23b505fae7e1f"
 
-ajv@^4.8.2:
-  version "4.10.4"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.10.4.tgz#c0974dd00b3464984892d6010aa9c2c945933254"
-  dependencies:
-    co "^4.6.0"
-    json-stable-stringify "^1.0.1"
-
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
@@ -789,10 +782,6 @@ cliui@^2.1.0:
     center-align "^0.1.1"
     right-align "^0.1.1"
     wordwrap "0.0.2"
-
-co@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
 code-point-at@^1.0.0:
   version "1.1.0"
@@ -1622,12 +1611,6 @@ json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
 
-json-stable-stringify@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json-stable-stringify/-/json-stable-stringify-1.0.1.tgz#9a759d39c5f2ff503fd5300646ed445f88c4f9af"
-  dependencies:
-    jsonify "~0.0.0"
-
 json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
@@ -1639,10 +1622,6 @@ json3@3.3.2:
 json5@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
-
-jsonify@~0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
 jsonpointer@^4.0.0:
   version "4.0.1"
@@ -2524,7 +2503,7 @@ symbol-observable@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
 
-systemjs-builder@0.15.34, systemjs-builder@^0.15, systemjs-builder@^0.15.33:
+systemjs-builder@0.15.34, systemjs-builder@^0.15.33:
   version "0.15.34"
   resolved "https://registry.yarnpkg.com/systemjs-builder/-/systemjs-builder-0.15.34.tgz#6f1b7437e681e395bbdadb2e0b9d4bfd86f1ce56"
   dependencies:
@@ -2544,7 +2523,7 @@ systemjs-builder@0.15.34, systemjs-builder@^0.15, systemjs-builder@^0.15.33:
     traceur "0.0.105"
     uglify-js "^2.6.1"
 
-systemjs-config-builder@>=0.0.8:
+systemjs-config-builder@^0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/systemjs-config-builder/-/systemjs-config-builder-0.0.9.tgz#e58c32a9c3f4e7f5256f9ae0af271efe9452915e"
   dependencies:
@@ -2552,12 +2531,6 @@ systemjs-config-builder@>=0.0.8:
     graceful-fs "^4.1.10"
     jspm-npm "^0.30.1"
     lodash "^4.17.1"
-
-systemjs-hmr@^0.1.3:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/systemjs-hmr/-/systemjs-hmr-0.1.6.tgz#e3d39704968e5bce808d91170822d3f0436dd8a2"
-  dependencies:
-    ajv "^4.8.2"
 
 systemjs@0.19.41, systemjs@^0.19.41:
   version "0.19.41"

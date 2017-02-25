@@ -1,8 +1,7 @@
 # Server (WIP)
 ## Install
-npm - `npm install systemjs-tools`
-
-yarn - `yarn add systemjs-tools`
+- `npm install systemjs-tools systemjs-builder`
+- `yarn add systemjs-tools systemjs-builder`
 
 ## Usage
 ```javascript

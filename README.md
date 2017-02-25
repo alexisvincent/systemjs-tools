@@ -49,10 +49,13 @@ the SystemJS ecosystem, and I would encourage you, if you have the time,
 to help contribute towards filling the gaps that exist in our ecosystem.
 
 ## Usage
-`systemjs-tools` exposes a `cli tool`, a `server-side library` and a `client
-library` (all provided in the npm package `systemjs-tools`). Each exposes
-layered abstractions and hooks for you to describe your unique environment,
+`systemjs-tools` exposes a `cli tool` and a `server-side library` and has deep integration
+with `systemjs-hot-reloader`. Each exposes layered abstractions and hooks for you to describe your unique environment,
 while still providing a largely automatic experience at all levels.
+
+### Client
+`systemjs-tools` uses [systemjs-hot-reloader](https://github.com/alexisvincent/systemjs-hot-reloader)
+as its frontend client. As such you should follow the instructions listed in the README.
 
 ### General Usage
 `systemjs-tools` (cli and server) upon initialization, searches upwards for
@@ -71,8 +74,7 @@ For an in-depth look at the API, checkout the links below.
 
 1. [Config](./docs/config.md)
 2. [Server](./docs/server.md)
-3. [Client](./docs/client.md)
-4. [CLI](./docs/cli.md)
+3. [CLI](./docs/cli.md)
 
 ## Roadmap (currently usable for development)
 - [x] basic development bundling with file busting

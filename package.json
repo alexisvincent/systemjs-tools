@@ -40,41 +40,6 @@
       "env"
     ]
   },
-  "jspm": {
-    "dependencies": {
-      "deepmerge": "^1.3.1",
-      "systemjs-hmr": "^1.0.0"
-    },
-    "map": {
-      "./client": {
-        "~production": "./dist/client.js",
-        "production": "./dist/client-production.js"
-      }
-    },
-    "overrides": {
-      "npm:debug@2.6.0": {
-        "main": "src/browser.js",
-        "jspmNodeConversion": false,
-        "format": "cjs",
-        "map": {
-          "./src/browser.js": {
-            "node": "./src/node.js"
-          },
-          "./node.js": {
-            "browser": "./src/browser.js"
-          },
-          "fs": "@node/fs",
-          "net": "@node/net",
-          "tty": "@node/tty",
-          "util": "@node/util"
-        }
-      },
-      "npm:ms@0.7.2": {
-        "jspmNodeConversion": false,
-        "format": "cjs"
-      }
-    }
-  },
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-plugin-transform-object-rest-spread": "^6.19.0",
@@ -95,7 +60,6 @@
     "socket.io": "^1.6.0",
     "spdy": "^3.4.4",
     "spdy-keys": "^0.0.0",
-    "systemjs-builder": "^0.15",
-    "systemjs-config-builder": ">=0.0.8"
+    "systemjs-config-builder": "^0.0.9"
   }
 }

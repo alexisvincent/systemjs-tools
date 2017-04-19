@@ -7,6 +7,8 @@ var path = require('path');
 var express = require('express');
 var defaultFinalHandler = require('finalhandler');
 var merge = require('deepmerge');
+var httpProxy = require('http-proxy');
+var url = require('url');
 // var spdy = require('spdy-push');
 
 var analyse = exports.analyse = function analyse(req, res) {
@@ -57,6 +59,37 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
     //   )
     // },
 
+    proxyHandler: function proxyHandler() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      _.log('setting up proxy to ' + config.proxy);
+      var proxy = httpProxy.createProxyServer({ protocolRewrite: 'https:', autoRewrite: true });
+      var target = url.parse(config.proxy);
+
+      proxy.on('proxyReq', function (proxyReq, req, res, proxyOptions) {
+        proxyReq.setHeader('X-Forwarded-Proto', 'https');
+      });
+
+      proxy.on('proxyRes', function (proxyRes, req, res, proxyOptions) {
+        var location = proxyRes.headers['location'];
+        if (location) {
+          var u = url.parse(location);
+          u.host = target.host;
+          proxyRes.headers['location'] = url.format(u);
+        }
+
+        delete proxyRes.headers['transfer-encoding'];
+      });
+
+      proxy.on('error', function (e) {
+        console.error(e);
+      });
+
+      return function (req, res, next) {
+        _.log(req.method + ' https://' + req.headers.host + req.url + ' => ' + config.proxy);
+        return proxy.web(req, res, { target: config.proxy });
+      };
+    },
 
     defaultHandler: function defaultHandler() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -71,6 +104,9 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
       var app = express();
       app.use(handlers.bundle());
       app.use(handlers.static());
+      if (config.proxy) {
+        app.use(handlers.proxyHandler());
+      }
       app.use(fallthroughHandler);
       return app;
     }

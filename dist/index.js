@@ -232,7 +232,7 @@ var init = function init() {
 
           return bundle;
         }).catch(function (err) {
-          _.error('failed to bundle ' + entry, err);
+          _.error('failed to bundle ' + expression, err);
         });
       });
 

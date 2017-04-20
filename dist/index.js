@@ -218,6 +218,7 @@ var init = function init() {
       cache.bundling = true;
       cache.bundlePromise = _.then('build', function () {
         _.log('bundling ' + expression + '...');
+        _.log('options ' + JSON.stringify(options, null, true));
         cache.valid = true;
 
         // we are bundling, re-declared in-case it was switched in the previous tick

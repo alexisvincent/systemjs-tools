@@ -37,6 +37,7 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
             bundleTrigger = _merge.bundleTrigger;
 
         if (typeof bundleTrigger === 'string' && req.originalUrl.endsWith(bundleTrigger) || typeof bundleTrigger == 'function' && bundleTrigger(req)) {
+          _.log('requesting ' + req.url + ' triggering bundling');
           _.bundle(config.entries.join(' + ')).then(function (_ref2) {
             var source = _ref2.source;
             return res.end(source);

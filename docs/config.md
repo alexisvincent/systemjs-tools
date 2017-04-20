@@ -196,6 +196,14 @@ const config = {
          * default: uses the keys exposed by the spdy-keys package
          */
         keys: defaultKeys
-    }
+    },
+
+    /**
+     * To proxy to back-end resources your app may depend on during development
+     * (for example, a REST endpoint), you can use the proxy configuration.
+     *
+     * example: proxy: 'http://localhost:8182'
+     */
+    proxy: string
 }
 ```

@@ -164,7 +164,7 @@ var init = function init() {
     var rebundle = [];
 
     Object.values(_.cache.bundle).forEach(function (bundleCache) {
-      bundleCache.bundle.modules.forEach(function (module) {
+      bundleCache.bundle && bundleCache.bundle.modules.forEach(function (module) {
         if (_path2.default.normalize(module) == normalized) {
           rebundle.push([bundleCache.expression, bundleCache.options]);
           bundleCache.valid = false;

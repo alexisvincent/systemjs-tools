@@ -224,9 +224,10 @@ var init = function init() {
         // we are bundling, re-declared in-case it was switched in the previous tick
         cache.bundling = true;
 
+        var start = new Date().getTime();
         return _.builder.bundle(expression, options).then(function (bundle) {
           _.persistCache();
-          _.log('finished bundling ' + expression);
+          _.log('finished bundling ' + expression + '; took ' + (new Date().getTime() - start) + ' ms');
 
           cache.bundling = false;
           cache.bundle = bundle;

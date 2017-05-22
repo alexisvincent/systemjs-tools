@@ -61,6 +61,7 @@
     "socket.io": "^1.6.0",
     "spdy": "^3.4.4",
     "spdy-keys": "^0.0.0",
+    "systemjs-builder": "^0.16.4",
     "systemjs-config-builder": "^0.0.9"
   }
 }

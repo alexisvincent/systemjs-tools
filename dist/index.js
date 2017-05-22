@@ -164,7 +164,7 @@ var init = function init() {
     var rebundle = [];
 
     Object.values(_.cache.bundle).forEach(function (bundleCache) {
-      bundleCache.bundle.modules.forEach(function (module) {
+      bundleCache.bundle && bundleCache.bundle.modules.forEach(function (module) {
         if (_path2.default.normalize(module) == normalized) {
           rebundle.push([bundleCache.expression, bundleCache.options]);
           bundleCache.valid = false;
@@ -218,14 +218,16 @@ var init = function init() {
       cache.bundling = true;
       cache.bundlePromise = _.then('build', function () {
         _.log('bundling ' + expression + '...');
+        _.log('options ' + JSON.stringify(options, null, true));
         cache.valid = true;
 
         // we are bundling, re-declared in-case it was switched in the previous tick
         cache.bundling = true;
 
+        var start = new Date().getTime();
         return _.builder.bundle(expression, options).then(function (bundle) {
           _.persistCache();
-          _.log('finished bundling ' + expression);
+          _.log('finished bundling ' + expression + '; took ' + (new Date().getTime() - start) + ' ms');
 
           cache.bundling = false;
           cache.bundle = bundle;

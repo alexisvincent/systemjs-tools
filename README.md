@@ -83,7 +83,7 @@ Here is a one-liner to generate your own localhost.crt and localhost.key:
 
 To use this, specify a configuration within your systemjs-tools.js:
 
-```
+```js
 fs = require('fs')
 
 // Specify keys for localhost

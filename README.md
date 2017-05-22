@@ -72,6 +72,33 @@ to create a [config](./docs/config.md) describing your project.
 Typically one would then run a command such as `systemjs serve`, to start
 up a development server.
 
+### Setting up trust for the SPDY server
+It may be helpful to generate your own localhost certificates for the SPDY server and trust that with your browser.
+Recently, Chrome and Firefox have begun rejecting certificates that do not specify a Subject Alternative Name.
+Here is a one-liner to generate your own localhost.crt and localhost.key:
+
+```
+  openssl req -x509 -newkey rsa:2048 -keyout localhost.key -out localhost.crt -days 365 -nodes -subj '/CN=localhost' -reqexts SAN -extensions SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:localhost"))
+```
+
+To use this, specify a configuration within your systemjs-tools.js:
+
+```
+fs = require('fs')
+
+// Specify keys for localhost
+module.exports.config.serve.keys = {
+  key: fs.readFileSync('localhost.key', 'utf-8'),
+  cert: fs.readFileSync('localhost.crt', 'utf-8'),
+  ca: fs.readFileSync('localhost.key', 'utf-8'),
+}
+module.exports.config.channel = {
+  keys: module.exports.config.serve.keys
+}
+```
+
+### API
+
 For an in-depth look at the API, checkout the links below.
 
 1. [Config](./docs/config.md)

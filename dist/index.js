@@ -326,6 +326,7 @@ var init = function init() {
 
   // f: notify system that a file has changed
   _.fileChanged = function (absolutePath) {
+    _.log('file-changed: ' + _path2.default.relative(config.directories.root, absolutePath));
     _.events.next({
       type: 'file-changed',
       absolutePath: absolutePath,
@@ -336,10 +337,13 @@ var init = function init() {
 
   // f: watch file system and notify systemjs-tools when file changes
   _.watchFileSystem = function () {
+    var _ref5;
+
     var chokidarOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _.watcher = _chokidar2.default.watch(config.directories.root, (0, _deepmerge2.default)({
-      ignored: ["**/jspm_packages", "**/node_modules", "**/icons", _path2.default.join(config.directories.root, config.cache)],
+      cwd: process.cwd(),
+      ignored: (_ref5 = ["**/jspm_packages", "**/node_modules", "**/icons", _path2.default.join(config.directories.root, config.cache)]).concat.apply(_ref5, _toConsumableArray(config.directories.ignored || [])),
       ignoreInitial: true
     }, chokidarOptions));
 
@@ -380,11 +384,11 @@ var init = function init() {
    */
 
   // print system messages
-  _.events.filter(config.log).subscribe(function (_ref5) {
-    var type = _ref5.type,
-        message = _ref5.message,
-        error = _ref5.error,
-        relativePath = _ref5.relativePath;
+  _.events.filter(config.log).subscribe(function (_ref6) {
+    var type = _ref6.type,
+        message = _ref6.message,
+        error = _ref6.error,
+        relativePath = _ref6.relativePath;
 
     switch (type) {
       case 'log':
@@ -432,8 +436,8 @@ var init = function init() {
 
   _.bustOldBuilderEntries();
 
-  _.events.fileChanged = _.events.filter(function (_ref6) {
-    var type = _ref6.type;
+  _.events.fileChanged = _.events.filter(function (_ref7) {
+    var type = _ref7.type;
     return type == 'file-changed';
   });
 
@@ -456,8 +460,8 @@ var init = function init() {
   }).subscribe(_.events);
 
   // persist cache if persist-cache message received
-  _.events.filter(function (_ref7) {
-    var type = _ref7.type;
+  _.events.filter(function (_ref8) {
+    var type = _ref8.type;
     return type == 'persist-cache';
   }).debounceTime(1000).subscribe(function () {
     _.log('persisting cache');

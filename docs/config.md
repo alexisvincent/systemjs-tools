@@ -58,6 +58,13 @@ const config = {
          * default: defaults to config.serve.dir
          */
         baseURL: string,
+
+        /**
+         * A list of optional directories to ignore in file watching
+         *
+         * default: []
+         */
+        ignored: [string]
     },
 
     /**

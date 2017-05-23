@@ -39,8 +39,15 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
         if (typeof bundleTrigger === 'string' && req.originalUrl.endsWith(bundleTrigger) || typeof bundleTrigger == 'function' && bundleTrigger(req)) {
           _.log('requesting ' + req.url + ' triggering bundling');
           _.bundle(config.entries.join(' + ')).then(function (_ref2) {
-            var source = _ref2.source;
-            return res.end(source);
+            var source = _ref2.source,
+                sourceMap = _ref2.sourceMap;
+            return res.end(config.builder.options.sourceMaps === 'inline' || !sourceMap ? source : source + ('\n//# sourceMappingURL=' + bundleTrigger + '.map'));
+          });
+        } else if (req.originalUrl.endsWith('.map') && (typeof bundleTrigger === 'string' && req.originalUrl.indexOf(bundleTrigger) > 0 || typeof bundleTrigger == 'function' && bundleTrigger(req))) {
+          _.log('requesting ' + req.url + ' retrieving sourcemap');
+          _.bundle(config.entries.join(' + ')).then(function (_ref3) {
+            var sourceMap = _ref3.sourceMap;
+            return res.end(sourceMap);
           });
         } else {
           next();
@@ -63,9 +70,10 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
     proxyHandler: function proxyHandler() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      _.log('setting up proxy to ' + config.proxy);
+      var proxyUrl = config.proxy || options.proxy;
+      _.log('setting up proxy to ' + proxyUrl);
       var proxy = httpProxy.createProxyServer({ protocolRewrite: 'https:', autoRewrite: true });
-      var target = url.parse(config.proxy);
+      var target = url.parse(proxyUrl);
 
       proxy.on('proxyReq', function (proxyReq, req, res, proxyOptions) {
         proxyReq.setHeader('X-Forwarded-Proto', 'https');
@@ -87,12 +95,12 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
       });
 
       return function (req, res, next) {
-        _.log(req.method + ' https://' + req.headers.host + req.url + ' => ' + config.proxy);
-        return proxy.web(req, res, { target: config.proxy });
+        _.log(req.method + ' https://' + req.headers.host + req.originalUrl + ' => ' + proxyUrl);
+        return proxy.web(req, res, { target: proxyUrl });
       };
     },
 
-    defaultHandler: function defaultHandler() {
+    fallthroughHandler: function fallthroughHandler() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       var _merge2 = merge({
@@ -102,13 +110,19 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
       }, options),
           fallthroughHandler = _merge2.fallthroughHandler;
 
+      return fallthroughHandler;
+    },
+
+    defaultHandler: function defaultHandler() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
       var app = express();
       app.use(handlers.bundle());
       app.use(handlers.static());
       if (config.proxy) {
         app.use(handlers.proxyHandler());
       }
-      app.use(fallthroughHandler);
+      app.use(handlers.fallthroughHandler());
       return app;
     }
   };

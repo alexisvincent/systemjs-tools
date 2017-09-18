@@ -134,7 +134,7 @@ const config = {
     /**
      * Optional mappings for customizing bundling.
      */
-    mappings: {
+    mappings: [{
 
       /**
        * A matching rule, either string mapped to end of request URL, a function passed
@@ -157,7 +157,7 @@ const config = {
           */
          options: {}
       }
-    },
+    }],
 
     /**
      * options for systemjs-tools' convenience HTTP2 server

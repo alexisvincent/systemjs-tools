@@ -128,8 +128,36 @@ const config = {
          *
          * default: { sourceMaps: 'inline', production: false }
          */
-        options: {}
-    }
+        options: {},
+    },
+
+    /**
+     * Optional mappings for customizing bundling.
+     */
+    mappings: {
+
+      /**
+       * A matching rule, either string mapped to end of request URL, a function passed
+       * the request returning a truthy value, or a regex
+       */
+      match: string|function|regex,
+
+      /**
+       * Builder object containing expression and options for this bundle to build
+       */
+      builder: {
+
+         /**
+          * Expression to build, including optional bundle arithmetic.
+          */
+         expression: string,
+
+         /**
+          * Options to merge with main builder options.
+          */
+         options: {}
+      }
+    },
 
     /**
      * options for systemjs-tools' convenience HTTP2 server

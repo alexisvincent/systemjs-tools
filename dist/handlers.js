@@ -3,6 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var path = require('path');
 var express = require('express');
 var defaultFinalHandler = require('finalhandler');
@@ -36,19 +39,47 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
         }, options),
             bundleTrigger = _merge.bundleTrigger;
 
-        if (typeof bundleTrigger === 'string' && req.originalUrl.endsWith(bundleTrigger) || typeof bundleTrigger == 'function' && bundleTrigger(req)) {
-          _.log('requesting ' + req.url + ' triggering bundling');
-          _.bundle(config.entries.join(' + ')).then(function (_ref2) {
-            var source = _ref2.source,
-                sourceMap = _ref2.sourceMap;
-            return res.end(config.builder.options.sourceMaps === 'inline' || !sourceMap ? source : source + ('\n//# sourceMappingURL=' + bundleTrigger + '.map'));
+        // Request can match with string, function or regex.
+
+
+        var matchRequest = function matchRequest(req, match) {
+          return typeof match === 'string' && (req.originalUrl.endsWith(match) || req.originalUrl.endsWith(match + '.map')) || typeof match === 'function' && match(req) || (typeof match === 'undefined' ? 'undefined' : _typeof(match)) === 'object' && match instanceof RegExp && match.exec(req.originalUrl);
+        };
+
+        // Simple case: mapping bundle trigger to request.
+        var builder = void 0;
+        if (matchRequest(req, bundleTrigger)) {
+          builder = { expression: config.entries.join(' + ') };
+
+          // Didn't match; look for mappings overrides.
+        } else {
+          (config.mappings || []).forEach(function (mapping) {
+            if (matchRequest(req, mapping.match)) {
+              if (!mapping.builder) {
+                throw new Error('Builder options missing for mapping: ' + mapping.match);
+              }
+              builder = mapping.builder;
+            }
           });
-        } else if (req.originalUrl.endsWith('.map') && (typeof bundleTrigger === 'string' && req.originalUrl.indexOf(bundleTrigger) > 0 || typeof bundleTrigger == 'function' && bundleTrigger(req))) {
-          _.log('requesting ' + req.url + ' retrieving sourcemap');
-          _.bundle(config.entries.join(' + ')).then(function (_ref3) {
-            var sourceMap = _ref3.sourceMap;
-            return res.end(sourceMap);
-          });
+        }
+
+        // Is this a mapped builder request?
+        if (builder) {
+          var builderOptions = merge(config.builder.options, builder.options || {});
+          if (req.originalUrl.endsWith('.map')) {
+            _.log('requesting ' + req.url + ' retrieving external sourcemap');
+            _.bundle(builder.expression, builderOptions).then(function (_ref2) {
+              var sourceMap = _ref2.sourceMap;
+              return res.end(sourceMap);
+            });
+          } else {
+            _.log('requesting ' + req.url + ' triggering bundling');
+            _.bundle(builder.expression, builderOptions).then(function (_ref3) {
+              var source = _ref3.source,
+                  sourceMap = _ref3.sourceMap;
+              return res.end(options.sourceMaps === 'inline' || !sourceMap ? source : source + ('\n//# sourceMappingURL=' + path.basename(req.originalUrl) + '.map'));
+            });
+          }
         } else {
           next();
         }

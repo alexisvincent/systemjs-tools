@@ -117,8 +117,8 @@ For an in-depth look at the API, checkout the links below.
 - [x] sourcemap support
 - [x] hot module replacement
 - [x] handlers - [static, bundle]
-- [ ] basic documentation
-- [ ] handlers - [bundle -> dynamic bundle queries via query string]
+- [x] basic documentation
+- [x] handlers - [named bundle mappings]
 - [ ] handlers - [compile, http2 server push]
 - [ ] logging via `debug` package
 - [ ] preemptive file loading

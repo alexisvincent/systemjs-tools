@@ -157,7 +157,7 @@ var init = function init() {
   _.invalidate = function (_ref) {
     var absolutePath = _ref.absolutePath;
 
-    _.builder.invalidate(absolutePath);
+    _.builder.invalidate(_path2.default.relative(config.directories.baseURL, absolutePath));
 
     var normalized = _path2.default.normalize(_path2.default.relative(_path2.default.join(config.directories.root, config.directories.baseURL), absolutePath));
 

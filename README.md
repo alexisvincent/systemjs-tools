@@ -1,4 +1,4 @@
-# SystemJS Tools (beta)
+# SystemJS Tools
 [![npm version](https://badge.fury.io/js/systemjs-tools.svg)](https://badge.fury.io/js/systemjs-tools)
 
 `systemjs-tools` is a collection of powerful, customizable build tools,

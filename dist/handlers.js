@@ -103,7 +103,7 @@ var makeHandlers = exports.makeHandlers = function makeHandlers(_ref) {
 
       var proxyUrl = config.proxy || options.proxy;
       _.log('setting up proxy to ' + proxyUrl);
-      var proxy = httpProxy.createProxyServer({ protocolRewrite: 'https:', autoRewrite: true });
+      var proxy = httpProxy.createProxyServer({ protocolRewrite: 'https:', autoRewrite: true, secure: 'secure' in options ? options.secure : false });
       var target = url.parse(proxyUrl);
 
       proxy.on('proxyReq', function (proxyReq, req, res, proxyOptions) {
